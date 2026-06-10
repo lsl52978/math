@@ -21,5 +21,5 @@ export default {
     "sh/gen_formula_svg.js",
   ],
   ignore: ["demo/**", "lib/**", "plugin/*/lib/**", "plugin/*/src/*.d.ts"],
-  ignoreDependencies: ["@mathjax/mathjax-mhchem-font-extension", "oxfmt", "oxlint"],
+  ignoreDependencies: ["@mathjax/mathjax-mhchem-font-extension", "oxfmt", "oxlint", "@1-/mdcheck"],
 };

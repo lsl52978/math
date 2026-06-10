@@ -37,6 +37,8 @@
   "dependencies": {},
   "devDependencies": {
     "@1-/dist": "file:../npm/dist",
+    "@1-/findgit": "^0.1.2",
+    "@1-/mdcheck": "^0.1.6",
     "@3-/log": "^0.1.9",
     "@3-/read": "^0.1.4",
     "@3-/stylfmt": "^0.1.7",
