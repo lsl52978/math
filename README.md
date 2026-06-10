@@ -6,6 +6,19 @@
 
 # @webc.site/math : The world's smallest and fastest web Markdown formula renderer
 
+- [@webc.site/math : The world's smallest and fastest web Markdown formula renderer](#webcsitemath-the-worlds-smallest-and-fastest-web-markdown-formula-renderer)
+  - [1. Features](#1-features)
+  - [2. Usage](#2-usage)
+    - [Compilation Examples](#compilation-examples)
+      - [Render TeX Formulas Directly](#render-tex-formulas-directly)
+      - [Replace Formulas in Markdown Text](#replace-formulas-in-markdown-text)
+    - [Font and CSS Configuration](#font-and-css-configuration)
+      - [CSS Font Styling](#css-font-styling)
+  - [3. Design](#3-design)
+  - [4. Tech Stack](#4-tech-stack)
+  - [5. Code Structure](#5-code-structure)
+  - [6. Historical Background](#6-historical-background)
+
 ## 1. Features
 
 This project compiles LaTeX math formulas into browser-native MathML Core markup, achieving zero-overhead rendering without client-side layout engines.
@@ -104,6 +117,19 @@ In January 2023, Chrome 109 reintroduced support for the optimized MathML Core s
 <a id="zh"></a>
 
 # @webc.site/math : 全球最小最快的网页 Markdown 公式渲染器
+
+- [@webc.site/math : 全球最小最快的网页 Markdown 公式渲染器](#webcsitemath-全球最小最快的网页-markdown-公式渲染器)
+  - [1. 功能介绍](#1-功能介绍)
+  - [2. 使用演示](#2-使用演示)
+    - [编译示例](#编译示例)
+      - [直接渲染 TeX 公式](#直接渲染-tex-公式)
+      - [替换 Markdown 文本中的公式](#替换-markdown-文本中的公式)
+    - [字体与 CSS 配置](#字体与-css-配置)
+      - [CSS 字体样式设置](#css-字体样式设置)
+  - [3. 设计思路](#3-设计思路)
+  - [4. 技术栈](#4-技术栈)
+  - [5. 代码结构](#5-代码结构)
+  - [6. 历史故事](#6-历史故事)
 
 ## 1. 功能介绍
 
