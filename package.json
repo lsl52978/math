@@ -1,6 +1,6 @@
 {
   "name": "@webc.site/math",
-  "version": "0.1.24",
+  "version": "0.1.25",
   "description": "The world's smallest and fastest web Markdown formula renderer / 全球最小最快的网页Markdown公式渲染器",
   "keywords": [
     "markdown",
@@ -34,13 +34,11 @@
   "scripts": {
     "prepare": "husky"
   },
-  "dependencies": {
-    "@1-/dist": "^0.1.18",
-    "@1-/mdimg2cdn": "^0.1.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@1-/findgit": "^0.1.2",
     "@1-/mdcheck": "^0.1.9",
+    "@1-/mdimg2cdn": "^0.1.1",
     "@3-/log": "^0.1.9",
     "@3-/read": "^0.1.4",
     "@3-/stylfmt": "^0.1.7",
@@ -69,6 +67,7 @@
     "remark-math": "^6.0.0",
     "remark-parse": "^11.0.0",
     "rolldown": "^1.1.1",
+    "simple-git": "^3.36.0",
     "svgo": "^4.0.1",
     "unified": "^11.0.5",
     "vite": "^8.0.16",
