@@ -41,10 +41,12 @@ html(lang="zh")
               .editor-header
                 h2#ui-editor-title 交互式编辑器
                 p#ui-editor-tip.tip 输入 Mermaid 文本，实时查看 SVG
-              .theme-row
-                button.Btn.theme-btn.active(type="button" data-theme="0") Light
-                button.Btn.theme-btn(type="button" data-theme="1") Mint
-                button.Btn.theme-btn(type="button" data-theme="2") Dark
+              .theme-panel
+                span.theme-label beautiful-mermaid CSS
+                .theme-row
+                  button.Btn.theme-btn.active(type="button" data-theme="0") Clean
+                  button.Btn.theme-btn(type="button" data-theme="1") Mint
+                  button.Btn.theme-btn(type="button" data-theme="2") Dark
               textarea#diagram-input(placeholder="在此输入 Mermaid...")
               #svg-preview.svg-display
 
