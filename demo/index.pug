@@ -10,6 +10,11 @@ html(lang="zh")
       header
         .header-controls
           c-i18n
+          .site-theme
+            button.theme-chip.active(type="button" data-theme="0" data-theme-name="default") Default
+            button.theme-chip(type="button" data-theme="2" data-theme-name="dracula") Dracula
+            button.theme-chip(type="button" data-theme="3" data-theme-name="solarized") Solarized
+            button.theme-chip(type="button" data-theme="1" data-theme-name="mint") Mint
           a.BtnC.npm-link(href="https://github.com/lsl52978/math" target="_blank" aria-label="Project Repository")
             i.Ico
               include svg/npm.svg
@@ -41,12 +46,6 @@ html(lang="zh")
               .editor-header
                 h2#ui-editor-title 交互式编辑器
                 p#ui-editor-tip.tip 输入 Mermaid 文本，实时查看 SVG
-              .theme-panel
-                span.theme-label beautiful-mermaid CSS
-                .theme-row
-                  button.Btn.theme-btn.active(type="button" data-theme="0") Clean
-                  button.Btn.theme-btn(type="button" data-theme="1") Mint
-                  button.Btn.theme-btn(type="button" data-theme="2") Dark
               textarea#diagram-input(placeholder="在此输入 Mermaid...")
               #svg-preview.svg-display
 

@@ -188,6 +188,7 @@ const input = document.getElementById("diagram-input"),
       btn.onclick = () => {
         theme_id = Number(btn.dataset.theme);
         theme_buttons.forEach((item) => item.classList.toggle("active", item === btn));
+        document.documentElement.dataset.theme = btn.dataset.themeName || "default";
         renderDiagram(input.value);
         updateUI();
         setTimeout(layoutWaterfall, 50);
