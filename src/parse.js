@@ -88,7 +88,7 @@ const TYPE_FLOW = 1,
       const row = clean(line);
       if (!row) return;
       const rel = row.match(
-        /^([A-Za-z0-9_$.-]+)\s+([<|*o. -]+--[>|*o. -]+)\s+([A-Za-z0-9_$.-]+)(?:\s*:\s*(.+))?$/,
+        /^([A-Za-z0-9_$.-]+)\s+([<|*o. -]*--[>|*o. -]*)\s+([A-Za-z0-9_$.-]+)(?:\s*:\s*(.+))?$/,
       );
       if (rel) {
         const [, from, arrow, to, label = ""] = rel;
