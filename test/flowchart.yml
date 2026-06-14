@@ -1,0 +1,4251 @@
+- - |-
+    flowchart TD
+      A[Input Mermaid] --> B[Parse]
+      B --> C[Layout]
+      C --> D[SVG]
+  - - Input Mermaid
+    - Parse
+    - Layout
+    - SVG
+- - |-
+    graph LR
+      Start((Start)) --> Check{Fast?}
+      Check -->|yes| Ship[Ship SVG]
+      Check -->|no| Tune[Optimize]
+  - - "yes"
+    - "no"
+    - Start
+    - Fast?
+    - Ship SVG
+    - Optimize
+- - |-
+    flowchart TD
+          A -> B
+  - - A
+    - B
+- - |-
+    flowchart LR
+          A[] --> B
+  - - A[]
+    - B
+- - |-
+    flowchart LR
+          A["He said &quot;Hi&quot;"] --> B
+  - - He said &amp;quot;Hi&amp;quot;
+    - B
+- - |-
+    flowchart LR
+          A["She said &quot;Hello&quot;"] --> B
+  - - She said &amp;quot;Hello&amp;quot;
+    - B
+- - |-
+    flowchart TD
+          D{"Is &quot;Driver&quot; and &quot;AuthCheck.Path&quot; configured?"}
+  - - >-
+      Is &amp;quot;Driver&amp;quot; and &amp;quot;AuthCheck.Path&amp;quot;
+      configured?
+- - |-
+    flowchart TD
+          A["Calls logger.debug(&quot;message&quot;, data)"] --> B
+  - - Calls logger.debug(&amp;quot;message&amp;quot;, data)
+    - B
+- - |-
+    flowchart TD
+          D[\"Mark Parent as Failed (Fatal)\"]
+  - - \&quot;Mark Parent as Failed (Fatal)\&quot;
+- - |-
+    flowchart TD
+        A[Test Fixtures] --> B[Our Linter]
+        A --> C[mermaid-cli]
+        B --> D[Results Comparison]
+        C --> D
+        D --> E{Match?}
+        E -->|Yes| F[✓ Pass]
+        E -->|No| G[✗ Fail with Details]
+  - - "Yes"
+    - "No"
+    - Test Fixtures
+    - Our Linter
+    - mermaid-cli
+    - Results Comparison
+    - Match?
+    - ✓ Pass
+- - |-
+    flowchart TD
+        A[Rectangle] 
+        B((Circle))
+        C{Diamond}
+        D([Stadium])
+        E[[Subroutine]]
+        F[(Database)]
+        G[/Parallelogram/]
+        H[\Parallelogram Alt\]
+  - - Rectangle
+    - Circle
+    - Diamond
+    - "[Stadium]"
+    - E[[Subroutine]]
+    - (Database)
+    - /Parallelogram/
+    - \Parallelogram Alt\
+- - |-
+    flowchart LR
+        A[Test] --> B[Case]
+  - - Test
+    - Case
+- - |-
+    flowchart TD
+      A[Start] --> B[
+  - - Start
+    - B[
+- - |-
+    flowchart TD
+    A->B
+  - - A
+    - B
+- - |-
+    flowchart LR
+        A[Rectangle]
+        B(Round)
+        C{Diamond}
+        D((Circle))
+        E([Stadium])
+        F[[Subroutine]]
+        G[(Database)]
+        H[/Parallelogram/]
+        I[\Trapezoid\]
+  - - Rectangle
+    - Round
+    - Diamond
+    - Circle
+    - "[Stadium]"
+    - F[[Subroutine]]
+    - (Database)
+    - /Parallelogram/
+- - |-
+    flowchart LR
+        A --> B
+        A --- B
+        A -.-> B
+        A ==> B
+        A <--> B
+        A o--o B
+        A x--x B
+  - - A
+    - B
+    - .-&gt; B
+    - A &lt;
+    - A o
+    - A x
+- - |-
+    flowchart TD
+      A["`{% if %}` template"] --> B{Stage}
+  - - "`{% if %}` template"
+    - Stage
+- - |-
+    flowchart TD
+      A["{% if %} template"] --> B{Stage}
+  - - "{% if %} template"
+    - Stage
+- - |-
+    flowchart TD
+      A[Start]
+      E2 --> S2[Append 'tyk-trace-{id}' tag to Analytics Record]
+      A --> E2
+  - - Start
+    - E2
+    - Append 'tyk-trace-{id}' tag to Analytics Record
+- - |-
+    flowchart TD
+      A[Start]
+      E2 --> S2[Append 'tyk-trace-&#123;id&#125;' tag to Analytics Record]
+      A --> E2
+  - - Start
+    - E2
+    - Append 'tyk-trace-&amp;#123;id&amp;#125;' tag to Analytics Record
+- - |-
+    graph TD
+      %% Decision label contains parentheses and bracket characters
+      A[Line of Text] --> B{indexOf('[') + indexOf(']')}
+      B --> C[Next]
+  - - Line of Text
+    - indexOf('[') + indexOf(']')
+    - Next
+- - |-
+    graph TD
+      %% Decision label contains parentheses and bracket characters
+      A[Line of Text] --> B{"indexOf('[') + indexOf(']')"}
+      B --> C[Next]
+  - - Line of Text
+    - indexOf('[') + indexOf(']')
+    - Next
+- - |-
+    flowchart TD
+      C --> D{Return comment (even if only header exists)}
+  - - C
+    - Return comment (even if only header exists)
+- - |-
+    flowchart TD
+      C --> D{"Return comment (even if only header exists)"}
+  - - C
+    - Return comment (even if only header exists)
+- - |-
+    graph TD
+        A[ProbeAgent emits] -->|ai.tool_calls: [&#123;name, args&#125;]| B[Before Fix]
+        B -->|Silently dropped| C[OTel Span]
+        A -->|ai.tool_calls: [&#123;name, args&#125;]| D[After Fix]
+        D -->|flattenAttrs| E[ai.tool_calls: stringified JSON]
+        E -->|Successfully recorded| C
+        F[recordToolDecision] -->|tool.decision events| C
+  - - "ai.tool_calls: [&amp;#123;name, args&amp;#125;]"
+    - Silently dropped
+    - flattenAttrs
+    - Successfully recorded
+    - tool.decision events
+    - ProbeAgent emits
+    - Before Fix
+    - OTel Span
+- - |-
+    graph TD
+        A[ProbeAgent emits] -->|ai.tool_calls: &#91;&#123;name, args&#125;&#93;| B[Before Fix]
+        B -->|Silently dropped| C[OTel Span]
+        A -->|ai.tool_calls: &#91;&#123;name, args&#125;&#93;| D[After Fix]
+        D -->|flattenAttrs| E[ai.tool_calls: stringified JSON]
+        E -->|Successfully recorded| C
+        F[recordToolDecision] -->|tool.decision events| C
+  - - "ai.tool_calls: &amp;#91;&amp;#123;name, args&amp;#125;&amp;#93;"
+    - Silently dropped
+    - flattenAttrs
+    - Successfully recorded
+    - tool.decision events
+    - ProbeAgent emits
+    - Before Fix
+    - OTel Span
+- - |-
+    graph TD
+        B --|preGroupOperation["aggregated_graph_analytics"] == true|--> C{Route to Graph Analytics}
+  - - preGroupOperation[&quot;aggregated_graph_analytics&quot;] == true
+    - B
+    - "--&gt; C{Route to Graph Analytics}"
+- - |-
+    graph TD
+        B --|preGroupOperation&#91;&quot;aggregated_graph_analytics&quot;&#93; == true|--> C{Route to Graph Analytics}
+  - - >-
+      preGroupOperation&amp;#91;&amp;quot;aggregated_graph_analytics&amp;quot;&amp;#93;
+      == true
+    - B
+    - "--&gt; C{Route to Graph Analytics}"
+- - |-
+    graph TD
+        A[forEach Check] -->|Outputs Array| B[Dependent Checks]
+        B -->|Run N Times| C[Individual Results]
+        C -->|All Complete| D[on_finish Hook]
+        D -->|run: [aggregate]| E[Aggregation Check]
+        D -->|goto_js Evaluation| F[Routing Decision]
+        E -->|Aggregated Data| F
+        F -->|Based on Results| G[Next Action]
+        G -->|Retry| H[Original Check]
+        G -->|Continue| I[Downstream Checks]
+        H --> A
+  - - Outputs Array
+    - Run N Times
+    - All Complete
+    - "run: [aggregate]"
+    - goto_js Evaluation
+    - Aggregated Data
+    - Based on Results
+    - Retry
+- - |-
+    graph TD
+        A[forEach Check] -->|Outputs Array| B[Dependent Checks]
+        B -->|Run N Times| C[Individual Results]
+        C -->|All Complete| D[on_finish Hook]
+        D -->|run: &#91;aggregate&#93;| E[Aggregation Check]
+        D -->|goto_js Evaluation| F[Routing Decision]
+        E -->|Aggregated Data| F
+        F -->|Based on Results| G[Next Action]
+        G -->|Retry| H[Original Check]
+        G -->|Continue| I[Downstream Checks]
+        H --> A
+  - - Outputs Array
+    - Run N Times
+    - All Complete
+    - "run: &amp;#91;aggregate&amp;#93;"
+    - goto_js Evaluation
+    - Aggregated Data
+    - Based on Results
+    - Retry
+- - |-
+    flowchart TD
+        A -->|optional (external)| B
+  - - optional (external)
+    - A
+    - B
+- - |-
+    graph TD
+        A[User Prompt] --|e.g. "navigate to example.com"|--> B(Oel Core);
+        B --|matches 'browser-automation' skill|--> C{"Skill/Tool Dispatcher"};
+        C --|reads config from|--> D["Oel/config/skills.yaml"];
+        C --|invokes 'puppeteer_navigate' via SSE|--> E("External Puppeteer Service");
+        E --|performs browser action|--> F[Target Website];
+        E --|streams results back|--> C;
+        C --> B;
+        B --|returns result to user|--> G[Final Response];
+  - - e.g. &quot;navigate to example.com&quot;
+    - matches 'browser-automation' skill
+    - reads config from
+    - invokes 'puppeteer_navigate' via SSE
+    - performs browser action
+    - streams results back
+    - returns result to user
+    - User Prompt
+- - |-
+    graph TD
+        A[User Prompt] --|e.g. &quot;navigate to example.com&quot;|--> B(Oel Core);
+        B --|matches 'browser-automation' skill|--> C{"Skill/Tool Dispatcher"};
+        C --|reads config from|--> D["Oel/config/skills.yaml"];
+        C --|invokes 'puppeteer_navigate' via SSE|--> E("External Puppeteer Service");
+        E --|performs browser action|--> F[Target Website];
+        E --|streams results back|--> C;
+        C --> B;
+        B --|returns result to user|--> G[Final Response];
+  - - e.g. &amp;quot;navigate to example.com&amp;quot;
+    - matches 'browser-automation' skill
+    - reads config from
+    - invokes 'puppeteer_navigate' via SSE
+    - performs browser action
+    - streams results back
+    - returns result to user
+    - User Prompt
+- - |-
+    flowchart LR
+      mdx1["`ai-management/overview.mdx` frontmatter"]
+      mdx2["`snippets/AIStudioCards.mdx` snippet"]
+      comp1["`FeatureCards` component"]
+
+      mdx2 -- "renders cards via" --> comp1
+      mdx1 -- "uses updated description" --> mdx1
+  - - mdx1[&quot;`ai
+    - management/overview.mdx` frontmatter&quot;]
+    - "`snippets/AIStudioCards.mdx` snippet"
+    - "`FeatureCards` component"
+    - "&quot;renders cards via&quot; --&gt; comp1"
+    - mdx1
+    - "&quot;uses updated description&quot; --&gt; mdx1"
+- - |-
+    flowchart LR
+      mdx1["ai-management/overview.mdx frontmatter"]
+      mdx2["snippets/AIStudioCards.mdx snippet"]
+      comp1["FeatureCards component"]
+
+      mdx2 --|renders cards via|--> comp1
+      mdx1 --|uses updated description|--> mdx1
+  - - renders cards via
+    - uses updated description
+    - mdx1[&quot;ai
+    - management/overview.mdx frontmatter&quot;]
+    - snippets/AIStudioCards.mdx snippet
+    - FeatureCards component
+    - "--&gt; comp1"
+    - mdx1
+- - |-
+    flowchart TD
+        A[""] --> B[" "]
+        B --> C[]
+  - - C[]
+- - |-
+    flowchart TD
+        A --> B
+        B --> C
+  - - A
+    - B
+    - C
+- - |-
+    flowchart TD
+      A[Start] --> B[Next]
+      B --> C[End]
+      %% indices include duplicate and out-of-range; styles split across lines
+      linkStyle 0, 0, 5
+        stroke:#f00,
+        stroke-width:2px
+  - - Start
+    - Next
+    - End
+    - linkStyle 0, 0, 5
+    - stroke:#f00,
+    - stroke
+    - width:2px
+- - |-
+    flowchart TD
+      A[Start] --> B[Next]
+      B --> C[End]
+      linkStyle 0:1 stroke:#f00,stroke-width:2px
+  - - Start
+    - Next
+    - End
+    - linkStyle 0:1 stroke:#f00,stroke
+    - width:2px
+- - |-
+    flowchart TD
+        A -> B
+        B --> C
+  - - A
+    - B
+    - C
+- - |-
+    flowchart TD
+        A --> B
+        class A
+  - - A
+    - B
+    - class A
+- - |-
+    flowchart TD
+        A(( --> B
+        B --> C
+  - - A((
+    - B
+    - C
+- - |-
+    flowchart TD
+        A((A))--> B
+        B --> C
+  - - A
+    - B
+    - C
+- - |-
+    flowchart TD
+      %% Repro from issue #60: unquoted parentheses in decision and node labels.
+      D1{Tics cause functional impairment (pain, injury risk, or severe psychosocial distress)?}
+      D1 --|Yes|--> B1[Offer evidence-based behavioral therapy: CBIT (habit-reversal training + function-based interventions) as first-line]
+  - - "Yes"
+    - >-
+      Tics cause functional impairment (pain, injury risk, or severe
+      psychosocial distress)?
+    - >-
+      --&gt; B1[Offer evidence-based behavioral therapy: CBIT (habit-reversal
+      training + function-based interventions) as first-line]
+- - |-
+    flowchart TD
+      %% Repro from issue #60: unquoted parentheses in decision and node labels.
+      D1{"Tics cause functional impairment (pain, injury risk, or severe psychosocial distress)?"}
+      D1 --|Yes|--> B1["Offer evidence-based behavioral therapy: CBIT (habit-reversal training + function-based interventions) as first-line"]
+  - - "Yes"
+    - >-
+      Tics cause functional impairment (pain, injury risk, or severe
+      psychosocial distress)?
+    - >-
+      --&gt; B1[&quot;Offer evidence-based behavioral therapy: CBIT
+      (habit-reversal training + function-based interventions) as
+      first-line&quot;]
+- - |-
+    graph TD
+        A[User Config / Workflow] --> B[SandboxConfig]
+        B --> C[bind_paths[]]
+        B --> D[workdir: 'host']
+        B --> E[visor_path]
+        
+        C --> F{Engine Type}
+        F -->|docker| G[DockerImageSandbox]
+        F -->|bubblewrap| H[BubblewrapSandbox]
+        F -->|seatbelt| I[SeatbeltSandbox]
+        
+        D --> F
+        E --> F
+        
+        G --> J["docker run -v host:container"]
+        H --> K["bwrap --ro-bind/--bind"]
+        I --> L["sandbox-exec SBPL profile"]
+        
+        M[WorkflowDefinition] --> N[projectWorkflowToGraph]
+        N --> O[VisorConfig with sandboxes]
+        O --> P[Workflow Steps with Sandbox Support]
+  - - docker
+    - bubblewrap
+    - seatbelt
+    - User Config / Workflow
+    - SandboxConfig
+    - C[bind_paths[]]
+    - "workdir: 'host'"
+    - visor_path
+- - |-
+    graph TD
+        A[User Config / Workflow] --> B[SandboxConfig]
+        B --> C[bind_paths&#91;&#93;]
+        B --> D[workdir: 'host']
+        B --> E[visor_path]
+        
+        C --> F{Engine Type}
+        F -->|docker| G[DockerImageSandbox]
+        F -->|bubblewrap| H[BubblewrapSandbox]
+        F -->|seatbelt| I[SeatbeltSandbox]
+        
+        D --> F
+        E --> F
+        
+        G --> J["docker run -v host:container"]
+        H --> K["bwrap --ro-bind/--bind"]
+        I --> L["sandbox-exec SBPL profile"]
+        
+        M[WorkflowDefinition] --> N[projectWorkflowToGraph]
+        N --> O[VisorConfig with sandboxes]
+        O --> P[Workflow Steps with Sandbox Support]
+  - - docker
+    - bubblewrap
+    - seatbelt
+    - User Config / Workflow
+    - SandboxConfig
+    - bind_paths&amp;#91;&amp;#93;
+    - "workdir: 'host'"
+    - visor_path
+- - |-
+    graph LR
+        A[Config] --> B{base_url + path?}
+        B -->|Yes| C[Substitute {params}]
+        C --> D[Normalize slashes]
+        D --> E[Append query params]
+        E --> F[Final URL]
+        B -->|No| G[Use url directly]
+        G --> F
+  - - "Yes"
+    - "No"
+    - Config
+    - base_url + path?
+    - Substitute {params}
+    - Normalize slashes
+    - Append query params
+    - Final URL
+- - |-
+    graph LR
+        A[Config] --> B{base_url + path?}
+        B -->|Yes| C[Substitute &#123;params&#125;]
+        C --> D[Normalize slashes]
+        D --> E[Append query params]
+        E --> F[Final URL]
+        B -->|No| G[Use url directly]
+        G --> F
+  - - "Yes"
+    - "No"
+    - Config
+    - base_url + path?
+    - Substitute &amp;#123;params&amp;#125;
+    - Normalize slashes
+    - Append query params
+    - Final URL
+- - |-
+    flowchart TD
+        A[Command Received] --> B{checkInteractiveCommand}
+        B -->|Interactive Pattern| C[Return Error with Suggestion]
+        B -->|OK| D[Spawn with detached:true]
+        D --> E[setsid creates new session]
+        E --> F[/dev/tty unavailable]
+        F --> G{Command tries TTY?}
+        G -->|Yes| H[ENXIO - Immediate Failure]
+        G -->|No| I[Normal Execution]
+        H --> J[killProcessGroup cleanup]
+        I --> K[Return Result]
+  - - Interactive Pattern
+    - OK
+    - "Yes"
+    - "No"
+    - Command Received
+    - checkInteractiveCommand
+    - Return Error with Suggestion
+    - Spawn with detached:true
+- - |-
+    flowchart TD
+        A[Command Received] --> B{checkInteractiveCommand}
+        B -->|Interactive Pattern| C[Return Error with Suggestion]
+        B -->|OK| D[Spawn with detached:true]
+        D --> E[setsid creates new session]
+        E --> F["/dev/tty unavailable"]
+        F --> G{Command tries TTY?}
+        G -->|Yes| H[ENXIO - Immediate Failure]
+        G -->|No| I[Normal Execution]
+        H --> J[killProcessGroup cleanup]
+        I --> K[Return Result]
+  - - Interactive Pattern
+    - OK
+    - "Yes"
+    - "No"
+    - Command Received
+    - checkInteractiveCommand
+    - Return Error with Suggestion
+    - Spawn with detached:true
+- - |-
+    graph TD
+        A[package.json] --> B[@probelabs/probe v0.6.0-rc149]
+        B --> C[AI Review Service]
+  - - package.json
+    - "@probelabs/probe v0.6.0-rc149"
+    - AI Review Service
+- - |-
+    graph TD
+        A[package.json] --> B["@probelabs/probe v0.6.0-rc149"]
+        B --> C[AI Review Service]
+  - - package.json
+    - "@probelabs/probe v0.6.0-rc149"
+    - AI Review Service
+- - |-
+    graph TD
+      A[ScriptCheckProvider] --> B[Secure Sandbox]
+      B --> F[@nyariv/sandboxjs]
+      C[Memory Store] --> G[Persistent Storage]
+  - - ScriptCheckProvider
+    - Secure Sandbox
+    - "@nyariv/sandboxjs"
+    - Memory Store
+    - Persistent Storage
+- - |-
+    graph TD
+      A[ScriptCheckProvider] --> B[Secure Sandbox]
+      B --> F["@nyariv/sandboxjs"]
+      C[Memory Store] --> G[Persistent Storage]
+  - - ScriptCheckProvider
+    - Secure Sandbox
+    - "@nyariv/sandboxjs"
+    - Memory Store
+    - Persistent Storage
+- - |-
+    graph TD
+      A[Backend: Developer configures Meta with VisibilityCondition] --> B{Go Template: select_one.tmpl}
+      B --> C[HTML Output: select element with data-trigger-visibility="true"]
+      C --> D{JS Plugin: qor-select-visibility.js}
+      D -- on change --> E{Show/Hide Logic}
+      E --> F[Target Elements: .visibility-by-condition]
+  - - "Backend: Developer configures Meta with VisibilityCondition"
+    - "Go Template: select_one.tmpl"
+    - "HTML Output: select element with data-trigger-visibility=&quot;true&quot;"
+    - "JS Plugin: qor-select-visibility.js"
+    - on change --&gt; E{Show/Hide Logic}
+    - E
+    - "Target Elements: .visibility-by-condition"
+- - |-
+    graph TD
+      A[Backend: Developer configures Meta with VisibilityCondition] --> B{Go Template: select_one.tmpl}
+      B --> C[HTML Output: select element with data-trigger-visibility=&quot;true&quot;]
+      C --> D{JS Plugin: qor-select-visibility.js}
+      D -- on change --> E{Show/Hide Logic}
+      E --> F[Target Elements: .visibility-by-condition]
+  - - "Backend: Developer configures Meta with VisibilityCondition"
+    - "Go Template: select_one.tmpl"
+    - >-
+      HTML Output: select element with
+      data-trigger-visibility=&amp;quot;true&amp;quot;
+    - "JS Plugin: qor-select-visibility.js"
+    - on change --&gt; E{Show/Hide Logic}
+    - E
+    - "Target Elements: .visibility-by-condition"
+- - |-
+    graph TD
+        A[CLI Build Process] --> B[ncc bundling]
+        B --> C[Copy output/ to dist/]
+        C --> D[Built CLI Distribution]
+
+        E[Runtime: CheckExecutionEngine] --> F[Template Loading]
+        F --> G[path.join(__dirname, 'output/{schema}/template.liquid')]
+        G --> H[Template Found in dist/output/]
+        H --> I[Successful Rendering]
+
+        J[Tests] --> K[Mock Path Resolution]
+        K --> L[Expect output path]
+  - - CLI Build Process
+    - ncc bundling
+    - Copy output/ to dist/
+    - Built CLI Distribution
+    - "Runtime: CheckExecutionEngine"
+    - Template Loading
+    - path.join(__dirname, 'output/{schema}/template.liquid')
+    - Template Found in dist/output/
+- - |-
+    graph TD
+        A[CLI Build Process] --> B[ncc bundling]
+        B --> C[Copy output/ to dist/]
+        C --> D[Built CLI Distribution]
+
+        E[Runtime: CheckExecutionEngine] --> F[Template Loading]
+        F --> G["path.join(__dirname, 'output/{schema}/template.liquid')"]
+        G --> H[Template Found in dist/output/]
+        H --> I[Successful Rendering]
+
+        J[Tests] --> K[Mock Path Resolution]
+        K --> L[Expect output path]
+  - - CLI Build Process
+    - ncc bundling
+    - Copy output/ to dist/
+    - Built CLI Distribution
+    - "Runtime: CheckExecutionEngine"
+    - Template Loading
+    - path.join(__dirname, 'output/{schema}/template.liquid')
+    - Template Found in dist/output/
+- - |-
+    flowchart TD
+        A[User runs search] --> B[handle_search function]
+        B --> C[Process search results]
+        C --> D{Check output format}
+        D -->|JSON/XML| E[Skip tip display]
+        D -->|Other formats| F[Display search tip]
+        F --> G[Print: "💡 Tip: Try using synonyms..."]
+        G --> H[Complete output]
+        
+        I[Test runner] --> J[test_cli_limit_message]
+        J --> K[Execute search command]
+        K --> L[Verify tip in stdout]
+        L --> M[Assert tip presence]
+  - - JSON/XML
+    - Other formats
+    - User runs search
+    - handle_search function
+    - Process search results
+    - Check output format
+    - Skip tip display
+    - Display search tip
+- - |-
+    flowchart TD
+        A[User runs search] --> B[handle_search function]
+        B --> C[Process search results]
+        C --> D{Check output format}
+        D -->|JSON/XML| E[Skip tip display]
+        D -->|Other formats| F[Display search tip]
+        F --> G[Print: &quot;💡 Tip: Try using synonyms...&quot;]
+        G --> H[Complete output]
+        
+        I[Test runner] --> J[test_cli_limit_message]
+        J --> K[Execute search command]
+        K --> L[Verify tip in stdout]
+        L --> M[Assert tip presence]
+  - - JSON/XML
+    - Other formats
+    - User runs search
+    - handle_search function
+    - Process search results
+    - Check output format
+    - Skip tip display
+    - Display search tip
+- - |-
+    flowchart TD
+      A --x--> B
+      A --o--> C
+  - - A
+    - "--&gt; B"
+    - "--&gt; C"
+- - |-
+    flowchart TD
+      A ----> B
+      A ----> C
+  - - A
+    - "-&gt; B"
+    - "-&gt; C"
+- - |-
+    flowchart TD
+      A --> B
+      linkStyle e999 stroke:#f00
+  - - A
+    - B
+    - linkStyle e999 stroke:#f00
+- - |-
+    graph TD
+        A[Log Entry with Error] --> B{JSONFormatter.Format};
+        B --> C{entry.Data has logrus.ErrorKey?};
+        C -- Yes --> D{Value is an 'error' type?};
+        D -- Yes --> E[Convert error to string via .Error()];
+        D -- No --> F[Use value as-is];
+        E --> G[Add string to log data];
+        F --> G;
+        G --> H{Marshal to JSON};
+        H --> I[✅ Successful JSON Log Output];
+  - - Log Entry with Error
+    - B{JSONFormatter.Format};
+    - B
+    - C{entry.Data has logrus.ErrorKey?};
+    - C
+    - Yes --&gt; D{Value is an 'error' type?};
+    - D
+    - Yes --&gt; E[Convert error to string via .Error()];
+- - |-
+    graph TD
+        A[Log Entry with Error] --> B{JSONFormatter.Format};
+        B --> C{entry.Data has logrus.ErrorKey?};
+        C -- Yes --> D{Value is an 'error' type?};
+        D -- Yes --> E["Convert error to string via .Error()"];
+        D -- No --> F[Use value as-is];
+        E --> G[Add string to log data];
+        F --> G;
+        G --> H{Marshal to JSON};
+        H --> I[✅ Successful JSON Log Output];
+  - - Log Entry with Error
+    - B{JSONFormatter.Format};
+    - B
+    - C{entry.Data has logrus.ErrorKey?};
+    - C
+    - Yes --&gt; D{Value is an 'error' type?};
+    - D
+    - Yes --&gt; E[&quot;Convert error to string via .Error()&quot;];
+- - |-
+    flowchart TD
+        A B
+  - - A B
+- - |-
+    flowchart TD
+        A  --> B
+  - - A
+    - B
+- - |-
+    flowchart LR
+        A[Text] --> B(Text]
+        B --> C
+        X{{Hexagon]
+        S([Stadium})
+        Y[(Cylinder))
+  - - Text
+    - B(Text]
+    - B
+    - C
+    - X{{Hexagon]
+    - "[Stadium}"
+    - Y[(Cylinder))
+- - |-
+    flowchart LR
+        A[Text] --> B[Text]
+        B --> C
+        X{{Hexagon}}
+        S([Stadium])
+        Y[(Cylinder)]
+  - - Text
+    - C
+    - X{{Hexagon}}
+    - "[Stadium]"
+    - (Cylinder)
+- - |-
+    graph TD
+        A[ProbeAgent Constructor] --> B[Store options.model in clientApiModel]
+        B --> C[initializeModel() called]
+        C --> D{Model selection logic}
+        D --> E[clientApiModel?]
+        E -->|Yes| F[Use options.model]
+        E -->|No| G[MODEL_NAME env var?]
+        G -->|Yes| H[Use environment variable]
+        G -->|No| I[Use provider default]
+        
+        J[Agent.clone()] --> K[Preserve model in overrides]
+        K --> L[New agent with correct model]
+  - - "Yes"
+    - "No"
+    - ProbeAgent Constructor
+    - Store options.model in clientApiModel
+    - initializeModel() called
+    - Model selection logic
+    - clientApiModel?
+    - Use options.model
+- - |-
+    graph TD
+        A[ProbeAgent Constructor] --> B[Store options.model in clientApiModel]
+        B --> C["initializeModel() called"]
+        C --> D{Model selection logic}
+        D --> E[clientApiModel?]
+        E -->|Yes| F[Use options.model]
+        E -->|No| G[MODEL_NAME env var?]
+        G -->|Yes| H[Use environment variable]
+        G -->|No| I[Use provider default]
+        
+        J["Agent.clone()"] --> K[Preserve model in overrides]
+        K --> L[New agent with correct model]
+  - - "Yes"
+    - "No"
+    - ProbeAgent Constructor
+    - Store options.model in clientApiModel
+    - initializeModel() called
+    - Model selection logic
+    - clientApiModel?
+    - Use options.model
+- - |-
+    flowchart TD
+      A[Build] --> B[Release]
+
+      note right of B
+        The release job should wait for
+        the dependency guard to finish.
+      endnote
+  - - Build
+    - Release
+    - note right of B
+    - The release job should wait for
+    - the dependency guard to finish.
+    - endnote
+- - >-
+    flowchart TD
+      A[Build] --> B[Release]
+
+    B -.-> B_note_4["The release job should wait for<br/>the dependency guard to
+    finish."]
+  - - Build
+    - Release
+    - >-
+      .-&gt; B_note_4[&quot;The release job should wait for&lt;br/&gt;the
+      dependency guard to finish.&quot;]
+- - |-
+    flowchart LR
+      A['She said "Hello"'] --> B
+  - - She said &quot;Hello&quot;
+    - B
+- - |-
+    flowchart LR
+      A['She said &quot;Hello&quot;'] --> B
+  - - She said &amp;quot;Hello&amp;quot;
+    - B
+- - |-
+    flowchart TD
+      B --> C(new CheckExecutionEngine(octokit));
+  - - B
+    - C(new CheckExecutionEngine(octokit));
+- - |-
+    flowchart TD
+      B --> C("new CheckExecutionEngine(octokit)");
+  - - B
+    - C(&quot;new CheckExecutionEngine(octokit)&quot;);
+- - |-
+    flowchart TD
+      title Dependency Relationship
+      A[Alpha] --> B[Beta]
+  - - title Dependency Relationship
+    - Alpha
+    - Beta
+- - |-
+    flowchart TD
+      A[Alpha] --> B[Beta]
+  - - Alpha
+    - Beta
+- - |-
+    flowchart LR
+      A@{ shape: rect, label: "Rect" }
+      B@{ shape: rounded, label: "Rounded" }
+      C@{ shape: stadium, label: "Stadium" }
+      D@{ shape: subroutine, label: "Subroutine" }
+      E@{ shape: circle, label: "Circle" }
+      F@{ shape: cylinder, label: "Cylinder" }
+      G@{ shape: diamond, label: "Decision" }
+      H@{ shape: hexagon, label: "Hexagon" }
+      I@{ shape: parallelogram, label: "Para" }
+      J@{ shape: trapezoid, label: "Trap" }
+      K@{ shape: trapezoidAlt, label: "TrapAlt" }
+      L@{ shape: "lean-l", label: "LeanL" }
+      M@{ shape: "lean-r", label: "LeanR" }
+      A --> B --> C --> D --> E --> F --> G --> H --> I --> J --> K --> L --> M
+  - - "A@{ shape: rect, label: &quot;Rect&quot; }"
+    - "B@{ shape: rounded, label: &quot;Rounded&quot; }"
+    - "C@{ shape: stadium, label: &quot;Stadium&quot; }"
+    - "D@{ shape: subroutine, label: &quot;Subroutine&quot; }"
+    - "E@{ shape: circle, label: &quot;Circle&quot; }"
+    - "F@{ shape: cylinder, label: &quot;Cylinder&quot; }"
+    - "G@{ shape: diamond, label: &quot;Decision&quot; }"
+    - "H@{ shape: hexagon, label: &quot;Hexagon&quot; }"
+- - |-
+    flowchart TD
+      A@{ shape: rhombus, label: "X" }
+      B@{ shape: rect, padding: "ten" }
+      C@{ shape: rect, label: X }
+      D@{ badKey: 1, shape: rect }
+  - - "A@{ shape: rhombus, label: &quot;X&quot; }"
+    - "B@{ shape: rect, padding: &quot;ten&quot; }"
+    - "C@{ shape: rect, label: X }"
+    - "D@{ badKey: 1, shape: rect }"
+- - |-
+    flowchart LR
+        A[Start --> B
+        B --> C
+  - - A[Start
+    - B
+    - C
+- - |-
+    flowchart LR
+        A[Start]--> B
+        B --> C
+  - - Start
+    - B
+    - C
+- - |-
+    flowchart TD
+      A["Unclosed label]
+      A --> B
+  - - "&quot;Unclosed label"
+    - B
+- - |-
+    flowchart TD
+      A["Unclosed label"]
+      A --> B
+  - - Unclosed label
+    - B
+- - |-
+    flowchart TD
+        A[Start] --> B{Custom Auth Enabled?}
+        B -- Yes --> C{"Is "Driver" configured?"}
+  - - Start
+    - Custom Auth Enabled?
+    - Yes --&gt; C{&quot;Is &quot;Driver&quot; configured?&quot;}
+- - |-
+    flowchart TD
+        A[Start] --> B{Custom Auth Enabled?}
+        B -- Yes --> C{"Is &quot;Driver&quot; configured?"}
+  - - Start
+    - Custom Auth Enabled?
+    - Yes --&gt; C{&quot;Is &amp;quot;Driver&amp;quot; configured?&quot;}
+- - |-
+    flowchart TD
+        A --> B
+        end
+  - - A
+    - B
+    - end
+- - |-
+    flowchart XY
+        A --> B
+  - - A
+    - B
+- - |-
+    flowchart TD
+        A[Load Prompt<br/>from file] --> B[End]
+  - - Load Prompt&lt;br/&gt;from file
+    - End
+- - |-
+    flowchart TD
+        A --> B --> C --> D
+        E & F --> G & H
+  - - A
+    - B --&gt; C --&gt; D
+    - E &amp; F
+    - G &amp; H
+- - |-
+    flowchart TD
+        %% This is a comment
+        A --> B
+        %% Another comment
+        B --> C
+  - - A
+    - B
+    - C
+- - |-
+    flowchart TB
+        A[Rectangle] --> B((Circle))
+        B --> C{Diamond}
+        C -->|Link 1| D([Stadium])
+        C -->|Link 2| E[[Subroutine]]
+        D --> F[(Database)]
+        E --> F
+        F --> H{{Hexagon}}
+        F --> G[/Parallelogram/]
+        G --> H[\Parallelogram Alt\]
+        H --> I[/Trapezoid\]
+        I --> J[\Trapezoid Alt/]
+  - - Link 1
+    - Link 2
+    - Rectangle
+    - Circle
+    - Diamond
+    - "[Stadium]"
+    - E[[Subroutine]]
+    - (Database)
+- - |-
+    flowchart LR
+      A[First]
+      A[Second]
+      A --> B
+      B[Node B]
+  - - Second
+    - Node B
+- - |-
+    flowchart TD
+      A --> B
+      foo@{ animate: true }
+  - - A
+    - B
+    - "foo@{ animate: true }"
+- - |-
+    flowchart LR
+      A[Client] e2@-.-> B((API))
+      e2@{ animate: true }
+  - - A[Client] e2@
+    - .-&gt; B((API))
+    - "e2@{ animate: true }"
+- - |-
+    flowchart TD
+      A[Start] --> B
+      B e1@--> C
+      linkStyle 1 stroke:#cc3333,stroke-width:3
+  - - Start
+    - B
+    - B e1@
+    - C
+    - linkStyle 1 stroke:#cc3333,stroke
+    - width:3
+- - |-
+    graph TD
+      A -->|tags: `goplugin`| B
+      B -->|"tags: `goplugin,ee,fips`<br>env: `GOFIPS140=v1.0.0`"| C
+  - - "tags: `goplugin`"
+    - "tags: `goplugin,ee,fips`&lt;br&gt;env: `GOFIPS140=v1.0.0`"
+    - A
+    - B
+    - C
+- - |-
+    flowchart LR
+      A["Line 1<br/>Line 2"] --> B["<b>Bold</b> and <i>Italic</i>"]
+      C(["Circle with <u>underline</u>"]) --> D{Decision<br/>Next}
+  - - Line 1&lt;br/&gt;Line 2
+    - "&lt;b&gt;Bold&lt;/b&gt; and &lt;i&gt;Italic&lt;/i&gt;"
+    - "[&quot;Circle with &lt;u&gt;underline&lt;/u&gt;&quot;]"
+    - Decision&lt;br/&gt;Next
+- - |-
+    flowchart LR
+        A --> B
+        A -.-> C
+        A ==> D
+        A -.text.-> E
+        A ==text==> F
+        A -- text --> G
+        A -->|text| H
+  - - text
+    - A
+    - B
+    - .-&gt; C
+    - D
+    - .text.-&gt; E
+    - text==&gt; F
+    - text --&gt; G
+- - |-
+    flowchart TD
+        A[This is a very long text that spans quite a bit of space in the node] --> B[Another long piece of text here]
+  - - This is a very long text that spans quite a bit of space in the node
+    - Another long piece of text here
+- - |-
+    flowchart TD
+      A["Mismatched label'] --> B
+      C['Another mismatch"] --> D
+  - - "&quot;Mismatched label'"
+    - B
+    - "'Another mismatch&quot;"
+    - D
+- - |-
+    flowchart LR
+        A <--> B
+        C o--o D
+        E x--x F
+  - - A &lt;
+    - B
+    - C o
+    - D
+    - E x
+    - F
+- - |-
+    flowchart TD
+        id1[Node 1]
+        id-2[Node 2]
+        id_3[Node 3]
+        ID4[Node 4]
+        _id5[Node 5]
+        id1 --> id-2
+        id-2 --> id_3
+        id_3 --> ID4
+        ID4 --> _id5
+  - - Node 1
+    - id
+    - Node 2
+    - Node 3
+    - Node 4
+    - Node 5
+    - id-2
+    - 2 --&gt; id_3
+- - |-
+    flowchart TD
+        A[Node A]
+        B[Node B]
+        C[Node C]
+  - - Node A
+    - Node B
+    - Node C
+- - |-
+    flowchart LR
+      A["He said 'Hi'"] --> B
+  - - He said 'Hi'
+    - B
+- - |-
+    flowchart TD
+        Start --> Stop
+  - - Start
+    - Stop
+- - |-
+    flowchart LR
+        A o--o B
+        B x--x C
+        C <--> D
+        D -.-> E
+  - - A o
+    - B
+    - B x
+    - C
+    - C &lt;
+    - D
+    - .-&gt; E
+- - |-
+    flowchart LR
+        A["Node with &quot;quotes&quot; and &amp; ampersand"] --> B["OK"]
+        B --> C[Plain text]
+  - - Node with &amp;quot;quotes&amp;quot; and &amp;amp; ampersand
+    - OK
+    - Plain text
+- - |-
+    flowchart TD
+      A@{ shape: rect, padding: "12pt", label: "A" }
+      B@{ shape: rect, cornerRadius: "2em", label: "B" }
+      C@{ shape: rect, label: C }
+  - - "A@{ shape: rect, padding: &quot;12pt&quot;, label: &quot;A&quot; }"
+    - "B@{ shape: rect, cornerRadius: &quot;2em&quot;, label: &quot;B&quot; }"
+    - "C@{ shape: rect, label: C }"
+- - |-
+    flowchart LR
+      A@{ shape: rect, label: "Start" } --> B@{ shape: lean-r, label: "Next" }
+      C@{ shape: diamond, label: "Decision" } -->|Yes| D@{ shape: rect, label: "Do" }
+      C@{ shape: diamond, label: "Decision" } -->|No| E@{ shape: rect, label: "Skip" }
+  - - "Yes"
+    - "No"
+    - "A@{ shape: rect, label: &quot;Start&quot; }"
+    - "B@{ shape: lean-r, label: &quot;Next&quot; }"
+    - "C@{ shape: diamond, label: &quot;Decision&quot; }"
+    - "D@{ shape: rect, label: &quot;Do&quot; }"
+    - "E@{ shape: rect, label: &quot;Skip&quot; }"
+- - |-
+    flowchart TD
+        A --> B
+        B --> C
+        D --> E
+  - - A
+    - B
+    - C
+    - D
+    - E
+- - |-
+    flowchart LR
+        A[Hello 世界]
+        B[Emoji 😀]
+        C[Symbols ★☆♦♠]
+        A --> B
+        B --> C
+  - - Hello 世界
+    - Emoji 😀
+    - Symbols ★☆♦♠
+- - |-
+    flowchart LR
+        A[Start Process] --> B{Decision}
+        B -->|Yes| C[Do something]
+        B -->|No| D[Do something else]
+        C --> E[End]
+        D --> E
+  - - "Yes"
+    - "No"
+    - Start Process
+    - Decision
+    - Do something
+    - Do something else
+    - End
+- - |-
+    flowchart TD
+      A[""] --> B
+  - - B
+- - |-
+    flowchart TD
+      A[Start] --> B[End]
+  - - Start
+    - End
+- - |-
+    flowchart TD
+    A -> B
+  - - A
+    - B
+- - |-
+    flowchart TD
+    A --> B
+  - - A
+    - B
+- - |-
+    flowchart TD
+    A[
+  - - A[
+- - |-
+    flowchart LR
+      A[
+  - - A[
+- - |-
+    flowchart TD
+      A[Start] --> B{Custom Auth Enabled?}
+      B -- Yes --> C{
+  - - Start
+    - Custom Auth Enabled?
+    - Yes --&gt; C{
+- - |-
+    flowchart TD
+      B -- Yes --> D{
+  - - B
+    - Yes --&gt; D{
+- - |-
+    flowchart TD
+      E[Component e.g., CheckExecutionEngine] --> F[Calls logger.debug(
+  - - Component e.g., CheckExecutionEngine
+    - F[Calls logger.debug(
+- - |-
+    flowchart TD
+      E[Component e.g., CheckExecutionEngine] --> F[
+  - - Component e.g., CheckExecutionEngine
+    - F[
+- - |-
+    flowchart TD
+      D1{Tics cause functional impairment (pain)?}
+      D1 --> B1[Offer therapy (CBIT)]
+  - - Tics cause functional impairment (pain)?
+    - Offer therapy (CBIT)
+- - |-
+    flowchart TD
+      D1{
+  - - D1{
+- - |-
+    flowchart TD
+      A[
+  - - A[
+- - |-
+    flowchart TD
+    A[Foo] B[Bar]
+  - - A[Foo] B[Bar]
+- - |-
+    flowchart TD
+    A[Foo]  --> B[Bar]
+  - - Foo
+    - Bar
+- - |-
+    flowchart TD
+    A[Label
+  - - A[Label
+- - |-
+    flowchart TD
+    A(( --> B
+  - - A((
+    - B
+- - |-
+    flowchart TD
+    A((A))--> B
+  - - A
+    - B
+- - |-
+    flowchart TD
+        A[
+  - - A[
+- - |-
+    flowchart LR
+      A[Text] --> B(Text]
+      B --> C
+  - - Text
+    - B(Text]
+    - B
+    - C
+- - |-
+    flowchart LR
+      A[Text] --> B[Text]
+      B --> C
+  - - Text
+    - C
+- - |-
+    flowchart LR
+      X{{Hexagon]
+      S([Stadium})
+      Y[(Cylinder))
+  - - X{{Hexagon]
+    - "[Stadium}"
+    - Y[(Cylinder))
+- - |-
+    flowchart LR
+      X{{Hexagon}}
+      S([Stadium])
+      Y[(Cylinder)]
+  - - X{{Hexagon}}
+    - "[Stadium]"
+    - (Cylinder)
+- - |-
+    flowchart LR
+      A([
+  - - A([
+- - |-
+    flowchart TD
+      D[Mark Parent as Failed (Fatal)]
+  - - Mark Parent as Failed (Fatal)
+- - |-
+    flowchart TD
+      D[
+  - - D[
+- - |-
+    flowchart TD
+      F --> G[Print:
+  - - F
+    - "G[Print:"
+- - |-
+    flowchart TD
+      F --> G[Print: &quot;💡 Tip: Try using synonyms...&quot;]
+  - - F
+    - "Print: &amp;quot;💡 Tip: Try using synonyms...&amp;quot;"
+- - |-
+    flowchart TD
+      A[package.json] --> B[@probelabs/probe v0.6.0-rc149]
+  - - package.json
+    - "@probelabs/probe v0.6.0-rc149"
+- - |-
+    flowchart TD
+      A[package.json] --> B[
+  - - package.json
+    - B[
+- - |-
+    flowchart TD
+      A[/dev/tty unavailable]
+  - - /dev/tty unavailable
+- - |-
+    flowchart TD
+      C[Substitute {params}]
+  - - Substitute {params}
+- - |-
+    flowchart TD
+      C[Substitute &#123;params&#125;]
+  - - Substitute &amp;#123;params&amp;#125;
+- - |-
+    flowchart TD
+      A[bind_paths[]]
+  - - A[bind_paths[]]
+- - |-
+    flowchart TD
+      A[bind_paths&#91;&#93;]
+  - - bind_paths&amp;#91;&amp;#93;
+- - |-
+    flowchart TD
+      A[foo(bar[])]
+  - - A[foo(bar[])]
+- - |-
+    flowchart TD
+    A --> B -- Detects
+  - - A
+    - B -- Detects
+- - |-
+    flowchart TD
+    A --> B --|Detects tip|--> C
+  - - A
+    - B --|Detects tip|--&gt; C
+- - |-
+    flowchart LR
+      A -- \
+  - - A
+    - \
+- - |-
+    flowchart LR
+      A --|renders cards via|--> B
+  - - renders cards via
+    - A
+    - "--&gt; B"
+- - |-
+    flowchart TD
+    A -->|run: [aggregate]| B
+  - - "run: [aggregate]"
+    - A
+    - B
+- - |-
+    flowchart TD
+    A -->|run: &#91;aggregate&#93;| B
+  - - "run: &amp;#91;aggregate&amp;#93;"
+    - A
+    - B
+- - |-
+    graph TD
+    A -->|ai.tool_calls: [&#123;name, args&#125;]| B
+    A -->|ai.tool_calls: [&#123;name, args&#125;]| C
+  - - "ai.tool_calls: [&amp;#123;name, args&amp;#125;]"
+    - A
+    - B
+    - C
+- - |-
+    graph TD
+    A -->|ai.tool_calls: &#91;&#123;name, args&#125;&#93;| B
+    A -->|ai.tool_calls: &#91;&#123;name, args&#125;&#93;| C
+  - - "ai.tool_calls: &amp;#91;&amp;#123;name, args&amp;#125;&amp;#93;"
+    - A
+    - B
+    - C
+- - |-
+    graph TD
+    B --|preGroupOperation[
+  - - B
+    - "|preGroupOperation["
+- - >-
+    graph TD
+
+    B --|preGroupOperation&#91;&quot;aggregated_graph_analytics&quot;&#93; ==
+    true|--> C{Route to Graph Analytics}
+  - - >-
+      preGroupOperation&amp;#91;&amp;quot;aggregated_graph_analytics&amp;quot;&amp;#93;
+      == true
+    - B
+    - "--&gt; C{Route to Graph Analytics}"
+- - |-
+    flowchart TD
+    A -->|Resolve ${VAR}| B
+  - - Resolve ${VAR}
+    - A
+    - B
+- - |-
+    flowchart TD
+    A -->|Resolve $&#123;VAR&#125;| B
+  - - Resolve $&amp;#123;VAR&amp;#125;
+    - A
+    - B
+- - |-
+    graph TD
+    A -->|e.g. \
+  - - A
+    - '|e.g. \'
+- - |-
+    graph TD
+    A -->|e.g. &quot;navigate to example.com&quot;| B
+  - - e.g. &amp;quot;navigate to example.com&amp;quot;
+    - A
+    - B
+- - |-
+    flowchart LR
+      P[/Calls logger.debug(
+  - - P[/Calls logger.debug(
+- - |-
+    flowchart LR
+      P[/Calls logger.debug&#40;&quot;msg&quot;&#41;/]
+  - - /Calls logger.debug&amp;#40;&amp;quot;msg&amp;quot;&amp;#41;/
+- - |-
+    flowchart LR
+      T[\\Calls logger.debug(
+  - - T[\\Calls logger.debug(
+- - |-
+    flowchart LR
+      T[\\Calls logger.debug&#40;&quot;msg&quot;&#41;/]
+  - - \\Calls logger.debug&amp;#40;&amp;quot;msg&amp;quot;&amp;#41;/
+- - |-
+    flowchart TD
+      X --> E[Convert error to string via .Error()]
+  - - X
+    - Convert error to string via .Error()
+- - |-
+    flowchart TD
+      X --> E[\
+  - - X
+    - E[\
+- - |-
+    flowchart TD
+        A-->B
+    end
+  - - A
+    - B
+    - end
+- - |-
+    flowchart TD
+        A-->B
+  - - A
+    - B
+- - |-
+    flowchart TD
+      A[Build] --> B[Release]
+
+    B -.-> B_note_4[
+  - - Build
+    - Release
+    - .-&gt; B_note_4[
+- - |-
+    flowchart TD\
+    A-->B
+  - - A
+    - B
+- - |-
+    flowchart TD
+        A --> B
+  - - A
+    - B
+- - |-
+    graph TD
+      A[Start] --> B{Decision}
+      B -->|Yes| C[Process]
+      B -->|No| D[End]
+      C --> D
+  - - "Yes"
+    - "No"
+    - Start
+    - Decision
+    - Process
+    - End
+- - |-
+    graph TD
+      A --> B --> C
+      linkStyle 0 stroke:#ff0000,stroke-width:2px
+      linkStyle default stroke:#888888
+  - - A
+    - B --&gt; C
+    - linkStyle 0 stroke:#ff0000,stroke
+    - width:2px
+    - linkStyle default stroke:#888888
+- - |-
+    graph TD
+      A[Start] --> B[Process] --> C[End]
+  - - Start
+    - B[Process] --&gt; C[End]
+- - |-
+    graph LR
+      A[Rectangle] --> B(Rounded)
+      B --> C{Diamond}
+      C --> D([Stadium])
+      D --> E((Circle))
+  - - Rectangle
+    - Rounded
+    - Diamond
+    - "[Stadium]"
+    - Circle
+- - |-
+    graph LR
+      A[[Subroutine]] --> B(((Double Circle)))
+      B --> C{{Hexagon}}
+  - - A[[Subroutine]]
+    - B(((Double Circle)))
+    - B
+    - C{{Hexagon}}
+- - |-
+    graph LR
+      A[(Database)] --> B>Flag Shape]
+      B --> C[/Wider Bottom\\]
+      C --> D[\\Wider Top/]
+  - - (Database)
+    - B&gt;Flag Shape]
+    - B
+    - /Wider Bottom\\
+    - \\Wider Top/
+- - |-
+    graph LR
+      A[Rectangle] --> B(Rounded)
+      B --> C{Diamond}
+      C --> D([Stadium])
+      D --> E((Circle))
+      E --> F[[Subroutine]]
+      F --> G(((Double Circle)))
+      G --> H{{Hexagon}}
+      H --> I[(Database)]
+      I --> J>Flag]
+      J --> K[/Trapezoid\\]
+      K --> L[\\Inverse Trap/]
+  - - Rectangle
+    - Rounded
+    - Diamond
+    - "[Stadium]"
+    - Circle
+    - F[[Subroutine]]
+    - F
+    - G(((Double Circle)))
+- - |-
+    graph TD
+      A[Source] -->|solid| B[Target 1]
+      A -.->|dotted| C[Target 2]
+      A ==>|thick| D[Target 3]
+  - - solid
+    - thick
+    - Source
+    - Target 1
+    - .-&gt;|dotted| C[Target 2]
+    - Target 3
+- - |-
+    graph TD
+      A[Node 1] ---|related| B[Node 2]
+      B -.- C[Node 3]
+      C === D[Node 4]
+  - - related
+    - Node 1
+    - Node 2
+    - .- C[Node 3]
+    - C
+    - Node 4
+- - |-
+    flowchart TD
+      A(Start) --> B{Is it sunny?}
+      B -- Yes --> C[Go to the park]
+      B -- No --> D[Stay indoors]
+      C --> E[Finish]
+      D --> E
+  - - Start
+    - Is it sunny?
+    - Yes --&gt; C[Go to the park]
+    - No --&gt; D[Stay indoors]
+    - C
+    - Finish
+    - D
+- - |-
+    graph LR
+      A[Client] <-->|sync| B[Server]
+      B <-.->|heartbeat| C[Monitor]
+      C <==>|data| D[Storage]
+  - - sync
+    - data
+    - A[Client] &lt;
+    - Server
+    - B &lt;
+    - .-&gt;|heartbeat| C[Monitor]
+    - C &lt;
+    - Storage
+- - |-
+    graph TD
+      A[Input] & B[Config] --> C[Processor]
+      C --> D[Output] & E[Log]
+  - - A[Input] &amp; B[Config]
+    - Processor
+    - D[Output] &amp; E[Log]
+- - |-
+    graph LR
+      A[Step 1] --> B[Step 2] --> C[Step 3] --> D[Step 4] --> E[Step 5]
+  - - Step 1
+    - B[Step 2] --&gt; C[Step 3] --&gt; D[Step 4] --&gt; E[Step 5]
+- - |-
+    graph TD
+      A[Start] --> B{Decision}
+      B -->|Yes| C[Accept]
+      B -->|No| D[Reject]
+      C --> E[Done]
+      D --> E
+      linkStyle 0 stroke:#7aa2f7,stroke-width:3px
+      linkStyle 1 stroke:#9ece6a,stroke-width:2px
+      linkStyle 2 stroke:#f7768e,stroke-width:2px
+      linkStyle default stroke:#565f89
+  - - "Yes"
+    - "No"
+    - Start
+    - Decision
+    - Accept
+    - Reject
+    - Done
+    - linkStyle 0 stroke:#7aa2f7,stroke
+- - |-
+    graph LR
+      A[Request] --> B[Auth]
+      B --> C[Process]
+      C --> D[Response]
+      B --> E[Reject]
+      linkStyle default stroke:#6b7280,stroke-width:1px
+      linkStyle 0,1,2 stroke:#22c55e,stroke-width:2px
+      linkStyle 3 stroke:#ef4444,stroke-width:3px
+  - - Request
+    - Auth
+    - Process
+    - Response
+    - Reject
+    - linkStyle default stroke:#6b7280,stroke
+    - width:1px
+    - linkStyle 0,1,2 stroke:#22c55e,stroke
+- - |-
+    graph LR
+      A[Input] --> B[Transform] --> C[Output]
+  - - Input
+    - B[Transform] --&gt; C[Output]
+- - |-
+    graph BT
+      A[Foundation] --> B[Layer 2] --> C[Top]
+  - - Foundation
+    - B[Layer 2] --&gt; C[Top]
+- - |-
+    graph TD
+      A{Is it raining?} -->|Yes| B{Have umbrella?}
+      A -->|No| C([Go outside])
+      B -->|Yes| D([Go with umbrella])
+      B -->|No| E{Is it heavy?}
+      E -->|Yes| F([Stay inside])
+      E -->|No| G([Run for it])
+  - - "Yes"
+    - "No"
+    - Is it raining?
+    - Have umbrella?
+    - "[Go outside]"
+    - "[Go with umbrella]"
+    - Is it heavy?
+    - "[Stay inside]"
+- - |-
+    graph LR
+      A[main] --> B[develop]
+      B --> C[feature/auth]
+      B --> D[feature/ui]
+      C --> E{PR Review}
+      D --> E
+      E -->|approved| B
+      B --> F[release/1.0]
+      F --> G{Tests?}
+      G -->|pass| A
+      G -->|fail| F
+  - - approved
+    - pass
+    - fail
+    - main
+    - develop
+    - feature/auth
+    - feature/ui
+    - PR Review
+- - |-
+    graph TD
+      A[Start] --> B{Decision?}
+      B -->|Yes| C[Do the thing]
+      B -->|No| D[Skip it]
+      C --> E[End]
+      D --> E
+  - - "Yes"
+    - "No"
+    - Start
+    - Decision?
+    - Do the thing
+    - Skip it
+    - End
+- - |-
+    graph LR
+      A --> B
+  - - A
+    - B
+- - |-
+    graph TD
+      A[Line1<br>Line2]
+  - - Line1&lt;br&gt;Line2
+- - |-
+    graph TD
+      A[Line1<br/>Line2]
+  - - Line1&lt;br/&gt;Line2
+- - |-
+    graph TD
+      A[Line1<br />Line2]
+  - - Line1&lt;br /&gt;Line2
+- - |-
+    graph TD
+      A[Line1<BR>Line2]
+  - - Line1&lt;BR&gt;Line2
+- - |-
+    graph TD
+      B[Line1<Br>Line2]
+  - - Line1&lt;Br&gt;Line2
+- - |-
+    graph TD
+      C[Line1<bR/>Line2]
+  - - Line1&lt;bR/&gt;Line2
+- - |-
+    graph TD
+      A[One<br>Two<br/>Three<br />Four]
+  - - One&lt;br&gt;Two&lt;br/&gt;Three&lt;br /&gt;Four
+- - |-
+    graph TD
+            A[Rect<br>Label]
+            B(Round<br>Label)
+            C{Diamond<br>Label}
+            D([Stadium<br>Label])
+  - - Rect&lt;br&gt;Label
+    - Round&lt;br&gt;Label
+    - Diamond&lt;br&gt;Label
+    - "[Stadium&lt;br&gt;Label]"
+- - |-
+    graph TD
+      A -->|First<br>Second| B
+  - - First&lt;br&gt;Second
+    - A
+    - B
+- - |-
+    graph TD
+      A -->|Line1<br/>Line2| B
+  - - Line1&lt;br/&gt;Line2
+    - A
+    - B
+- - |-
+    graph TD
+      A[Single Line]
+  - - Single Line
+- - |-
+    graph TD
+      A[One<br>Two<br>Three]
+  - - One&lt;br&gt;Two&lt;br&gt;Three
+- - |-
+    graph TD
+      A[First &<br>Second >]
+  - - First &amp;&lt;br&gt;Second &gt;
+- - |-
+    graph TD
+      A[Single]
+  - - Single
+- - |-
+    graph TD
+      A[One<br>Two]
+  - - One&lt;br&gt;Two
+- - |-
+    graph TD
+      A[Short<br>Much Longer Line]
+  - - Short&lt;br&gt;Much Longer Line
+- - |-
+    graph TD
+      A[Much Longer Line]
+  - - Much Longer Line
+- - |-
+    graph TD
+      A[Line1<br><br>Line3]
+  - - Line1&lt;br&gt;&lt;br&gt;Line3
+- - |-
+    graph TD
+      A[${longLine}<br>Short]
+  - - ${longLine}&lt;br&gt;Short
+- - |-
+    graph TD
+      A[X<br>Y<br>Z]
+  - - X&lt;br&gt;Y&lt;br&gt;Z
+- - |-
+    graph TD
+      A[日本<br>語]
+  - - 日本&lt;br&gt;語
+- - |-
+    graph TD
+      A[1<br>2<br>3<br>4<br>5<br>6]
+  - - 1&lt;br&gt;2&lt;br&gt;3&lt;br&gt;4&lt;br&gt;5&lt;br&gt;6
+- - |-
+    graph TD
+          A[Single] --> B[Multi<br>Line]
+          B --> C[Also Single]
+  - - Single
+    - Multi&lt;br&gt;Line
+    - Also Single
+- - |-
+    graph TD
+      ${syntax}
+  - - syntax
+- - |-
+    graph TD
+      A[Hello <b>bold</b> text]
+  - - Hello &lt;b&gt;bold&lt;/b&gt; text
+- - |-
+    graph TD
+      A[Hello <strong>bold</strong>]
+  - - Hello &lt;strong&gt;bold&lt;/strong&gt;
+- - |-
+    graph TD
+      A[Hello <i>italic</i> text]
+  - - Hello &lt;i&gt;italic&lt;/i&gt; text
+- - |-
+    graph TD
+      A[Hello <em>italic</em>]
+  - - Hello &lt;em&gt;italic&lt;/em&gt;
+- - |-
+    graph TD
+      A[Hello <u>underline</u> text]
+  - - Hello &lt;u&gt;underline&lt;/u&gt; text
+- - |-
+    graph TD
+      A[Hello <s>strike</s> text]
+  - - Hello &lt;s&gt;strike&lt;/s&gt; text
+- - |-
+    graph TD
+      A[Hello <del>deleted</del>]
+  - - Hello &lt;del&gt;deleted&lt;/del&gt;
+- - |-
+    graph TD
+      A[<b><i>bold italic</i></b>]
+  - - "&lt;b&gt;&lt;i&gt;bold italic&lt;/i&gt;&lt;/b&gt;"
+- - |-
+    graph TD
+      A[Line1<br><b>Bold Line2</b>]
+  - - Line1&lt;br&gt;&lt;b&gt;Bold Line2&lt;/b&gt;
+- - |-
+    graph TD
+      A[<b>bold</b>]
+  - - "&lt;b&gt;bold&lt;/b&gt;"
+- - |-
+    graph TD
+      A[Plain text]
+  - - Plain text
+- - |-
+    graph LR
+      A[AsyncGenerator&lt;AgentEvent&gt;]
+  - - AsyncGenerator&amp;lt;AgentEvent&amp;gt;
+- - |-
+    graph LR
+      A[Tom &amp; Jerry]
+  - - Tom &amp;amp; Jerry
+- - |-
+    graph LR
+      A[List&#60;Item&#62;]
+  - - List&amp;#60;Item&amp;#62;
+- - |-
+    graph LR
+      A[Map&#x3C;K, V&#x3E;]
+  - - Map&amp;#x3C;K, V&amp;#x3E;
+- - |-
+    graph LR
+      A -->|returns &lt;T&gt;| B
+  - - returns &amp;lt;T&amp;gt;
+    - A
+    - B
+- - |-
+    graph LR
+      A[List<Item>]
+  - - List&lt;Item&gt;
+- - |-
+    graph LR
+      A[List&lt;Item&gt;]
+  - - List&amp;lt;Item&amp;gt;
+- - |-
+    graph TD
+      A[Hello **bold** text]
+  - - Hello **bold** text
+- - |-
+    graph TD
+      A[Hello *italic* text]
+  - - Hello *italic* text
+- - |-
+    graph TD
+      A[Hello ~~strike~~ text]
+  - - Hello ~~strike~~ text
+- - |-
+    graph TD
+      A -->|**important**| B
+  - - "**important**"
+    - A
+    - B
+- - |-
+    graph TD
+      A --> B
+      linkStyle 0 stroke:#ff0000,stroke-width:2px
+  - - A
+    - B
+    - linkStyle 0 stroke:#ff0000,stroke
+    - width:2px
+- - |-
+    graph TD
+      A --> B
+      B --> C
+      linkStyle 0,1 stroke:#00ff00
+  - - A
+    - B
+    - C
+    - linkStyle 0,1 stroke:#00ff00
+- - |-
+    graph TD
+      A --> B
+      linkStyle default stroke:#888888,stroke-width:3px
+  - - A
+    - B
+    - linkStyle default stroke:#888888,stroke
+    - width:3px
+- - |-
+    graph TD
+      A --> B
+      linkStyle 0 stroke:#ff0000
+      linkStyle 0 stroke:#00ff00
+  - - A
+    - B
+    - linkStyle 0 stroke:#ff0000
+    - linkStyle 0 stroke:#00ff00
+- - |-
+    graph TD
+      A --> B
+      linkStyle 99 stroke:#ff0000
+  - - A
+    - B
+    - linkStyle 99 stroke:#ff0000
+- - |-
+    graph TD
+      A --> B
+      linkStyle 0 stroke:#ff0000,stroke-width:4px;
+  - - A
+    - B
+    - linkStyle 0 stroke:#ff0000,stroke
+    - width:4px;
+- - |-
+    graph TD
+      A --> B
+      linkStyle 0 stroke:#ff0000
+  - - A
+    - B
+    - linkStyle 0 stroke:#ff0000
+- - |-
+    graph TD
+      A --> B
+      linkStyle 0 stroke-width:3px
+  - - A
+    - B
+    - linkStyle 0 stroke
+    - width:3px
+- - |-
+    graph TD
+      A --> B
+      B --> C
+      linkStyle default stroke:#00ff00
+  - - A
+    - B
+    - C
+    - linkStyle default stroke:#00ff00
+- - |-
+    graph TD
+      A --> B
+      B --> C
+      linkStyle default stroke:#888
+      linkStyle 0 stroke:#ff0000
+  - - A
+    - B
+    - C
+    - linkStyle default stroke:#888
+    - linkStyle 0 stroke:#ff0000
+- - |-
+    graph TD
+      A --> B
+      linkStyle 0 stroke:red
+  - - A
+    - B
+    - linkStyle 0 stroke:red
+- - |-
+    graph TD
+      A --> B
+  - - A
+    - B
+- - |-
+    flowchart LR
+      A --> B
+  - - A
+    - B
+- - |-
+    graph ${dir}
+      A --> B
+  - - A
+    - B
+- - |-
+    graph td
+      A --> B
+  - - A
+    - B
+- - |-
+    graph
+      A --> B
+  - - A
+    - B
+- - |-
+    graph TD
+      A[Hello World]
+  - - Hello World
+- - |-
+    graph TD
+      A(Rounded)
+  - - Rounded
+- - |-
+    graph TD
+      A{Decision}
+  - - Decision
+- - |-
+    graph TD
+      A([Stadium])
+  - - "[Stadium]"
+- - |-
+    graph TD
+      A((Circle))
+  - - Circle
+- - |-
+    graph TD
+      my-node[My Node]
+  - - my
+    - My Node
+- - |-
+    graph TD
+      A[Start] --> B
+      A --> B
+  - - Start
+    - B
+- - |-
+    graph TD
+      A[[Subroutine]]
+  - - A[[Subroutine]]
+- - |-
+    graph TD
+      A(((Double)))
+  - - A(((Double)))
+- - |-
+    graph TD
+      A{{Hexagon}}
+  - - A{{Hexagon}}
+- - |-
+    graph TD
+      A[(Database)]
+  - - (Database)
+- - |-
+    graph TD
+      A>Flag Shape]
+  - - A&gt;Flag Shape]
+- - |-
+    graph TD
+      A[/Trapezoid\\]
+  - - /Trapezoid\\
+- - |-
+    graph TD
+      A[\\Alt Trapezoid/]
+  - - \\Alt Trapezoid/
+- - |-
+    graph TD
+          A[Rectangle]
+          B(Rounded)
+          C{Diamond}
+          D([Stadium])
+          E((Circle))
+          F[[Subroutine]]
+          G(((DoubleCircle)))
+          H{{Hexagon}}
+          I[(Cylinder)]
+          J>Asymmetric]
+          K[/Trapezoid\\]
+          L[\\TrapAlt/]
+  - - Rectangle
+    - Rounded
+    - Diamond
+    - "[Stadium]"
+    - Circle
+    - F[[Subroutine]]
+    - G(((DoubleCircle)))
+    - H{{Hexagon}}
+- - |-
+    graph TD
+      A -.-> B
+  - - A
+    - .-&gt; B
+- - |-
+    graph TD
+      A ==> B
+  - - A
+    - B
+- - |-
+    graph TD
+      A -->|Yes| B
+  - - "Yes"
+    - A
+    - B
+- - |-
+    graph TD
+      A -.->|Maybe| B
+  - - A
+    - .-&gt;|Maybe| B
+- - |-
+    graph TD
+      A --> B --> C
+  - - A
+    - B --&gt; C
+- - |-
+    graph TD
+      A[Start] --> B{Check} --> C(End)
+  - - Start
+    - B{Check} --&gt; C(End)
+- - |-
+    graph TD
+      A --> B
+      B --> C
+      C --> D
+  - - A
+    - B
+    - C
+    - D
+- - |-
+    graph TD
+      A --- B
+  - - A
+    - B
+- - |-
+    graph TD
+      A -.- B
+  - - A
+    - .- B
+- - |-
+    graph TD
+      A === B
+  - - A
+    - B
+- - |-
+    graph TD
+      A ---|connects| B
+  - - connects
+    - A
+    - B
+- - |-
+    graph TD
+      A <--> B
+  - - A &lt;
+    - B
+- - |-
+    graph TD
+      A <-.-> B
+  - - A &lt;
+    - .-&gt; B
+- - |-
+    graph TD
+      A <==> B
+  - - A &lt;
+    - B
+- - |-
+    graph TD
+      A <-->|sync| B
+  - - sync
+    - A &lt;
+    - B
+- - |-
+    graph TD
+      A -- Yes --> B
+  - - A
+    - Yes --&gt; B
+- - |-
+    graph TD
+      A -- related --- B
+  - - A
+    - related --- B
+- - |-
+    graph TD
+      A -. Maybe .-> B
+  - - A
+    - . Maybe .-&gt; B
+- - |-
+    graph TD
+      A == Sure ==> B
+  - - A
+    - Sure ==&gt; B
+- - |-
+    graph TD
+      A -- This is a label --> B
+  - - A
+    - This is a label --&gt; B
+- - |-
+    graph TD
+      A[Start] -- Yes --> B(End)
+  - - Start
+    - Yes --&gt; B(End)
+- - |-
+    graph TD
+          A --> B
+          B -->|Yes| C
+  - - "Yes"
+    - A
+    - B
+    - C
+- - |-
+    graph TD
+          A --> B
+          B -- Yes --> C
+  - - A
+    - B
+    - Yes --&gt; C
+- - |-
+    flowchart TD
+          A(Start) --> B{Is it sunny?}
+          B -- Yes --> C[Go to the park]
+          B -- No --> D[Stay indoors]
+          C --> E[Finish]
+          D --> E
+  - - Start
+    - Is it sunny?
+    - Yes --&gt; C[Go to the park]
+    - No --&gt; D[Stay indoors]
+    - C
+    - Finish
+    - D
+- - |-
+    graph TD
+      A & B --> C
+  - - A &amp; B
+    - C
+- - |-
+    graph TD
+      A --> C & D
+  - - A
+    - C &amp; D
+- - |-
+    graph TD
+      A & B --> C & D
+  - - A &amp; B
+    - C &amp; D
+- - |-
+    graph TD
+      A[Start]:::highlight --> B
+  - - A[Start]:::highlight
+    - B
+- - |-
+    graph TD
+      A:::important --> B
+  - - A:::important
+    - B
+- - |-
+    graph TD
+      A:::start --> B:::mid --> C:::end
+  - - A:::start
+    - B:::mid --&gt; C:::end
+- - |-
+    graph TD
+          A --> B
+          class A highlight
+  - - A
+    - B
+    - class A highlight
+- - |-
+    graph TD
+          A --> B --> C
+          class A,B highlight
+  - - A
+    - B --&gt; C
+    - class A,B highlight
+- - |-
+    graph TD
+          %% This is a comment
+          A --> B
+          %% Another comment
+  - - A
+    - B
+- - |-
+    graph TD
+
+      A --> B
+
+      B --> C
+  - - A
+    - B
+    - C
+- - |-
+    graph TD
+      A[Only Node]
+  - - Only Node
+- - |-
+    graph TD
+      Z[Last] --> A[First]
+  - - Last
+    - First
+- - |-
+    graph TD
+            A --> B
+  - - A
+    - B
+- - |-
+    graph TD
+            Input --> Processor
+            Config --> Processor
+  - - Input
+    - Processor
+    - Config
+- - |-
+    graph TD
+            Input --> Processor
+            Config --> Processor
+            Processor --> Output
+            Processor --> Log
+  - - Input
+    - Processor
+    - Config
+    - Output
+    - Log
+- - |-
+    graph LR
+            A --> B
+  - - A
+    - B
+- - |-
+    graph LR
+            Input --> Processor
+            Config --> Processor
+  - - Input
+    - Processor
+    - Config
+- - |-
+    graph TD
+            A --> B
+            A --> C
+  - - A
+    - B
+    - C
+- - |-
+    graph LR
+            A --> B
+            A --> C
+  - - A
+    - B
+    - C
+- - |-
+    graph TD
+            A --> B{Decision}
+            B -->|Yes| C
+            B -->|No| D
+  - - "Yes"
+    - "No"
+    - A
+    - Decision
+    - C
+    - D
+- - |-
+    graph TD
+            A[Start] --> B{Decision}
+            B --> C[End]
+  - - Start
+    - Decision
+    - End
+- - |-
+    graph LR
+          A[Node A]
+          B[Node B]
+          C[Node C]
+          D[Node D]
+          E[Node E]
+  - - Node A
+    - Node B
+    - Node C
+    - Node D
+    - Node E
+- - |-
+    graph LR
+          A --> B --> C
+          D[Isolated]
+  - - A
+    - B --&gt; C
+    - Isolated
+- - |-
+    graph LR
+          A --> B
+          C[Isolated]
+  - - A
+    - B
+    - Isolated
+- - |-
+    graph LR
+          A[First]
+          B[Second]
+          C[Third]
+  - - First
+    - Second
+    - Third
+- - |-
+    graph LR
+    A --> B
+  - - A
+    - B
+- - |-
+    graph TD
+      A[A<br>B<br>C]
+  - - A&lt;br&gt;B&lt;br&gt;C
+- - |-
+    graph TD
+      A --> B
+      A -->|Line1<br>Line2| C
+  - - Line1&lt;br&gt;Line2
+    - A
+    - B
+    - C
+- - |-
+    graph TD
+      A[SingleLine]
+  - - SingleLine
+- - |-
+    graph TD
+      A[${long}<br>Short]
+  - - ${long}&lt;br&gt;Short
+- - |-
+    graph TD
+      A[Short<br>VeryLongSecondLine<br>Med]
+  - - Short&lt;br&gt;VeryLongSecondLine&lt;br&gt;Med
+- - |-
+    graph TD
+      A[X<br>LongLine<br>Y]
+  - - X&lt;br&gt;LongLine&lt;br&gt;Y
+- - |-
+    graph TD
+      A[Start] --> B[End]
+  - - Start
+    - End
+- - |-
+    graph TD
+          A[Rectangle] --> B(Rounded)
+          B --> C{Diamond}
+          C --> D([Stadium])
+          D --> E((Circle))
+  - - Rectangle
+    - Rounded
+    - Diamond
+    - "[Stadium]"
+    - Circle
+- - |-
+    graph TD
+          A -->|solid| B
+          B -.->|dotted| C
+          C ==>|thick| D
+  - - solid
+    - thick
+    - A
+    - B
+    - .-&gt;|dotted| C
+    - C
+    - D
+- - |-
+    graph LR
+      A --> B --> C
+  - - A
+    - B --&gt; C
+- - |-
+    graph TD
+      A[[Subroutine]] --> B
+  - - A[[Subroutine]]
+    - B
+- - |-
+    graph TD
+      A(((Important))) --> B
+  - - A(((Important)))
+    - B
+- - |-
+    graph TD
+      A{{Decision}} --> B
+  - - A{{Decision}}
+    - B
+- - |-
+    graph TD
+      A[(Database)] --> B
+  - - (Database)
+    - B
+- - |-
+    graph TD
+      A>Flag Shape] --> B
+  - - A&gt;Flag Shape]
+    - B
+- - |-
+    graph TD
+      A[/Wider Bottom\\] --> B[\\Wider Top/]
+  - - /Wider Bottom\\
+    - \\Wider Top/
+- - |-
+    graph TD
+          A[Node] --> A
+  - - Node
+- - |-
+    graph TD
+          A[Retry] -->|again| A
+  - - again
+    - Retry
+- - |-
+    graph LR
+          A[Rectangle] --> B(Rounded)
+          B --> C{Diamond}
+          C --> D([Stadium])
+          D --> E((Circle))
+          E --> F[[Subroutine]]
+          F --> G(((DoubleCircle)))
+          G --> H{{Hexagon}}
+          H --> I[(Cylinder)]
+          I --> J>Flag]
+          J --> K[/Trapezoid\\]
+          K --> L[\\TrapAlt/]
+  - - Rectangle
+    - Rounded
+    - Diamond
+    - "[Stadium]"
+    - Circle
+    - F[[Subroutine]]
+    - F
+    - G(((DoubleCircle)))
+- - |-
+    graph TD
+            A[Christmas] -->|Get money| B(Go shopping)
+            B --> C{Let me think}
+            C -->|One| D[Laptop]
+            C -->|Two| E[iPhone]
+            C -->|Three| F[fa:fa-car Car]
+  - - Get money
+    - One
+    - Two
+    - Three
+    - Christmas
+    - Go shopping
+    - Let me think
+    - Laptop
+- - |-
+    flowchart TD
+        A[Christmas] -->|Get money| B(Go shopping)
+        B --> C{Let me think}
+        C -->|One| D[Laptop]
+        C -->|Two| E[iPhone]
+        C -->|Three| F[fa:fa-car Car]
+  - - Get money
+    - One
+    - Two
+    - Three
+    - Christmas
+    - Go shopping
+    - Let me think
+    - Laptop
+- - |-
+    flowchart TD
+          A[Christmas] -->|Get money| B(Go shopping)
+          B --> C{Let me think}
+          C -->|One| D[Laptop]
+          C -->|Two| E[iPhone]
+          C -->|Three| F[fa:fa-car Car]
+  - - Get money
+    - One
+    - Two
+    - Three
+    - Christmas
+    - Go shopping
+    - Let me think
+    - Laptop
+- - |-
+    flowchart TD
+          A[Christmas] -->|Get money| B(Go shopping)
+          B --> C{Let me think}
+          %% this is a comment
+          C -->|One| D[Laptop]
+          C -->|Two| E[iPhone]
+          C -->|Three| F[fa:fa-car Car]
+  - - Get money
+    - One
+    - Two
+    - Three
+    - Christmas
+    - Go shopping
+    - Let me think
+    - Laptop
+- - |-
+    flowchart TD
+          L1 --- L2
+          L2 --- C
+          M1 ---> C
+          R1 .-> R2
+          R2 <.-> C
+          C -->|Label 1| E1
+          C <-- Label 2 ---> E2
+          C ----> E3
+          C <-...-> E4
+          C ======> E5
+  - - Label 1
+    - L1
+    - L2
+    - C
+    - M1
+    - R1 .
+    - R2
+    - R2 &lt;.
+- - |-
+    flowchart TD
+          A -- label text --- B
+          C --- D
+          E -- open label --- F
+          G <-- bidirectional --> H
+  - - A
+    - label text --- B
+    - C
+    - D
+    - E
+    - open label --- F
+    - G &lt;
+    - bidirectional --&gt; H
+- - |-
+    flowchart TD
+            a[
+  - - a[
+- - |-
+    flowchart TB
+            A[Start] -->|first| B[Middle]
+            B -->|second| C[End]
+  - - first
+    - second
+    - Start
+    - Middle
+    - End
+- - |-
+    flowchart TD
+        a[
+  - - a[
+- - |-
+    flowchart TB
+          a{{
+  - - a{{
+- - |-
+    flowchart TD
+        B[<img src=
+  - - B[&lt;img src=
+- - |-
+    flowchart TD
+        B[<img>]
+        B-->C[<img>]
+  - - "&lt;img&gt;"
+- - |-
+    flowchart TD
+        angular_velocity[
+  - - angular_velocity[
+- - |-
+    flowchart TD
+              A[Start] -->|retry| A
+              B[Process] -->|again| B
+              A --> B
+  - - retry
+    - again
+    - Start
+    - Process
+- - |-
+    flowchart TB
+           n2[
+  - - n2[
+- - |-
+    flowchart TB
+              A([
+  - - A([
+- - |-
+    flowchart BT
+              n2[
+  - - n2[
+- - |-
+    flowchart BT
+            n2[
+  - - n2[
+- - |-
+    flowchart TD
+        A[Start] --> B{Decision}
+        B -->|Yes| C[Process 1]
+        B -->|No| D[Process 2]
+        C --> E[End]
+        D --> E
+  - - "Yes"
+    - "No"
+    - Start
+    - Decision
+    - Process 1
+    - Process 2
+    - End
+- - |-
+    flowchart TD
+          A e1@-->B e5@--> E
+          E e7@--> D
+          B e3@-->D
+          A e2@-->C e4@-->D
+          C e6@--> F
+          F e8@--> D
+          e1@{ curve: natural }
+          e2@{ curve: stepAfter }
+          e3@{ curve: monotoneY }
+          e4@{ curve: bumpY }
+          e5@{ curve: linear }
+          e6@{ curve: catmullRom }
+          e7@{ curve: cardinal }
+  - - A e1@
+    - B e5@--&gt; E
+    - E e7@
+    - D
+    - B e3@
+    - A e2@
+    - C e4@--&gt;D
+    - C e6@
+- - |-
+    flowchart TB
+        mermaid{
+  - - mermaid{
+- - |-
+    flowchart-elk TD
+          A[Christmas] -->|Get money| B(Go shopping)
+          B --> C{Let me think}
+          C -->|One| D[Laptop]
+          C -->|Two| E[iPhone]
+          C -->|Three| F[fa:fa-car Car]
+  - - Get money
+    - One
+    - Two
+    - Three
+    - Christmas
+    - Go shopping
+    - Let me think
+    - Laptop
+- - |-
+    flowchart-elk TD
+          A[Christmas] -->|Get money| B(Go shopping)
+          B --> C{Let me think}
+          %% this is a comment
+          C -->|One| D[Laptop]
+          C -->|Two| E[iPhone]
+          C -->|Three| F[fa:fa-car Car]
+  - - Get money
+    - One
+    - Two
+    - Three
+    - Christmas
+    - Go shopping
+    - Let me think
+    - Laptop
+- - |-
+    flowchart-elk TD
+          L1 --- L2
+          L2 --- C
+          M1 ---> C
+          R1 .-> R2
+          R2 <.-> C
+          C -->|Label 1| E1
+          C <-- Label 2 ---> E2
+          C ----> E3
+          C <-...-> E4
+          C ======> E5
+  - - Label 1
+    - L1
+    - L2
+    - C
+    - M1
+    - R1 .
+    - R2
+    - R2 &lt;.
+- - |-
+    flowchart-elk TD
+            a[
+  - - a[
+- - |-
+    flowchart-elk TB
+          a{{
+  - - a{{
+- - |-
+    flowchart-elk TD
+          A --> B --> C --> D
+  - - A
+    - B --&gt; C --&gt; D
+- - |-
+    graph TD
+          A[Christmas] -->|Get money| B(Go shopping)
+          B --> C{Let me think}
+          C -->|One| D[Laptop]
+          C -->|Two| E[iPhone]
+          C -->|Three| F[fa:fa-car Car]
+  - - Get money
+    - One
+    - Two
+    - Three
+    - Christmas
+    - Go shopping
+    - Let me think
+    - Laptop
+- - |-
+    graph LR
+          sid-B3655226-6C29-4D00-B685-3D5C734DC7E1[
+  - - sid
+    - B3655226-6C29-4D00-B685-3D5C734DC7E1[
+- - |-
+    graph TD
+          A[Christmas] -->|Get money| B(Go shopping)
+          B --> C{Let me think}
+          %% this is a comment
+          C -->|One| D[Laptop]
+          C -->|Two| E[iPhone]
+          C -->|Three| F[fa:fa-car Car]
+  - - Get money
+    - One
+    - Two
+    - Three
+    - Christmas
+    - Go shopping
+    - Let me think
+    - Laptop
+- - |-
+    graph LR
+            A1[Multi<br>Line] -->|Multi<br>Line| B1(Multi<br>Line)
+            C1[Multi<br/>Line] -->|Multi<br/>Line| D1(Multi<br/>Line)
+            E1[Multi<br />Line] -->|Multi<br />Line| F1(Multi<br />Line)
+            A2[Multi<br>Line] -->|Multi<br>Line| B2(Multi<br>Line)
+            C2[Multi<br/>Line] -->|Multi<br/>Line| D2(Multi<br/>Line)
+            E2[Multi<br />Line] -->|Multi<br />Line| F2(Multi<br />Line)
+            linkStyle 0 stroke:DarkGray,stroke-width:2px
+            linkStyle 1 stroke:DarkGray,stroke-width:2px
+            linkStyle 2 stroke:DarkGray,stroke-width:2px
+  - - Multi&lt;br&gt;Line
+    - Multi&lt;br/&gt;Line
+    - Multi&lt;br /&gt;Line
+    - linkStyle 0 stroke:DarkGray,stroke
+    - width:2px
+    - linkStyle 1 stroke:DarkGray,stroke
+    - linkStyle 2 stroke:DarkGray,stroke
+- - |-
+    graph LR
+            a --> b --> c
+  - - a
+    - b --&gt; c
+- - |-
+    graph LR
+            a --> b & c--> d
+  - - a
+    - b &amp; c--&gt; d
+- - |-
+    graph TD
+          A[ h ] -- hello --> B[
+  - - h
+    - hello --&gt; B[
+- - |-
+    graph TB
+          TITLE[
+  - - TITLE[
+- - |-
+    graph TD
+          work --> sleep
+          sleep --> work
+          eat --> sleep
+          work --> eat
+  - - work
+    - sleep
+    - eat
+- - |-
+    graph TD
+          A[Christmas]
+  - - Christmas
+- - |-
+    graph TD
+          L1 --- L2
+          L2 --- C
+          M1 ---> C
+          R1 .-> R2
+          R2 <.-> C
+          C -->|Label 1| E1
+          C -- Label 2 ---> E2
+          C ----> E3
+          C -----> E4
+          C ======> E5
+  - - Label 1
+    - L1
+    - L2
+    - C
+    - M1
+    - R1 .
+    - R2
+    - R2 &lt;.
+- - |-
+    graph TD
+            a[
+  - - a[
+- - |-
+    flowchart TD
+                A(
+  - - A(
+- - |-
+    flowchart TB
+              Cloudwatch@{ icon:
+  - - "Cloudwatch@{ icon:"
+- - |-
+    graph LR
+          A[
+  - - A[
+- - |-
+    graph LR
+      //     A[
+  - - //     A[
+- - |-
+    graph TD
+          A[
+  - - A[
+- - |-
+    flowchart LR
+    Power_Supply --> Transmitter_A
+    Power_Supply --> Transmitter_B
+    Transmitter_A --> D
+    Transmitter_B --> D
+  - - Power_Supply
+    - Transmitter_A
+    - Transmitter_B
+    - D
+- - |-
+    flowchart TD
+    A(<img scr=
+  - - A(&lt;img scr=
+- - |-
+    graph TD;
+    A-->B
+  - - A
+    - B
+- - |-
+    graph TD
+        A[Enter Chart Definition] --> B(Preview)
+        B --> C{decide}
+        C --> D[Keep]
+        C --> E[Edit Definition]
+        E --> B
+        D --> F[Save Image and Code]
+        F --> B
+  - - Enter Chart Definition
+    - Preview
+    - decide
+    - Keep
+    - Edit Definition
+    - Save Image and Code
+- - |-
+    graph TD;
+        A-->B;
+        A-->C;
+        B-->D;
+        C-->D;
+  - - A
+    - B;
+    - C;
+    - B
+    - D;
+    - C
+- - |-
+    graph TB
+    a-->b
+  - - a
+    - b
+- - |-
+    graph LR;
+     a(Find elements)-->b{Processed}
+     b-->|Yes|c(Leave element)
+     b-->|No |d(Transform)
+  - - "Yes"
+    - "No"
+    - Find elements
+    - Processed
+    - Leave element
+    - Transform
+- - |-
+    graph LR
+          accTitle: Big Decisions
+          accDescr: Bob's Burgers process for making big decisions
+          A[Identify Big Decision] --> B{Make Big Decision}
+          B --> D[Be done]
+  - - "accTitle: Big Decisions"
+    - "accDescr: Bob's Burgers process for making big decisions"
+    - Identify Big Decision
+    - Make Big Decision
+    - Be done
+- - |-
+    graph LR
+          accTitle: Bob's Burger's Making Big Decisions
+          accDescr {
+            The official Bob's Burgers corporate processes that are used
+            for making very, very big decisions.
+            This is actually a very simple flow: identify the big decision and then make the big decision.
+             }
+          A[Identify Big Decision] --> B{Make Big Decision}
+          B --> D[Be done]
+  - - "accTitle: Bob's Burger's Making Big Decisions"
+    - accDescr {
+    - The official Bob's Burgers corporate processes that are used
+    - for making very, very big decisions.
+    - >-
+      This is actually a very simple flow: identify the big decision and then
+      make the big decision.
+    - "}"
+    - Identify Big Decision
+    - Make Big Decision
+- - |-
+    graph LR
+          A["$$x^2$$"] -->|"$$\sqrt{x+3}$$"| B("$$\frac{1}{2}$$")
+          A -->|"$$\overbrace{a+b+c}^{\text{note}}$$"| C("$$\pi r^2$$")
+          B --> D("$$x = \begin{cases} a &\text{if } b \\ c &\text{if } d \end{cases}$$")
+          C --> E("$$x(t)=c_1\begin{bmatrix}-\cos{t}+\sin{t}\\ 2\cos{t} \end{bmatrix}e^{2t}$$")
+  - - $$\sqrt{x+3}$$
+    - $$\overbrace{a+b+c}^{\text{note}}$$
+    - $$x^2$$
+    - $$\frac{1}{2}$$
+    - $$\pi r^2$$
+    - >-
+      $$x = \begin{cases} a &amp;\text{if } b \\ c &amp;\text{if } d
+      \end{cases}$$
+    - >-
+      E(&quot;$$x(t)=c_1\begin{bmatrix}-\cos{t}+\sin{t}\\ 2\cos{t}
+      \end{bmatrix}e^{2t}$$&quot;)
+- - |-
+    graph LR
+        A[Square Rect] -- Link text --> B((Circle))
+        A --> C(Round Rect)
+        B --> D{Rhombus}
+        C --> D
+  - - Square Rect
+    - Link text --&gt; B((Circle))
+    - Round Rect
+    - B
+    - Rhombus
+- - |-
+    flowchart LR
+        id["This ❤ Unicode"]
+  - - This ❤ Unicode
+- - |-
+    flowchart LR
+        Start --> Stop
+  - - Start
+    - Stop
+- - |-
+    flowchart LR
+        id1(This is the text in the box)
+  - - This is the text in the box
+- - |-
+    flowchart LR
+        id1([This is the text in the box])
+  - - "[This is the text in the box]"
+- - |-
+    flowchart LR
+        id1[[This is the text in the box]]
+  - - id1[[This is the text in the box]]
+- - |-
+    flowchart LR
+        id1[(Database)]
+  - - (Database)
+- - |-
+    flowchart LR
+        id1((This is the text in the circle))
+  - - This is the text in the circle
+- - |-
+    flowchart LR
+        id1>This is the text in the box]
+  - - id1&gt;This is the text in the box]
+- - |-
+    flowchart LR
+        id1{This is the text in the box}
+  - - This is the text in the box
+- - |-
+    flowchart LR
+        id1{{This is the text in the box}}
+  - - id1{{This is the text in the box}}
+- - |-
+    flowchart TD
+        id1[/This is the text in the box/]
+  - - /This is the text in the box/
+- - |-
+    flowchart TD
+        id1[\This is the text in the box\]
+  - - \This is the text in the box\
+- - |-
+    flowchart TD
+        A[/Christmas\]
+  - - /Christmas\
+- - |-
+    flowchart TD
+        B[\Go shopping/]
+  - - \Go shopping/
+- - |-
+    flowchart TD
+        id1(((This is the text in the circle)))
+  - - id1(((This is the text in the circle)))
+- - |-
+    flowchart RL
+        A@{ shape: manual-file, label: "File Handling"}
+        B@{ shape: manual-input, label: "User Input"}
+        C@{ shape: docs, label: "Multiple Documents"}
+        D@{ shape: procs, label: "Process Automation"}
+        E@{ shape: paper-tape, label: "Paper Records"}
+  - - "A@{ shape: manual"
+    - "file, label: &quot;File Handling&quot;}"
+    - "B@{ shape: manual"
+    - "input, label: &quot;User Input&quot;}"
+    - "C@{ shape: docs, label: &quot;Multiple Documents&quot;}"
+    - "D@{ shape: procs, label: &quot;Process Automation&quot;}"
+    - "E@{ shape: paper"
+    - "tape, label: &quot;Paper Records&quot;}"
+- - |-
+    flowchart TD
+        A@{ shape: rect, label: "This is a process" }
+  - - "A@{ shape: rect, label: &quot;This is a process&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: rounded, label: "This is an event" }
+  - - "A@{ shape: rounded, label: &quot;This is an event&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: stadium, label: "Terminal point" }
+  - - "A@{ shape: stadium, label: &quot;Terminal point&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: subproc, label: "This is a subprocess" }
+  - - "A@{ shape: subproc, label: &quot;This is a subprocess&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: cyl, label: "Database" }
+  - - "A@{ shape: cyl, label: &quot;Database&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: circle, label: "Start" }
+  - - "A@{ shape: circle, label: &quot;Start&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: odd, label: "Odd shape" }
+  - - "A@{ shape: odd, label: &quot;Odd shape&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: diamond, label: "Decision" }
+  - - "A@{ shape: diamond, label: &quot;Decision&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: hex, label: "Prepare conditional" }
+  - - "A@{ shape: hex, label: &quot;Prepare conditional&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: lean-r, label: "Input/Output" }
+  - - "A@{ shape: lean"
+    - "r, label: &quot;Input/Output&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: lean-l, label: "Output/Input" }
+  - - "A@{ shape: lean"
+    - "l, label: &quot;Output/Input&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: datastore, label: "Datastore" }
+  - - "A@{ shape: datastore, label: &quot;Datastore&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: trap-b, label: "Priority action" }
+  - - "A@{ shape: trap"
+    - "b, label: &quot;Priority action&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: trap-t, label: "Manual operation" }
+  - - "A@{ shape: trap"
+    - "t, label: &quot;Manual operation&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: dbl-circ, label: "Stop" }
+  - - "A@{ shape: dbl"
+    - "circ, label: &quot;Stop&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: text, label: "This is a text block" }
+  - - "A@{ shape: text, label: &quot;This is a text block&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: notch-rect, label: "Card" }
+  - - "A@{ shape: notch"
+    - "rect, label: &quot;Card&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: lin-rect, label: "Lined process" }
+  - - "A@{ shape: lin"
+    - "rect, label: &quot;Lined process&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: sm-circ, label: "Small start" }
+  - - "A@{ shape: sm"
+    - "circ, label: &quot;Small start&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: framed-circle, label: "Stop" }
+  - - "A@{ shape: framed"
+    - "circle, label: &quot;Stop&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: fork, label: "Fork or Join" }
+  - - "A@{ shape: fork, label: &quot;Fork or Join&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: hourglass, label: "Collate" }
+  - - "A@{ shape: hourglass, label: &quot;Collate&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: comment, label: "Comment" }
+  - - "A@{ shape: comment, label: &quot;Comment&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: brace-r, label: "Comment" }
+  - - "A@{ shape: brace"
+    - "r, label: &quot;Comment&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: braces, label: "Comment" }
+  - - "A@{ shape: braces, label: &quot;Comment&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: bolt, label: "Communication link" }
+  - - "A@{ shape: bolt, label: &quot;Communication link&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: doc, label: "Document" }
+  - - "A@{ shape: doc, label: &quot;Document&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: delay, label: "Delay" }
+  - - "A@{ shape: delay, label: &quot;Delay&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: das, label: "Direct access storage" }
+  - - "A@{ shape: das, label: &quot;Direct access storage&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: lin-cyl, label: "Disk storage" }
+  - - "A@{ shape: lin"
+    - "cyl, label: &quot;Disk storage&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: curv-trap, label: "Display" }
+  - - "A@{ shape: curv"
+    - "trap, label: &quot;Display&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: div-rect, label: "Divided process" }
+  - - "A@{ shape: div"
+    - "rect, label: &quot;Divided process&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: tri, label: "Extract" }
+  - - "A@{ shape: tri, label: &quot;Extract&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: win-pane, label: "Internal storage" }
+  - - "A@{ shape: win"
+    - "pane, label: &quot;Internal storage&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: f-circ, label: "Junction" }
+  - - "A@{ shape: f"
+    - "circ, label: &quot;Junction&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: lin-doc, label: "Lined document" }
+  - - "A@{ shape: lin"
+    - "doc, label: &quot;Lined document&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: notch-pent, label: "Loop limit" }
+  - - "A@{ shape: notch"
+    - "pent, label: &quot;Loop limit&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: flip-tri, label: "Manual file" }
+  - - "A@{ shape: flip"
+    - "tri, label: &quot;Manual file&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: sl-rect, label: "Manual input" }
+  - - "A@{ shape: sl"
+    - "rect, label: &quot;Manual input&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: docs, label: "Multiple documents" }
+  - - "A@{ shape: docs, label: &quot;Multiple documents&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: processes, label: "Multiple processes" }
+  - - "A@{ shape: processes, label: &quot;Multiple processes&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: flag, label: "Paper tape" }
+  - - "A@{ shape: flag, label: &quot;Paper tape&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: bow-rect, label: "Stored data" }
+  - - "A@{ shape: bow"
+    - "rect, label: &quot;Stored data&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: cross-circ, label: "Summary" }
+  - - "A@{ shape: cross"
+    - "circ, label: &quot;Summary&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: tag-doc, label: "Tagged document" }
+  - - "A@{ shape: tag"
+    - "doc, label: &quot;Tagged document&quot; }"
+- - |-
+    flowchart TD
+        A@{ shape: tag-rect, label: "Tagged process" }
+  - - "A@{ shape: tag"
+    - "rect, label: &quot;Tagged process&quot; }"
+- - |-
+    flowchart TD
+        A@{ icon: "fa:user", form: "square", label: "User Icon", pos: "t", h: 60 }
+  - - >-
+      A@{ icon: &quot;fa:user&quot;, form: &quot;square&quot;, label: &quot;User
+      Icon&quot;, pos: &quot;t&quot;, h: 60 }
+- - |-
+    flowchart TD
+        A@{ img: "https://example.com/image.png", label: "Image Label", pos: "t", w: 60, h: 60, constraint: "off" }
+  - - >-
+      A@{ img: &quot;https://example.com/image.png&quot;, label: &quot;Image
+      Label&quot;, pos: &quot;t&quot;, w: 60, h: 60, constraint: &quot;off&quot;
+      }
+- - |-
+    flowchart TD
+      %% My image with a constrained aspect ratio
+      A@{ img: "https://mermaid.js.org/favicon.svg", label: "My example image label", pos: "t", h: 60, constraint: "on" }
+  - - >-
+      A@{ img: &quot;https://mermaid.js.org/favicon.svg&quot;, label: &quot;My
+      example image label&quot;, pos: &quot;t&quot;, h: 60, constraint:
+      &quot;on&quot; }
+- - |-
+    flowchart LR
+        A-->B
+  - - A
+    - B
+- - |-
+    flowchart LR
+        A --- B
+  - - A
+    - B
+- - |-
+    flowchart LR
+        A-- This is the text! ---B
+  - - A
+    - This is the text! ---B
+- - |-
+    flowchart LR
+        A---|This is the text|B
+  - - This is the text
+    - A
+    - B
+- - |-
+    flowchart LR
+        A-->|text|B
+  - - text
+    - A
+    - B
+- - |-
+    flowchart LR
+        A-- text -->B
+  - - A
+    - text --&gt;B
+- - |-
+    flowchart LR
+       A-.->B;
+  - - A
+    - .-&gt;B;
+- - |-
+    flowchart LR
+       A-. text .-> B
+  - - A
+    - . text .-&gt; B
+- - |-
+    flowchart LR
+       A ==> B
+  - - A
+    - B
+- - |-
+    flowchart LR
+       A == text ==> B
+  - - A
+    - text ==&gt; B
+- - |-
+    flowchart LR
+        A ~~~ B
+  - - A ~~~ B
+- - |-
+    flowchart LR
+       A -- text --> B -- text2 --> C
+  - - A
+    - text --&gt; B -- text2 --&gt; C
+- - |-
+    flowchart LR
+       a --> b & c--> d
+  - - a
+    - b &amp; c--&gt; d
+- - |-
+    flowchart TB
+        A & B--> C & D
+  - - A &amp; B
+    - C &amp; D
+- - |-
+    flowchart TB
+        A --> C
+        A --> D
+        B --> C
+        B --> D
+  - - A
+    - C
+    - D
+    - B
+- - |-
+    flowchart LR
+      A e1@--> B
+  - - A e1@
+    - B
+- - |-
+    flowchart LR
+      A e1@==> B
+      e1@{ animate: true }
+  - - A e1@
+    - B
+    - "e1@{ animate: true }"
+- - |-
+    flowchart LR
+      A e1@--> B
+      e1@{ animation: fast }
+  - - A e1@
+    - B
+    - "e1@{ animation: fast }"
+- - |-
+    flowchart LR
+        A --o B
+  - - A
+    - B
+- - |-
+    flowchart LR
+        A --x B
+  - - A
+    - B
+- - |-
+    flowchart LR
+        A o--o B
+        B <--> C
+        C x--x D
+  - - A o
+    - B
+    - B &lt;
+    - C
+    - C x
+    - D
+- - |-
+    flowchart TD
+        A[Start] --> B{Is it?}
+        B -->|Yes| C[OK]
+        C --> D[Rethink]
+        D --> B
+        B ---->|No| E[End]
+  - - "Yes"
+    - Start
+    - Is it?
+    - OK
+    - Rethink
+    - "-&gt;|No| E[End]"
+- - |-
+    flowchart TD
+        A[Start] --> B{Is it?}
+        B -- Yes --> C[OK]
+        C --> D[Rethink]
+        D --> B
+        B -- No ----> E[End]
+  - - Start
+    - Is it?
+    - Yes --&gt; C[OK]
+    - C
+    - Rethink
+    - No ----&gt; E[End]
+- - |-
+    flowchart LR
+        id1["This is the (text) in the box"]
+  - - This is the (text) in the box
+- - |-
+    flowchart LR
+            A["A double quote:#quot;"] --> B["A dec char:#9829;"]
+  - - A double quote:#quot;
+    - A dec char:#9829;
+- - |-
+    flowchart LR
+    %% this is a comment A -- text --> B{node}
+       A -- text --> B -- text2 --> C
+  - - A
+    - text --&gt; B -- text2 --&gt; C
+- - |-
+    flowchart LR
+        A e1@==> B
+        A e2@--> C
+        e1@{ curve: linear }
+        e2@{ curve: natural }
+  - - A e1@
+    - B
+    - A e2@
+    - C
+    - "e1@{ curve: linear }"
+    - "e2@{ curve: natural }"
+- - |-
+    flowchart TD
+        B["fa:fa-twitter for peace"]
+        B-->C[fa:fa-ban forbidden]
+        B-->D(fa:fa-spinner)
+        B-->E(A fa:fa-camera-retro perhaps?)
+  - - B[&quot;fa:fa
+    - twitter for peace&quot;]
+    - B
+    - fa:fa-ban forbidden
+    - fa:fa-spinner
+    - A fa:fa-camera-retro perhaps?
+- - |-
+    flowchart TD
+        B[fa:fa-twitter] %% standard icon
+        B-->E(fak:fa-custom-icon-name) %% custom icon
+  - - B[fa:fa
+    - twitter]
+    - B
+    - fak:fa-custom-icon-name
+- - |-
+    flowchart TD
+        B["fa:fa-twitter for peace"]
+        B-->C["fab:fa-truck-bold a custom icon"]
+  - - B[&quot;fa:fa
+    - twitter for peace&quot;]
+    - B
+    - fab:fa-truck-bold a custom icon
+- - |-
+    flowchart LR
+        A[Hard edge] -->|Link text| B(Round edge)
+        B --> C{Decision}
+        C -->|One| D[Result one]
+        C -->|Two| E[Result two]
+  - - Link text
+    - One
+    - Two
+    - Hard edge
+    - Round edge
+    - Decision
+    - Result one
+    - Result two
+- - |-
+    flowchart LR
+      source --> requirements --> setup
+
+      source[Get the Source Code]
+      requirements[Install the Requirements]
+      setup[Install Packages]
+  - - Get the Source Code
+    - requirements --&gt; setup
+    - Install the Requirements
+    - Install Packages
+- - |-
+    flowchart LR
+
+      branch --> changes --> submit
+      branch[Checkout a New Branch]
+      changes[Make Changes]
+      submit[Submit a PR]
+  - - Checkout a New Branch
+    - changes --&gt; submit
+    - Make Changes
+    - Submit a PR
+- - |-
+    flowchart LR
+      feature --> slash
+      bug --> slash
+      chore --> slash
+      docs --> slash
+      slash --> 2945 --> underscore
+      slash --> 1123 --> underscore
+      underscore --> short_description_1
+      underscore --> short_description_2
+
+      underscore["_"]
+      slash["/"]
+
+      short_description_1["state-diagram-new-arrow-florbs"]
+      short_description_2["fix_random_ugly_red_text"]
+  - - feature
+    - /
+    - bug
+    - chore
+    - docs
+    - 2945 --&gt; underscore
+    - 1123 --&gt; underscore
+    - _
+- - |-
+    flowchart LR
+
+    A[Hard] -->|Text| B(Round)
+    B --> C{Decision}
+    C -->|One| D[Result 1]
+    C -->|Two| E[Result 2]
+  - - Text
+    - One
+    - Two
+    - Hard
+    - Round
+    - Decision
+    - Result 1
+    - Result 2
+- - |-
+    flowchart TD
+        Form@{ shape: manual-input, label:
+  - - "Form@{ shape: manual"
+    - "input, label:"
+- - |-
+    flowchart-elk TD
+      A --> B
+      A --> C
+  - - A
+    - B
+    - C
+- - |-
+    graph
+     A --> B
+  - - A
+    - B
+- - |-
+    graph TB
+    bfs1:queue
+  - - bfs1:queue
+- - |-
+    flowchart LR
+        A[Start] --> B{Decision}
+        B -->|Yes| C[OK]
+        B -->|No| D[Cancel]
+  - - "Yes"
+    - "No"
+    - Start
+    - Decision
+    - OK
+    - Cancel
+- - |-
+    flowchart TB
+      a --> b
+  - - a
+    - b
+- - |-
+    flowchart TB
+      stale --> source
+  - - stale
+    - source
+- - |-
+    flowchart TD
+    A[Christmas] -->|Get money| B(Go shopping)
+    C --> C
+  - - Get money
+    - Christmas
+    - Go shopping
+    - C
+- - |-
+    flowchart LR
+          %% This is a comment A -- text --> B{node}
+          A -- text --> B -- text2 --> C
+  - - A
+    - text --&gt; B -- text2 --&gt; C
+- - |-
+    flowchart LR
+          A -- text --> B -- text2 --> C
+  - - A
+    - text --&gt; B -- text2 --&gt; C
+- - |-
+    flowchart TD
+          A -- text --> B -- text2 --> C
+  - - A
+    - text --&gt; B -- text2 --&gt; C
+- - |-
+    graph TD;
+    a;
+  - - a;
+- - |-
+    graph TD;
+    A-->B;
+  - - A
+    - B;
+- - |-
+    graph TD
+    A-->B
+    B-->C
+  - - A
+    - B
+    - C
+- - |-
+    graph TD;
+    A<-->B;
+  - - A&lt;
+    - B;
+- - |-
+    graph TD;
+    A<-- text -->B;
+  - - A&lt;
+    - text --&gt;B;
+- - |-
+    graph TD;
+    A<==>B;
+  - - A&lt;
+    - B;
+- - |-
+    graph TD;
+    A<== text ==>B;
+  - - A&lt;
+    - text ==&gt;B;
+- - |-
+    graph TD;
+    A<-.->B;
+  - - A&lt;
+    - .-&gt;B;
+- - |-
+    graph TD;
+    A<-. text .->B;
+  - - A&lt;
+    - . text .-&gt;B;
+- - |-
+    graph TD;
+
+
+     %% Comment
+     A-->B; 
+     B-->C;
+  - - A
+    - B;
+    - B
+    - C;
+- - |-
+    graph TD
+    endpoint --> sender
+  - - endpoint
+    - sender
+- - |-
+    graph TD
+    blend --> monograph
+  - - blend
+    - monograph
+- - |-
+    graph TD
+    default --> monograph
+  - - default
+    - monograph
+- - |-
+    graph LR
+          accTitle: Big decisions
+          accDescr: Flow chart of the decision making process
+          A[Hard] -->|Text| B(Round)
+          B --> C{Decision}
+          C -->|One| D[Result 1]
+          C -->|Two| E[Result 2]
+  - - Text
+    - One
+    - Two
+    - "accTitle: Big decisions"
+    - "accDescr: Flow chart of the decision making process"
+    - Hard
+    - Round
+    - Decision
+- - |-
+    graph LR
+          accTitle: Big decisions
+
+          accDescr {
+            Flow chart of the decision making process
+            with a second line
+          }
+
+          A[Hard] -->|Text| B(Round)
+          B --> C{Decision}
+          C -->|One| D[Result 1]
+          C -->|Two| E[Result 2]
+  - - Text
+    - One
+    - Two
+    - "accTitle: Big decisions"
+    - accDescr {
+    - Flow chart of the decision making process
+    - with a second line
+    - "}"
+- - |-
+    graph LR
+          ${unsafeProp} --> A;
+  - - unsafeProp
+    - A;
+- - |-
+    graph TD;A--o|text space|B;
+     B-->|more text with space|C;
+  - - more text with space
+    - B
+    - C;
+- - |-
+    graph TD
+    A(-this is an ellipse-)-->B
+  - - A(
+    - this is an ellipse-)--&gt;B
+- - |-
+    graph
+    X(- My Text (
+  - - X(
+    - My Text (
+- - |-
+    flowchart TB
+          D@{ shape: rounded}
+  - - "D@{ shape: rounded}"
+- - |-
+    flowchart TB
+          D@{ shape: rounded }
+  - - "D@{ shape: rounded }"
+- - |-
+    flowchart TB
+          D@{ shape: rounded } & E
+  - - "D@{ shape: rounded } &amp; E"
+- - |-
+    flowchart TB
+          D@{ shape: rounded } --> E
+  - - "D@{ shape: rounded }"
+    - E
+- - |-
+    flowchart TB
+          D@{ shape: rounded } & E --> F
+  - - "D@{ shape: rounded } &amp; E"
+    - F
+- - |-
+    flowchart TB
+          D@{ shape: rounded } & E@{ shape: rounded } --> F
+  - - "D@{ shape: rounded } &amp; E@{ shape: rounded }"
+    - F
+- - |-
+    flowchart TB
+          D@{ shape: rounded } & E@{ shape: rounded } --> F & G@{ shape: rounded }
+  - - "D@{ shape: rounded } &amp; E@{ shape: rounded }"
+    - "F &amp; G@{ shape: rounded }"
+- - |-
+    flowchart TB
+          D@{ shape: rounded } & E@{ shape: rounded } --> F@{ shape: rounded } & G@{ shape: rounded }
+  - - "D@{ shape: rounded } &amp; E@{ shape: rounded }"
+    - "F@{ shape: rounded } &amp; G@{ shape: rounded }"
+- - |-
+    flowchart TB
+             D@{ shape: rounded } & E@{ shape: rounded } --> F{ shape: rounded } & G{ shape: rounded }
+  - - "D@{ shape: rounded } &amp; E@{ shape: rounded }"
+    - "F{ shape: rounded } &amp; G{ shape: rounded }"
+- - |-
+    flowchart TB
+          D@{shape: rounded}
+  - - "D@{shape: rounded}"
+- - |-
+    flowchart TB
+          D@{       shape: rounded}
+  - - "D@{       shape: rounded}"
+- - |-
+    flowchart TB
+          D@{ shape: rounded         }
+  - - "D@{ shape: rounded         }"
+- - |-
+    flowchart TB
+          D@{ shape: rounded , label:
+  - - "D@{ shape: rounded , label:"
+- - |-
+    flowchart TB
+          A --> D@{
+            shape: circle
+            other:
+  - - A
+    - D@{
+    - "shape: circle"
+    - "other:"
+- - |-
+    flowchart TB
+          A[hello]
+          B@{
+            shape: circle
+            other:
+  - - hello
+    - B@{
+    - "shape: circle"
+    - "other:"
+- - |-
+    flowchart TB
+          A@{
+            label:
+  - - A@{
+    - "label:"
+- - |-
+    flowchart TB
+          A@{ shape: this-shape-does-not-exist }
+  - - "A@{ shape: this"
+    - shape-does-not-exist }
+- - |-
+    flowchart TB
+          A@{ shape: rect_left_inv_arrow }
+  - - "A@{ shape: rect_left_inv_arrow }"
+- - |-
+    flowchart TB
+          A{This is a label}
+  - - This is a label
+- - |-
+    flowchart TB
+          A@{
+            label: |
+              This is a
+              multiline string
+            other:
+  - - A@{
+    - "label: |"
+    - This is a
+    - multiline string
+    - "other:"
+- - |-
+    flowchart TD
+         A & B e1@--> C & D
+            A1 e2@--> C1 & D1
+  - - A &amp; B e1@
+    - C &amp; D
+    - A1 e2@
+    - C1 &amp; D1
+- - |-
+    flowchart TD
+         A & B e1@--> C & D
+            A1 e1@--> C1 & D1
+  - - A &amp; B e1@
+    - C &amp; D
+    - A1 e1@
+    - C1 &amp; D1
+- - |-
+    flowchart TD
+         A e1@--> B
+         C e2@--> D
+         E e3@--> F
+        e1@{ animate: true }
+        e2@{ animate: false }
+        e3@{ animate: true }
+        e3@{ animate: false }
+  - - A e1@
+    - B
+    - C e2@
+    - D
+    - E e3@
+    - F
+    - "e1@{ animate: true }"
+    - "e2@{ animate: false }"
+- - |-
+    flowchart
+    A[
+  - - A[
+- - |-
+    graph TD
+        A-->B
+        linkStyle 1 stroke-width:1px;
+  - - A
+    - B
+    - linkStyle 1 stroke
+    - width:1px;
+- - |-
+    graph TD
+        A-->B
+        linkStyle 0 stroke-width:1px;
+  - - A
+    - B
+    - linkStyle 0 stroke
+    - width:1px;
+- - |-
+    flowchart TD;
+    A e1@${edgeType.edgeStart}${edgeType.edgeEnd} B;
+  - - A e1@${edgeType.edgeStart}${edgeType.edgeEnd} B;
+- - |-
+    flowchart LR
+    A id1@-->B
+    A@{ shape:
+  - - A id1@
+    - B
+    - "A@{ shape:"
+- - |-
+    flowchart TD;
+    A e1@${edgeType.edgeStart} label ${edgeType.edgeEnd} B;
+  - - A e1@${edgeType.edgeStart} label ${edgeType.edgeEnd} B;
+- - |-
+    graph TD;
+    A ${edgeType.edgeStart}${edgeType.edgeEnd} B;
+  - - A ${edgeType.edgeStart}${edgeType.edgeEnd} B;
+- - |-
+    graph TD;
+    A ${edgeType.edgeStart} text ${edgeType.edgeEnd} B;
+  - - A ${edgeType.edgeStart} text ${edgeType.edgeEnd} B;
+- - |-
+    graph TD;
+    A ${edgeType.edgeStart} ${keyword} ${edgeType.edgeEnd} B;
+  - - A ${edgeType.edgeStart} ${keyword} ${edgeType.edgeEnd} B;
+- - |-
+    graph TD;A---|This is the 123 s text|B;
+    A---|This is the second edge|B;
+  - - This is the second edge
+    - A
+    - B;
+- - |-
+    graph TD;
+    A -${
+  - - A
+    - ${
+- - |-
+    graph TD;
+    A -- Label -${
+  - - A
+    - Label -${
+- - |-
+    graph TD;
+    A <-${
+  - - A &lt;
+    - ${
+- - |-
+    graph TD;
+    A <-- Label -${
+  - - A &lt;
+    - Label -${
+- - |-
+    graph TD;
+    A =${
+  - - A =${
+- - |-
+    graph TD;
+    A == Label =${
+  - - A
+    - Label =${
+- - |-
+    graph TD;
+    A <=${
+  - - A &lt;=${
+- - |-
+    graph TD;
+    A <== Label =${
+  - - A &lt;
+    - Label =${
+- - |-
+    graph TD;
+    A -. Label ${
+  - - A
+    - . Label ${
+- - |-
+    graph TD;
+    A <-. Label ${
+  - - A &lt;
+    - . Label ${
+- - |-
+    graph TD;
+    %% Comment
+     A-->B;
+  - - A
+    - B;
+- - |-
+    graph TD;
+     A-->B
+     %% Comment at the end
+  - - A
+    - B
+- - |-
+    graph TD;
+     A-->B
+    %% Comment
+  - - A
+    - B
+- - |-
+    graph TD;
+     A-->B
+  - - A
+    - B
+- - |-
+    graph TD;
+
+
+     %% Comment
+     A-->B;
+  - - A
+    - B;
+- - |-
+    graph TD;
+
+
+     %% Test od>Odd shape]-->|Two line<br>edge comment|ro;
+     A-->B;
+  - - A
+    - B;
+- - |-
+    flowchart
+      C1 --> C2
+  - - C1
+    - C2
+- - |-
+    flowchart 
+     a --> b
+  - - a
+    - b
+- - |-
+    graph TD
+              A-->B
+  - - A
+    - B
+- - |-
+    graph TD
+              A-->B
+              C-->D
+  - - A
+    - B
+    - C
+    - D
+- - |-
+    flowchart LR
+      UI --> RuntimeBus --> Orchestrator --> Agents
+  - - UI
+    - RuntimeBus --&gt; Orchestrator --&gt; Agents
+- - |-
+    flowchart LR
+    A[Hard] -->|Text| B(Round)
+    B --> C{Decision}
+    C -->|One| D[Result 1]
+    C -->|Two| E[Result 2]
+  - - Text
+    - One
+    - Two
+    - Hard
+    - Round
+    - Decision
+    - Result 1
+    - Result 2

@@ -3,31 +3,30 @@ html(lang="zh")
   head
     meta(charset="UTF-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    title @webc.site/math
-    link(rel="stylesheet" href="https://registry.npmmirror.com/18s/0.2.24/files/_.css")
+    title mermaid-svg-renderer
     link(rel="stylesheet" href="./style.css")
   body
     c-vs
       header
         .header-controls
           c-i18n
-          a.BtnC.npm-link(href="https://www.npmjs.com/package/@webc.site/math" target="_blank" aria-label="NPM Package")
+          a.BtnC.npm-link(href="https://github.com/lsl52978/math" target="_blank" aria-label="Project Repository")
             i.Ico
               include svg/npm.svg
-          a.BtnC.github-link(href="https://github.com/webc-site/math" target="_blank" aria-label="GitHub Repository")
+          a.BtnC.github-link(href="https://github.com/lsl52978/math" target="_blank" aria-label="GitHub Repository")
             i.Ico
               include svg/github.svg
       main
         .container
           .header-main
             h1
-              a#ui-title(href="https://www.npmjs.com/package/@webc.site/math" target="_blank") @webc.site/math
-            p#ui-subtitle.subtitle 全球最小最快的网页Markdown公式渲染器
+              a#ui-title(href="https://github.com/lsl52978/math" target="_blank") mermaid-svg-renderer
+            p#ui-subtitle.subtitle 最小最快的 Mermaid 转 SVG 渲染器
           .main-grid
             .card.usage-card.Lg
               .card-header
                 h2#ui-usage-title 使用示例
-                a#ui-source-link.Btn(href="https://github.com/webc-site/math/blob/dev/src/lib.js" target="_blank") 源代码
+                a#ui-source-link.Btn(href="https://github.com/lsl52978/math/blob/main/src/svg.js" target="_blank") 源代码
               pre.code-block
                 code#ui-usage-code
 
@@ -41,18 +40,22 @@ html(lang="zh")
             .card.editor-card.Lg
               .editor-header
                 h2#ui-editor-title 交互式编辑器
-                p#ui-editor-tip.tip 输入 LaTeX 公式（例如：使用 $公式$ 或 $$公式$$ 包裹）
-              textarea#formula-input(placeholder="在此输入带有公式的文本...")
-              c-math#math-preview.math-display
+                p#ui-editor-tip.tip 输入 Mermaid 文本，实时查看 SVG
+              .theme-row
+                button.Btn.theme-btn.active(type="button" data-theme="0") Light
+                button.Btn.theme-btn(type="button" data-theme="1") Mint
+                button.Btn.theme-btn(type="button" data-theme="2") Dark
+              textarea#diagram-input(placeholder="在此输入 Mermaid...")
+              #svg-preview.svg-display
 
             .card.benchmark-card.speed-card.Lg
               .benchmark-header
                 h2#ui-benchmark-speed-title
                 span#ui-benchmark-speed-tip.tip
               .benchmark-img-container
-                img(src="./speed.svg" alt="Speed Comparison")
+                img(src="./speed.svg" alt="Speed Benchmark")
 
-          .formulas-section
-            h2#ui-formulas-title 经典公式
-            #formulas-grid.formulas-grid
+          .diagrams-section
+            h2#ui-diagrams-title Mermaid 示例
+            #diagrams-grid.diagrams-grid
       script(type="module" src="./index.js")

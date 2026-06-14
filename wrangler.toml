@@ -1,0 +1,6 @@
+name = "math"
+pages_build_output_dir = "demo/dist"
+compatibility_date = "2026-06-14"
+
+[vars]
+BUN_VERSION = "1.2.0"

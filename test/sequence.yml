@@ -1,0 +1,2624 @@
+- - |-
+    sequenceDiagram
+      User->>Renderer: type mermaid
+      Renderer-->>User: svg
+      Note over User,Renderer: tiny runtime
+  - - User
+    - Renderer
+    - Renderer-
+    - type mermaid
+    - svg
+    - tiny runtime
+- - |-
+    sequenceDiagram
+      participant A
+      and Also not allowed
+      A->B: hi
+  - - A
+    - B
+    - hi
+- - |-
+    sequenceDiagram
+      alt Branching
+        A->>B: hi
+        and Illegal inside alt
+      end
+  - - A
+    - B
+    - hi
+- - |-
+    sequenceDiagram
+      alt Something
+        A->B: one
+      and
+        A->C: two
+      end
+  - - A
+    - B
+    - C
+    - one
+    - two
+- - |-
+    sequenceDiagram
+      autonumber 10 10 participant A
+      A->B: ok
+  - - A
+    - B
+    - ok
+- - |-
+    sequenceDiagram
+      autonumber 10 10
+      participant A
+      A->B: ok
+  - - A
+    - B
+    - ok
+- - |-
+    sequenceDiagram
+      autonumber 10 ten
+      participant A
+      participant B
+      A->B: hi
+  - - A
+    - B
+    - hi
+- - |-
+    sequenceDiagram
+      autonumber
+      participant A
+      participant B
+      A->B: hi
+  - - A
+    - B
+    - hi
+- - |-
+    sequenceDiagram
+        participant A
+        participant B
+        box "Empty Group"
+            A->>B: message
+            Note over A: note
+        end
+  - - A
+    - B
+    - message
+    - note
+- - |-
+    sequenceDiagram
+      box Aqua Group
+        participant A
+        participant B
+      A->B: hi
+  - - A
+    - B
+    - hi
+- - |-
+    sequenceDiagram
+      box Aqua Group
+        participant A
+        participant B
+      end
+      A->B: hi
+  - - A
+    - B
+    - hi
+- - |-
+    sequenceDiagram
+      participant Gateway
+      participant loadBundle
+      participant Filesystem
+      participant loadBundleManifest
+
+      box "New Flow (Fixed)"
+        Gateway->>+loadBundle: Load API with existing bundle
+        loadBundle->>loadBundleWithFs: (using afero.Fs)
+        loadBundleWithFs->>Filesystem: Check if bundle exists (bundleFs.Stat)
+        Filesystem-->>loadBundleWithFs: Exists
+        loadBundleWithFs->>+loadBundleManifest: Load manifest (skipVerification=false)
+        Note right of loadBundleManifest: Signature is ALWAYS checked!
+        alt Manifest is Invalid
+          loadBundleManifest-->>-loadBundleWithFs: Return verification error
+        else Manifest is Valid
+          loadBundleManifest-->>-loadBundleWithFs: Manifest loaded
+        end
+      end
+  - - loadBundle
+    - loadBundleWithFs
+    - Filesystem
+    - Filesystem-
+    - loadBundleManifest
+    - loadBundleManifest-
+    - "-loadBundleWithFs"
+    - (using afero.Fs)
+- - |-
+    sequenceDiagram
+        participant A
+        participant B
+        box "Group"
+            participant C
+            A->>B: message inside box
+        end
+  - - A
+    - B
+    - message inside box
+- - |-
+    sequenceDiagram
+        participant A
+        participant B
+        box "Group"
+            participant C
+        end
+        A->>B: message inside box
+  - - A
+    - B
+    - message inside box
+- - |-
+    sequenceDiagram
+        participant A
+        participant B
+        box "Group"
+            participant C
+            Note over A: note inside box
+        end
+  - - A
+    - note inside box
+- - |-
+    sequenceDiagram
+        participant A
+        participant B
+        box "Group"
+            participant C
+        end
+        Note over A: note inside box
+  - - A
+    - note inside box
+- - |-
+    sequenceDiagram
+      participant A
+      participant B
+
+      Note over A: Preparing content
+      A->>B: Send header
+      %% The following bullet-like lines are invalid in Mermaid sequence diagrams
+      - PR context
+      - Tool outputs
+      A->>B: Continue processing
+  - - A
+    - B
+    - Send header
+    - Continue processing
+    - Preparing content
+- - |-
+    sequenceDiagram
+      create B
+      participant A
+      A->B: hi
+  - - A
+    - B
+    - hi
+- - |-
+    sequenceDiagram
+      create participant
+      A->B: hi
+  - - A
+    - B
+    - hi
+- - |-
+    sequenceDiagram
+      critical Do critical
+        A->B: try
+      else Should not use else in critical
+        A->B: nope
+      end
+  - - A
+    - B
+    - try
+    - nope
+- - |-
+    sequenceDiagram
+      critical Do critical
+        A->B: try
+      option Should not use else in critical
+        A->B: nope
+      end
+  - - A
+    - B
+    - try
+    - nope
+- - |-
+    sequenceDiagram
+      destroy participant
+      participant A
+      participant B
+      A->B: hi
+  - - A
+    - B
+    - hi
+- - |-
+    sequenceDiagram
+      title Order Flow
+      participant A
+      participant B
+      properties: retry=3, timeout=5s
+      details: This scenario covers failed payment retry.
+      A->>B: Pay
+  - - A
+    - B
+    - Pay
+- - |-
+    sequenceDiagram
+      par Parallel
+        A->>B: hi
+        else Wrong here
+      end
+  - - A
+    - B
+    - hi
+- - |-
+    sequenceDiagram
+      participant A
+      else Not allowed here
+      A->B: hi
+  - - A
+    - B
+    - hi
+- - |-
+    sequenceDiagram
+        participant UI
+
+        UI->>UI: Some text; with a semicolon
+  - - UI
+    - Some text; with a semicolon
+- - |-
+    sequenceDiagram
+        participant UI
+
+        UI->>UI: Some text#59; with a semicolon
+  - - UI
+    - Some text#59; with a semicolon
+- - |-
+    sequenceDiagram
+      participant User
+      participant engineer as engineer.yaml
+      participant prepare as prepare-projects
+      participant setup as project-setup
+      participant merge as merge-projects
+      participant AI as engineer-task AI
+
+      User->>engineer: task + projects (pre-resolved)
+      engineer->>prepare: Check if projects provided
+      prepare->>merge: Return pre-resolved projects
+      merge->>AI: Execute with project paths
+      AI->>User: PR URLs, files changed
+
+      Note over engineer
+        OR: Standalone mode
+      end note
+
+      User->>engineer: task + project_definitions
+      engineer->>prepare: No pre-resolved projects
+      prepare->>setup: Run project-setup
+      setup->>merge: Return checkout_projects
+      merge->>AI: Execute with checked-out projects
+      AI->>User: PR URLs, files changed
+  - - User
+    - engineer
+    - prepare
+    - merge
+    - AI
+    - setup
+    - task + projects (pre-resolved)
+    - Check if projects provided
+- - |-
+    sequenceDiagram
+      participant User
+      participant engineer as engineer.yaml
+      participant prepare as prepare-projects
+      participant setup as project-setup
+      participant merge as merge-projects
+      participant AI as engineer-task AI
+
+      User->>engineer: task + projects (pre-resolved)
+      engineer->>prepare: Check if projects provided
+      prepare->>merge: Return pre-resolved projects
+      merge->>AI: Execute with project paths
+      AI->>User: PR URLs, files changed
+
+      Note over engineer : OR: Standalone mode
+
+      User->>engineer: task + project_definitions
+      engineer->>prepare: No pre-resolved projects
+      prepare->>setup: Run project-setup
+      setup->>merge: Return checkout_projects
+      merge->>AI: Execute with checked-out projects
+      AI->>User: PR URLs, files changed
+  - - User
+    - engineer
+    - prepare
+    - merge
+    - AI
+    - setup
+    - task + projects (pre-resolved)
+    - Check if projects provided
+- - |-
+    sequenceDiagram
+      participant A
+      participant B
+      A->>B Message text without colon
+  - - A
+    - B
+    - Message text without colon
+- - |-
+    sequenceDiagram
+      participant A
+      participant B
+      A->>B : Message text without colon
+  - - A
+    - B
+    - Message text without colon
+- - |-
+    sequenceDiagram
+      participant A
+      Note right of A Missing colon
+      A->B: ok
+  - - A
+    - B
+    - ok
+- - |-
+    sequenceDiagram
+      participant A
+      Note right of A : Missing colon
+      A->B: ok
+  - - A
+    - B
+    - ok
+    - Missing colon
+- - |-
+    sequenceDiagram
+      participant A
+      participant B
+
+      Note right of A
+        Multi-line note without colon on header
+      end note
+
+      Note over A,B
+        Also missing colon on multi-line header
+      end note
+
+      A->>B: ok
+  - - A
+    - B
+    - ok
+- - |-
+    sequenceDiagram
+      participant A
+      participant B
+
+      Note right of A : Multi-line note without colon on header
+
+      Note over A,B : Also missing colon on multi-line header
+
+      A->>B: ok
+  - - A
+    - B
+    - ok
+    - Multi-line note without colon on header
+    - Also missing colon on multi-line header
+- - |-
+    sequenceDiagram
+      par
+        option Retry
+        A->B: nope
+      end
+  - - A
+    - B
+    - nope
+- - |-
+    sequenceDiagram
+      option Retry
+      A->B: Should be inside critical
+  - - A
+    - B
+    - Should be inside critical
+- - |-
+    sequenceDiagram
+      title Checkout Flow
+      accTitle Accessible Title
+      accDescr This diagram describes the checkout steps.
+      participant A as Alice
+      participant B as Bob
+      A->>B: Start
+  - - A
+    - B
+    - Start
+- - |-
+    sequenceDiagram
+      participant A
+      end
+      A->B: hi
+  - - A
+    - B
+    - hi
+- - |-
+    sequenceDiagram
+      participant A
+      participant B
+      A->>+B: call activates B
+      B-->>-A: returns and deactivates A
+      activate A
+      deactivate A
+  - - B-
+    - "-A"
+    - returns and deactivates A
+- - |-
+    sequenceDiagram
+      actor Alice as A
+      participant "Bob Marley" as B
+      A->>B: Hi Bob
+      B-->>A: Hey Alice
+  - - A
+    - B
+    - B-
+    - Hi Bob
+    - Hey Alice
+- - |-
+    sequenceDiagram
+      participant Alice as "Eve
+      Alice->B: hi
+  - - Alice
+    - B
+    - hi
+- - |-
+    sequenceDiagram
+      alt
+        A->>B: Branch 1
+      else
+        A->>C: Branch 2
+      end
+  - - A
+    - B
+    - C
+    - Branch 1
+    - Branch 2
+- - |-
+    sequenceDiagram
+      autonumber
+      participant A
+      participant B
+      A->>B: First
+      autonumber 10 10
+      A-->>B: Second
+      autonumber off
+      A->B: No numbering
+  - - A
+    - B
+    - A-
+    - First
+    - Second
+    - No numbering
+- - |-
+    sequenceDiagram
+      participant Alice
+      participant Bob
+      Alice->>Bob: Hello Bob
+  - - Alice
+    - Bob
+    - Hello Bob
+- - |-
+    sequenceDiagram
+      participant A
+      participant B
+      A<<->>B: Duplex async
+      A<<-->>B: Duplex async dotted
+      A->>B: Async
+      A-->>B: Async dotted
+      A->B: Solid
+      A-->B: Dotted
+      A-x B: Cross
+      A--x B: Cross dotted
+      A-) B: Open
+      A--) B: Open dotted
+  - - A
+    - B
+    - A-
+    - Async
+    - Async dotted
+    - Solid
+    - Dotted
+    - Cross dotted
+- - |-
+    sequenceDiagram
+      participant Alice
+      participant Bob
+      alt Is morning?
+        Alice->>Bob: Good morning
+      else Is evening?
+        Alice->>Bob: Good evening
+      end
+
+      opt Optional check
+        Bob-->>Alice: OK
+      end
+
+      loop Until done
+        Alice->>Bob: Step
+      end
+  - - Alice
+    - Bob
+    - Bob-
+    - Good morning
+    - Good evening
+    - OK
+    - Step
+- - |-
+    sequenceDiagram
+      box LightBlue System A
+        participant A1
+        participant A2
+      end
+      box LightGreen System B
+        participant B1
+        participant B2
+      end
+      A1->>B1: Sync
+      A2-->>B2: Async
+  - - A1
+    - B1
+    - A2-
+    - B2
+    - Sync
+    - Async
+- - |-
+    sequenceDiagram
+        box "API Layer"
+            participant Server
+            participant API
+        end
+        box "UI Layer"
+            participant UI
+            participant Component
+        end
+        Server->>API: Request
+        API->>UI: Data
+        UI->>Component: Render
+        Note over API,UI: Communication layer
+  - - Server
+    - API
+    - UI
+    - Component
+    - Request
+    - Data
+    - Render
+    - Communication layer
+- - |-
+    sequenceDiagram
+      participant DB
+      participant API
+      rect rgba(200, 200, 255, 0.3)
+        critical Transaction
+          API->>DB: BEGIN
+          option Retry
+            API-->>DB: COMMIT
+        end
+      end
+      break On failure
+        API-x DB: ROLLBACK
+      end
+  - - API
+    - DB
+    - API-
+    - BEGIN
+    - COMMIT
+- - |-
+    sequenceDiagram
+      participant Bob
+      link Bob: Dashboard @ https://example.com/dashboard
+      links Bob: {"Docs": "https://example.com/docs", "Repo": "https://example.com/repo"}
+      participant Alice
+      Alice->>Bob: Check links
+  - - Alice
+    - Bob
+    - Check links
+- - |-
+    sequenceDiagram
+    A->>B: hi
+  - - A
+    - B
+    - hi
+- - |-
+    sequenceDiagram
+      participant Alice
+      participant Bob
+      Note right of Alice: Thinking...
+      Alice->>Bob: Hello
+      Note over Alice,Bob: A shared note
+  - - Alice
+    - Bob
+    - Hello
+    - Thinking...
+    - A shared note
+- - |-
+    sequenceDiagram
+      participant Frontend as FE
+      participant Backend as BE
+      par Fetch in parallel
+        FE->>BE: Get /user
+      and
+        FE->>BE: Get /settings
+      end
+  - - FE
+    - BE
+    - Get /user
+    - Get /settings
+- - |-
+    sequenceDiagram
+      par
+        A->>B: First
+      and
+        A->>C: Second
+      end
+  - - A
+    - B
+    - C
+    - First
+    - Second
+- - |-
+    sequenceDiagram
+      participant A
+      participant B
+      participant C
+      par over A,B Parallel work
+        A->>B: one
+      and
+        B->>A: two
+      end
+  - - A
+    - B
+    - one
+    - two
+- - |-
+    sequenceDiagram
+      participant "Logger "debug"" as L
+      L->>L: hi
+  - - L
+    - hi
+- - |-
+    sequenceDiagram
+      participant "Logger \"debug\"" as L
+      L->>L: hi
+  - - L
+    - hi
+- - |-
+    sequenceDiagram
+      participant "Bob
+      A->B: hi
+  - - A
+    - B
+    - hi
+- - |-
+    sequenceDiagram
+      participant A
+      participant B
+      A->>+B: start
+      B-->>A: done
+      deactivate B
+  - - B-
+    - A
+    - done
+- - |-
+    sequenceDiagram
+      participant A
+      participant B
+      activate B
+      A->>+B: already active
+      B-->>-A: not active to deactivate
+  - - B-
+    - "-A"
+    - not active to deactivate
+- - |-
+    sequenceDiagram
+    A->B hi
+  - - A
+    - B
+    - hi
+- - |-
+    sequenceDiagram
+    A->B : hi
+  - - A
+    - B
+    - hi
+- - |-
+    sequenceDiagram
+    participant UI
+    UI->>UI: Some text; with a semicolon
+  - - UI
+    - Some text; with a semicolon
+- - |-
+    sequenceDiagram
+    participant UI
+    UI->>UI: Some text#59; with a semicolon
+  - - UI
+    - Some text#59; with a semicolon
+- - |-
+    sequenceDiagram
+    Note right of A : Hello
+  - - A
+    - Hello
+- - |-
+    sequenceDiagram
+    Note right of A : body
+  - - A
+    - body
+- - |-
+    sequenceDiagram
+    participant engineer as engineer.yaml
+    participant prepare as prepare-projects
+    Note over engineer : OR: Standalone mode
+  - - engineer
+    - "OR: Standalone mode"
+- - |-
+    sequenceDiagram
+    par Do work
+      A->B: hi
+  - - A
+    - B
+    - hi
+- - |-
+    sequenceDiagram
+    autonumber foo bar baz
+    A->B: ok
+  - - A
+    - B
+    - ok
+- - |-
+    sequenceDiagram
+      Alice->>Bob: Hello Bob!
+      Bob-->>Alice: Hi Alice!
+      Alice->>Bob: How are you?
+      Bob-->>Alice: Great, thanks!
+  - - Alice
+    - Bob
+    - Bob-
+    - Hello Bob!
+    - Hi Alice!
+    - How are you?
+    - Great, thanks!
+- - |-
+    sequenceDiagram
+      Alice->>Bob: Hello Bob!
+      Bob-->>Alice: Hi Alice!
+  - - Alice
+    - Bob
+    - Bob-
+    - Hello Bob!
+    - Hi Alice!
+- - |-
+    sequenceDiagram
+      participant A as Alice
+      participant B as Bob
+      participant C as Charlie
+      A->>B: Hello
+      B->>C: Forward
+      C-->>A: Reply
+  - - A
+    - B
+    - C
+    - C-
+    - Hello
+    - Forward
+    - Reply
+- - |-
+    sequenceDiagram
+      actor U as User
+      participant S as System
+      participant DB as Database
+      U->>S: Click button
+      S->>DB: Query
+      DB-->>S: Results
+      S-->>U: Display
+  - - U
+    - S
+    - DB
+    - DB-
+    - S-
+    - Click button
+    - Query
+    - Results
+- - |-
+    sequenceDiagram
+      A->>B: Solid arrow (sync)
+      B-->>A: Dashed arrow (return)
+      A-)B: Open arrow (async)
+      B--)A: Open dashed arrow
+  - - A
+    - B
+    - B-
+    - Solid arrow (sync)
+    - Dashed arrow (return)
+    - Open dashed arrow
+- - |-
+    sequenceDiagram
+      participant C as Client
+      participant S as Server
+      C->>+S: Request
+      S->>+S: Process
+      S->>-S: Done
+      S-->>-C: Response
+  - - S
+    - "-S"
+    - S-
+    - "-C"
+    - Done
+    - Response
+- - |-
+    sequenceDiagram
+      participant S as Server
+      S->>S: Internal process
+      S->>S: Validate
+      S-->>S: Log
+  - - S
+    - S-
+    - Internal process
+    - Validate
+    - Log
+- - |-
+    sequenceDiagram
+      participant C as Client
+      participant S as Server
+      C->>S: Connect
+      loop Every 30s
+        C->>S: Heartbeat
+        S-->>C: Ack
+      end
+      C->>S: Disconnect
+  - - C
+    - S
+    - S-
+    - Connect
+    - Heartbeat
+    - Ack
+    - Disconnect
+- - |-
+    sequenceDiagram
+      participant C as Client
+      participant S as Server
+      C->>S: Login
+      alt Valid credentials
+        S-->>C: 200 OK
+      else Invalid
+        S-->>C: 401 Unauthorized
+      else Account locked
+        S-->>C: 403 Forbidden
+      end
+  - - C
+    - S
+    - S-
+    - Login
+    - 200 OK
+    - 401 Unauthorized
+    - 403 Forbidden
+- - |-
+    sequenceDiagram
+      participant A as App
+      participant C as Cache
+      participant DB as Database
+      A->>C: Get data
+      C-->>A: Cache miss
+      opt Cache miss
+        A->>DB: Query
+        DB-->>A: Results
+        A->>C: Store in cache
+      end
+  - - A
+    - C
+    - C-
+    - DB
+    - DB-
+    - Get data
+    - Cache miss
+    - Query
+- - |-
+    sequenceDiagram
+      participant C as Client
+      participant A as AuthService
+      participant U as UserService
+      participant O as OrderService
+      C->>A: Authenticate
+      par Fetch user data
+        A->>U: Get profile
+      and Fetch orders
+        A->>O: Get orders
+      end
+      A-->>C: Combined response
+  - - C
+    - A
+    - U
+    - O
+    - A-
+    - Authenticate
+    - Get profile
+    - Get orders
+- - |-
+    sequenceDiagram
+      participant A as App
+      participant DB as Database
+      A->>DB: BEGIN
+      critical Transaction
+        A->>DB: UPDATE accounts
+        A->>DB: INSERT log
+      end
+      A->>DB: COMMIT
+  - - A
+    - DB
+    - BEGIN
+    - UPDATE accounts
+    - INSERT log
+    - COMMIT
+- - |-
+    sequenceDiagram
+      participant A as Alice
+      participant B as Bob
+      Note left of A: Alice prepares
+      A->>B: Hello
+      Note right of B: Bob thinks
+      B-->>A: Reply
+      Note over A,B: Conversation complete
+  - - A
+    - B
+    - B-
+    - Hello
+    - Reply
+    - Alice prepares
+    - Bob thinks
+    - Conversation complete
+- - |-
+    sequenceDiagram
+      actor U as User
+      participant App as Client App
+      participant Auth as Auth Server
+      participant API as Resource API
+      U->>App: Click Login
+      App->>Auth: Authorization request
+      Auth->>U: Login page
+      U->>Auth: Credentials
+      Auth-->>App: Authorization code
+      App->>Auth: Exchange code for token
+      Auth-->>App: Access token
+      App->>API: Request + token
+      API-->>App: Protected resource
+      App-->>U: Display data
+  - - U
+    - App
+    - Auth
+    - Auth-
+    - API
+    - API-
+    - App-
+    - Click Login
+- - |-
+    sequenceDiagram
+      participant C as Client
+      participant S as Server
+      participant DB as Database
+      C->>S: POST /transfer
+      S->>DB: BEGIN
+      S->>DB: Debit account A
+      alt Success
+        S->>DB: Credit account B
+        S->>DB: INSERT audit_log
+        S->>DB: COMMIT
+        S-->>C: 200 OK
+      else Insufficient funds
+        S->>DB: ROLLBACK
+        S-->>C: 400 Bad Request
+      end
+  - - C
+    - S
+    - DB
+    - S-
+    - POST /transfer
+    - BEGIN
+    - Debit account A
+    - Credit account B
+- - |-
+    sequenceDiagram
+      participant G as Gateway
+      participant A as Auth
+      participant U as Users
+      participant O as Orders
+      participant N as Notify
+      G->>A: Validate token
+      A-->>G: Valid
+      par Fetch data
+        G->>U: Get user
+        U-->>G: User data
+      and
+        G->>O: Get orders
+        O-->>G: Order list
+      end
+      G->>N: Send notification
+      N-->>G: Queued
+      Note over G: Aggregate response
+  - - G
+    - A
+    - A-
+    - U
+    - U-
+    - O
+    - O-
+    - "N"
+- - |-
+    sequenceDiagram
+      participant User
+      participant Main as Main Process
+      participant Renderer
+      participant Timer as 3s Fallback Timer
+      User->>Main: CMD+W
+      Main->>Main: event.preventDefault()
+      Main->>Renderer: WINDOW_CLOSE_REQUESTED
+      Main->>Timer: Start 3s timer
+      alt Multiple panels
+        Renderer->>Renderer: closePanel(focusedId)
+        Note over Renderer: Panel removed
+        Note over Renderer: No confirmCloseWindow!
+        Timer-->>Main: 3s elapsed → window.destroy()
+      else Single panel
+        Renderer->>Renderer: closePanel(lastId)
+        Note over Renderer: Stack becomes []
+        Renderer->>Renderer: Auto-select fires → new panel created!
+        Note over Renderer: Panel reopens
+        Timer-->>Main: 3s elapsed → window.destroy()
+      end
+  - - User
+    - Main
+    - Renderer
+    - Timer
+    - Timer-
+    - CMD+W
+    - event.preventDefault()
+    - WINDOW_CLOSE_REQUESTED
+- - |-
+    sequenceDiagram
+          A->>B: First
+          B->>A: Second
+          A->>B: Third
+  - - A
+    - B
+    - First
+    - Second
+    - Third
+- - |-
+    sequenceDiagram
+          A->>B: Before loop
+          loop Every 5s
+            A->>B: Inside loop
+          end
+  - - A
+    - B
+    - Before loop
+    - Inside loop
+- - |-
+    sequenceDiagram
+          A->>B: Login
+          alt Success
+            B->>A: 200
+          end
+  - - A
+    - B
+    - Login
+    - "200"
+- - |-
+    sequenceDiagram
+          A->>B: Login
+          alt Valid
+            B->>A: 200 OK
+          else Invalid
+            B->>A: 401
+          end
+  - - A
+    - B
+    - Login
+    - 200 OK
+    - "401"
+- - |-
+    sequenceDiagram
+          C->>S: Login
+          alt Valid credentials
+            S-->>C: 200 OK
+          else Invalid
+            S-->>C: 401 Unauthorized
+          else Account locked
+            S-->>C: 403 Forbidden
+          end
+  - - C
+    - S
+    - S-
+    - Login
+    - 200 OK
+    - 401 Unauthorized
+    - 403 Forbidden
+- - |-
+    sequenceDiagram
+          G->>A: Validate
+          par Fetch user
+            G->>U: Get user
+          and Fetch orders
+            G->>O: Get orders
+          end
+  - - G
+    - A
+    - U
+    - O
+    - Validate
+    - Get user
+    - Get orders
+- - |-
+    sequenceDiagram
+          A->>B: Request
+          opt Cache available
+            B-->>A: Cached response
+          end
+  - - A
+    - B
+    - B-
+    - Request
+    - Cached response
+- - |-
+    sequenceDiagram
+          A->>DB: BEGIN
+          critical Transaction
+            A->>DB: UPDATE
+          end
+  - - A
+    - DB
+    - BEGIN
+    - UPDATE
+- - |-
+    sequenceDiagram
+          A->>B: Before
+          loop Retry
+            A->>B: Attempt
+          end
+          A->>B: After
+  - - A
+    - B
+    - Before
+    - Attempt
+    - After
+- - |-
+    sequenceDiagram
+          A->>B: Before
+          loop Retry
+            A->>B: Inside
+          end
+  - - A
+    - B
+    - Before
+    - Inside
+- - |-
+    sequenceDiagram
+          A->>B: Login
+          alt Success
+            B->>A: 200
+          else Failure
+            B->>A: 500
+          end
+  - - A
+    - B
+    - Login
+    - "200"
+    - "500"
+- - |-
+    sequenceDiagram
+          C->>S: Login
+          alt Valid
+            S-->>C: 200
+          else Invalid
+            S-->>C: 401
+          else Locked
+            S-->>C: 403
+          end
+  - - C
+    - S
+    - S-
+    - Login
+    - "200"
+    - "401"
+    - "403"
+- - |-
+    sequenceDiagram
+          A->>B: Before
+          alt Yes
+            B->>A: Response 1
+          else No
+            B->>A: Response 2
+          end
+  - - A
+    - B
+    - Before
+    - Response 1
+    - Response 2
+- - |-
+    sequenceDiagram
+          A->>B: One
+          B->>A: Two
+          A->>B: Three
+  - - A
+    - B
+    - One
+    - Two
+    - Three
+- - |-
+    sequenceDiagram
+          A->>B: One
+          loop Repeat
+            B->>A: Two
+          end
+          A->>B: Three
+  - - A
+    - B
+    - One
+    - Two
+    - Three
+- - |-
+    sequenceDiagram
+          A->>B: M1
+          B->>A: M2
+          A->>B: M3
+          B->>A: M4
+  - - A
+    - B
+    - M1
+    - M2
+    - M3
+    - M4
+- - |-
+    sequenceDiagram
+          A->>B: M1
+          alt Case1
+            B->>A: M2
+          else Case2
+            A->>B: M3
+          else Case3
+            B->>A: M4
+          end
+  - - A
+    - B
+    - M1
+    - M2
+    - M3
+    - M4
+- - |-
+    sequenceDiagram
+          A->>B: Before
+          loop Repeat
+            A->>B: Inside
+          end
+  - - A
+    - B
+    - Before
+    - Inside
+- - |-
+    sequenceDiagram
+          A->>B: Previous
+          alt Valid
+            B->>A: Response
+          end
+  - - A
+    - B
+    - Previous
+    - Response
+- - |-
+    sequenceDiagram
+          A->>B: Login
+          alt Success
+            B->>A: 200 OK
+          else Failure
+            B->>A: 500 Error
+          end
+  - - A
+    - B
+    - Login
+    - 200 OK
+    - 500 Error
+- - |-
+    sequenceDiagram
+          participant C as Client
+          participant S as Server
+          C->>S: Login
+          alt Valid credentials
+            S-->>C: 200 OK
+          else Account locked
+            S-->>C: 403 Forbidden
+          end
+  - - C
+    - S
+    - S-
+    - Login
+    - 200 OK
+    - 403 Forbidden
+- - |-
+    sequenceDiagram
+          A->>B: Login
+          alt Yes
+            B->>A: 200
+          else No
+            B->>A: 500
+          end
+  - - A
+    - B
+    - Login
+    - "200"
+    - "500"
+- - |-
+    sequenceDiagram
+          A->>B: Hello
+          Note right of B: Right-side note
+          B-->>A: Hi
+  - - A
+    - B
+    - B-
+    - Hello
+    - Hi
+    - Right-side note
+- - |-
+    sequenceDiagram
+          A->>B: Hello
+          Note left of A: Left-side note
+          B-->>A: Hi
+  - - A
+    - B
+    - B-
+    - Hello
+    - Hi
+    - Left-side note
+- - |-
+    sequenceDiagram
+          A->>B: Hello
+          Note left of A: Left note
+          Note right of B: Right note
+          B-->>A: Hi
+  - - A
+    - B
+    - B-
+    - Hello
+    - Hi
+    - Left note
+    - Right note
+- - |-
+    sequenceDiagram
+          A->>B: Hello
+          Note over A: Centered note
+          B-->>A: Hi
+  - - A
+    - B
+    - B-
+    - Hello
+    - Hi
+    - Centered note
+- - |-
+    sequenceDiagram
+          A->>B: Hello
+          Note left of A: This shifts everything
+          B-->>A: Reply
+  - - A
+    - B
+    - B-
+    - Hello
+    - Reply
+    - This shifts everything
+- - |-
+    sequenceDiagram
+          A->>B: Hello
+          B-->>A: Hi
+  - - A
+    - B
+    - B-
+    - Hello
+    - Hi
+- - |-
+    sequenceDiagram
+          A->>B: Hello
+          Note right of B: Extra wide note text here
+          B-->>A: Hi
+  - - A
+    - B
+    - B-
+    - Hello
+    - Hi
+    - Extra wide note text here
+- - |-
+    sequenceDiagram
+          A->>B: Hello
+          Note left of A: Left note
+          B-->>A: Hi
+  - - A
+    - B
+    - B-
+    - Hello
+    - Hi
+    - Left note
+- - |-
+    sequenceDiagram
+          A->>A: Process
+          Note over A: Done
+  - - A
+    - Process
+    - Done
+- - |-
+    sequenceDiagram
+          A->>B: Hello
+          Note over A: Noted
+  - - A
+    - B
+    - Hello
+    - Noted
+- - |-
+    sequenceDiagram
+          A->>B: Hello
+          Note over A: First
+          Note over A: Second
+          Note over A: Third
+  - - A
+    - B
+    - Hello
+    - First
+    - Second
+    - Third
+- - |-
+    sequenceDiagram
+          A->>A: Process
+          Note over A: Step 1
+          Note over A: Step 2
+  - - A
+    - Process
+    - Step 1
+    - Step 2
+- - |-
+    sequenceDiagram
+          A->>A: Self
+          Note over A: Note 1
+          Note over A: Note 2
+          Note over A: Note 3
+          A->>B: Next
+  - - A
+    - B
+    - Self
+    - Next
+    - Note 1
+    - Note 2
+    - Note 3
+- - |-
+    sequenceDiagram
+          A->>A: Self
+          A->>B: Next
+  - - A
+    - B
+    - Self
+    - Next
+- - |-
+    sequenceDiagram
+          participant A
+          participant B
+          alt Case 1
+            A->>A: handle()
+            Note over A: Handled
+          else Case 2
+            B->>B: process()
+            Note over B: Processed
+          end
+  - - A
+    - B
+    - handle()
+    - process()
+    - Handled
+    - Processed
+- - |-
+    sequenceDiagram
+          A->>A: Process
+          Note over A: Note 1
+          Note over A: Note 2
+          A->>B: Done
+  - - A
+    - B
+    - Process
+    - Done
+    - Note 1
+    - Note 2
+- - |-
+    sequenceDiagram
+          A->>A: Process
+          A->>B: Done
+  - - A
+    - B
+    - Process
+    - Done
+- - |-
+    sequenceDiagram
+          A->>A: Self message
+          Note over A: Note 1
+          Note right of A: Right note
+          Note left of A: Left note
+  - - A
+    - Self message
+    - Note 1
+    - Right note
+    - Left note
+- - |-
+    sequenceDiagram
+          A->>B: Hello<br>World
+  - - A
+    - B
+    - Hello&lt;br&gt;World
+- - |-
+    sequenceDiagram
+          participant A as First<br>Line
+          A->>A: test
+  - - A
+    - test
+- - |-
+    sequenceDiagram
+          A->>B: msg
+          Note over A,B: Note<br>Text
+  - - A
+    - B
+    - msg
+    - Note&lt;br&gt;Text
+- - |-
+    sequenceDiagram
+      A ->> B
+  - - A
+    - B
+- - |-
+    sequenceDiagram
+          Alice->>Bob: Hello
+          Bob-->>Alice: Hi there
+  - - Alice
+    - Bob
+    - Bob-
+    - Hello
+    - Hi there
+- - |-
+    sequenceDiagram
+          participant A as Alice
+          participant B as Bob
+          A->>B: Message
+  - - A
+    - B
+    - Message
+- - |-
+    sequenceDiagram
+          actor U as User
+          participant S as System
+          U->>S: Click
+  - - U
+    - S
+    - Click
+- - |-
+    sequenceDiagram
+          A->>B: Request
+          B-->>A: Response
+  - - A
+    - B
+    - B-
+    - Request
+    - Response
+- - |-
+    sequenceDiagram
+          A->>B: Start
+          loop Every 5s
+            A->>B: Ping
+          end
+  - - A
+    - B
+    - Start
+    - Ping
+- - |-
+    sequenceDiagram
+          A->>B: Request
+          alt Success
+            B->>A: 200
+          else Error
+            B->>A: 500
+          end
+  - - A
+    - B
+    - Request
+    - "200"
+    - "500"
+- - |-
+    sequenceDiagram
+          A->>B: Hello
+          Note right of B: Think about response
+          B-->>A: Hi
+  - - A
+    - B
+    - B-
+    - Hello
+    - Hi
+    - Think about response
+- - |-
+    sequenceDiagram
+          A->>B: Hello
+  - - A
+    - B
+    - Hello
+- - |-
+    sequenceDiagram
+          participant C as Client
+          participant S as Server
+          participant DB as Database
+          C->>S: POST /login
+          S->>DB: SELECT user
+          alt User found
+            DB-->>S: User record
+            S-->>C: 200 OK + token
+          else Not found
+            DB-->>S: null
+            S-->>C: 401 Unauthorized
+          end
+  - - C
+    - S
+    - DB
+    - DB-
+    - S-
+    - POST /login
+    - SELECT user
+    - User record
+- - |-
+    sequenceDiagram
+            participant A as Actor<br>One
+            A->>A: msg
+  - - A
+    - msg
+- - |-
+    sequenceDiagram
+            participant A
+            participant B
+            A->>B: Line1<br>Line2
+  - - A
+    - B
+    - Line1&lt;br&gt;Line2
+- - |-
+    sequenceDiagram
+            participant A
+            A->>A: self
+            Note over A: Note line 1<br>Note line 2
+  - - A
+    - self
+    - Note line 1&lt;br&gt;Note line 2
+- - |-
+    sequenceDiagram
+          participant A as Alice
+          participant B as Bob
+          A->>B: Hello
+  - - A
+    - B
+    - Hello
+- - |-
+    sequenceDiagram
+          Alice->>Bob: Hello
+  - - Alice
+    - Bob
+    - Hello
+- - |-
+    sequenceDiagram
+          participant A as Alice
+          A->>B: Hello
+          B->>A: Hi
+  - - A
+    - B
+    - Hello
+    - Hi
+- - |-
+    sequenceDiagram
+          participant Server
+          Server->>Server: Ping
+  - - Server
+    - Ping
+- - |-
+    sequenceDiagram
+          A-->>B: Response
+  - - A-
+    - B
+    - Response
+- - |-
+    sequenceDiagram
+          A->>B: First
+          B->>C: Second
+          C->>A: Third
+  - - A
+    - B
+    - C
+    - First
+    - Second
+    - Third
+- - |-
+    sequenceDiagram
+          B-->>-A: Deactivate
+  - - B-
+    - "-A"
+    - Deactivate
+- - |-
+    sequenceDiagram
+          A->>B: Start
+          loop Every 5s
+            A->>B: Ping
+          end
+          A->>B: Done
+  - - A
+    - B
+    - Start
+    - Ping
+    - Done
+- - |-
+    sequenceDiagram
+          A->>B: Request
+          alt Success
+            B->>A: 200 OK
+          else Failure
+            B->>A: 500 Error
+          end
+  - - A
+    - B
+    - Request
+    - 200 OK
+    - 500 Error
+- - |-
+    sequenceDiagram
+          opt Extra logging
+            A->>Logger: Log
+          end
+  - - A
+    - Logger
+    - Log
+- - |-
+    sequenceDiagram
+          par Task A
+            A->>B: Do A
+          and Task B
+            A->>C: Do B
+          end
+  - - A
+    - B
+    - C
+    - Do A
+    - Do B
+- - |-
+    sequenceDiagram
+          A->>B: Hello
+          Note left of A: Important note
+  - - A
+    - B
+    - Hello
+    - Important note
+- - |-
+    sequenceDiagram
+          Note right of B: Side note
+          A->>B: Hello
+  - - B
+    - A
+    - Hello
+    - Side note
+- - |-
+    sequenceDiagram
+          Note over A,B: Shared note
+          A->>B: Hello
+  - - A
+    - B
+    - Hello
+    - Shared note
+- - |-
+    sequenceDiagram
+        Alice->>Bob: Hello Bob, how are you ?
+        Bob->>Alice: Fine, thank you. And you?
+        create participant Carl
+        Alice->>Carl: Hi Carl!
+        create actor D as Donald
+        Carl->>D: Hi!
+        destroy Carl
+        Alice-xCarl: We are too many
+        destroy Bo
+        Bob->>Alice: I agree
+  - - Alice
+    - Bob
+    - Carl
+    - D
+    - Hello Bob, how are you ?
+    - Fine, thank you. And you?
+    - Hi Carl!
+    - Hi!
+- - |-
+    sequenceDiagram
+        Alice->>Bob: Hello Bob, how are you ?
+        Bob->>Alice: Fine, thank you. And you?
+        create participant Carl
+        Alice->>Carl: Hi Carl!
+        create actor D as Donald
+        Carl->>D: Hi!
+        destroy Carl
+        Alice-xCarl: We are too many
+        destroy Bob
+        Bob->>Alice: I agree
+  - - Alice
+    - Bob
+    - Carl
+    - D
+    - Hello Bob, how are you ?
+    - Fine, thank you. And you?
+    - Hi Carl!
+    - Hi!
+- - |-
+    sequenceDiagram
+            participant Alice
+            participant Bob
+            participant Charlie
+            Alice ->> Bob: Normal message
+            Bob ()->>() Charlie: Central connection
+            Charlie -->> Alice: Normal dotted message
+            Alice ()<<-->>() Bob: Dual central connection
+            Bob -x Charlie: Normal cross message
+  - - Alice
+    - Bob
+    - Charlie
+    - Normal message
+    - Normal dotted message
+- - |-
+    sequenceDiagram
+            participant Alice
+            participant Bob
+            participant Charlie
+            Alice ()->>() Bob: Central connection
+            Note over Alice,Bob: Central connection note
+            Bob ()-->> Charlie: Reverse central connection
+            Note right of Charlie: Response note
+            Charlie ()<<-->>() Alice: Dual central connection
+  - - Alice
+    - Bob
+    - Charlie
+    - Central connection note
+    - Response note
+- - |-
+    sequenceDiagram
+        participant Alice
+        participant Bob
+        Alice->>John: Hello John, how are you?
+        loop HealthCheck
+            John->>John: Fight against hypochondria
+        end
+        Note right of John: Rational thoughts <br/>prevail!
+        John-->>Alice: Great!
+        John->>Bob: How about you?
+        Bob-->>John: Jolly good!
+  - - Alice
+    - John
+    - John-
+    - Bob
+    - Bob-
+    - Hello John, how are you?
+    - Fight against hypochondria
+    - Great!
+- - >-
+    sequenceDiagram
+
+
+    Alice->Bob: Hello Bob, how are you?
+
+    Bob->Alice: Fine, how did your mother like the book I suggested? And did you
+    catch the new book about alien invasion?
+
+    Alice->Bob: Good.
+
+    Bob->Alice: Cool
+  - - Alice
+    - Bob
+    - Hello Bob, how are you?
+    - >-
+      Fine, how did your mother like the book I suggested? And did you catch the
+      new book about alien invasion?
+    - Good.
+    - Cool
+- - |-
+    sequenceDiagram
+        Pumbaa->>Timon:I ate like a pig.
+        Timon->>Pumbaa:Pumbaa, you ARE a pig.
+  - - Pumbaa
+    - Timon
+    - I ate like a pig.
+    - Pumbaa, you ARE a pig.
+- - |-
+    sequenceDiagram
+          accTitle: My Sequence Diagram
+          accDescr: My Sequence Diagram Description
+
+          Alice->>John: Hello John, how are you?
+          John-->>Alice: Great!
+          Alice-)John: See you later!
+  - - Alice
+    - John
+    - John-
+    - Hello John, how are you?
+    - Great!
+- - |-
+    sequenceDiagram
+        autonumber
+        participant 1 as $$\alpha$$
+        participant 2 as $$\beta$$
+        1->>2: Solve: $$\sqrt{2+2}$$
+        2-->>1: Answer: $$2$$
+        Note right of 2: $$\sqrt{2+2}=\sqrt{4}=2$$
+  - - "1"
+    - "2"
+    - 2-
+    - 'Solve: $$\sqrt{2+2}$$'
+    - "Answer: $$2$$"
+    - $$\sqrt{2+2}=\sqrt{4}=2$$
+- - "sequenceDiagram\n\tSite->>mermaid: initialize\n\tSite->>mermaid: content loaded\n\tmermaid->>mermaidAPI: init"
+  - - Site
+    - mermaid
+    - mermaidAPI
+    - initialize
+    - content loaded
+    - init
+- - |-
+    sequenceDiagram
+        Alice ->> Bob: Hello Bob, how are you?
+        Bob-->>John: How about you John?
+        Bob--x Alice: I am good thanks!
+        Bob-x John: I am good thanks!
+        Note right of John: Bob thinks a long<br/>long time, so long<br/>that the text does<br/>not fit on a row.
+
+        Bob-->Alice: Checking with John...
+        Alice->John: Yes... John, how are you?
+  - - Alice
+    - Bob
+    - Bob-
+    - John
+    - Hello Bob, how are you?
+    - How about you John?
+    - I am good thanks!
+    - Checking with John...
+- - |-
+    sequenceDiagram
+        loop Daily query
+            Alice->>Bob: Hello Bob, how are you?
+            alt is sick
+                Bob->>Alice: Not so good :(
+            else is well
+                Bob->>Alice: Feeling fresh like a daisy
+            end
+
+            opt Extra response
+                Bob->>Alice: Thanks for asking
+            end
+        end
+  - - Alice
+    - Bob
+    - Hello Bob, how are you?
+    - Not so good :(
+    - Feeling fresh like a daisy
+    - Thanks for asking
+- - |-
+    sequenceDiagram
+        participant Alice
+        participant Bob
+        Alice->>John: Hello John, how are you?
+        loop HealthCheck
+            John->>John: Fight against hypochondria
+        end
+        Note right of John: Rational thoughts<br/>prevail...
+        John-->>Alice: Great!
+        John->>Bob: How about you?
+        Bob-->>John: Jolly good!
+  - - Alice
+    - John
+    - John-
+    - Bob
+    - Bob-
+    - Hello John, how are you?
+    - Fight against hypochondria
+    - Great!
+- - |-
+    sequenceDiagram
+        participant web as Web Browser
+        participant blog as Blog Service
+        participant account as Account Service
+        participant mail as Mail Service
+        participant db as Storage
+
+        Note over web,db: The user must be logged in to submit blog posts
+        web->>+account: Logs in using credentials
+        account->>db: Query stored accounts
+        db->>account: Respond with query result
+
+        alt Credentials not found
+            account->>web: Invalid credentials
+        else Credentials found
+            account->>-web: Successfully logged in
+
+            Note over web,db: When the user is authenticated, they can now submit new posts
+            web->>+blog: Submit new post
+            blog->>db: Store post data
+
+            par Notifications
+                blog--)mail: Send mail to blog subscribers
+                blog--)db: Store in-site notifications
+            and Response
+                blog-->>-web: Successfully posted
+            end
+        end
+  - - web
+    - db
+    - account
+    - "-web"
+    - blog
+    - mail
+    - blog-
+    - Query stored accounts
+- - |-
+    sequenceDiagram
+        Alice->>John: Hello John, how are you?
+        John-->>Alice: Great!
+        Alice-)John: See you later!
+  - - Alice
+    - John
+    - John-
+    - Hello John, how are you?
+    - Great!
+- - |-
+    sequenceDiagram
+        participant Alice
+        participant Bob
+        Bob->>Alice: Hi Alice
+        Alice->>Bob: Hi Bob
+  - - Bob
+    - Alice
+    - Hi Alice
+    - Hi Bob
+- - |-
+    sequenceDiagram
+        actor Alice
+        actor Bob
+        Alice->>Bob: Hi Bob
+        Bob->>Alice: Hi Alice
+  - - Alice
+    - Bob
+    - Hi Bob
+    - Hi Alice
+- - |-
+    sequenceDiagram
+        participant Alice@{ "type" : "boundary" }
+        participant Bob
+        Alice->>Bob: Request from boundary
+        Bob->>Alice: Response to boundary
+  - - Alice
+    - Bob
+    - Request from boundary
+    - Response to boundary
+- - |-
+    sequenceDiagram
+        participant Alice@{ "type" : "control" }
+        participant Bob
+        Alice->>Bob: Control request
+        Bob->>Alice: Control response
+  - - Alice
+    - Bob
+    - Control request
+    - Control response
+- - |-
+    sequenceDiagram
+        participant Alice@{ "type" : "entity" }
+        participant Bob
+        Alice->>Bob: Entity request
+        Bob->>Alice: Entity response
+  - - Alice
+    - Bob
+    - Entity request
+    - Entity response
+- - |-
+    sequenceDiagram
+        participant Alice@{ "type" : "database" }
+        participant Bob
+        Alice->>Bob: DB query
+        Bob->>Alice: DB result
+  - - Alice
+    - Bob
+    - DB query
+    - DB result
+- - |-
+    sequenceDiagram
+        participant Alice@{ "type" : "collections" }
+        participant Bob
+        Alice->>Bob: Collections request
+        Bob->>Alice: Collections response
+  - - Alice
+    - Bob
+    - Collections request
+    - Collections response
+- - |-
+    sequenceDiagram
+        participant Alice@{ "type" : "queue" }
+        participant Bob
+        Alice->>Bob: Queue message
+        Bob->>Alice: Queue response
+  - - Alice
+    - Bob
+    - Queue message
+    - Queue response
+- - |-
+    sequenceDiagram
+        participant A as Alice
+        participant J as John
+        A->>J: Hello John, how are you?
+        J->>A: Great!
+  - - A
+    - J
+    - Hello John, how are you?
+    - Great!
+- - |-
+    sequenceDiagram
+        participant API@{ "type": "boundary" } as Public API
+        actor DB@{ "type": "database" } as User Database
+        participant Svc@{ "type": "control" } as Auth Service
+        API->>Svc: Authenticate
+        Svc->>DB: Query user
+        DB-->>Svc: User data
+        Svc-->>API: Token
+  - - API
+    - Svc
+    - DB
+    - DB-
+    - Svc-
+    - Authenticate
+    - Query user
+    - User data
+- - |-
+    sequenceDiagram
+        participant API@{ "type": "boundary", "alias": "Public API" }
+        participant Auth@{ "type": "control", "alias": "Auth Service" }
+        participant DB@{ "type": "database", "alias": "User Database" }
+        API->>Auth: Login request
+        Auth->>DB: Query user
+        DB-->>Auth: User data
+        Auth-->>API: Access token
+  - - API
+    - Auth
+    - DB
+    - DB-
+    - Auth-
+    - Login request
+    - Query user
+    - User data
+- - |-
+    sequenceDiagram
+        participant API@{ "type": "boundary", "alias": "Internal Name" } as External Name
+        participant DB@{ "type": "database", "alias": "Internal DB" } as External DB
+        API->>DB: Query
+        DB-->>API: Result
+  - - API
+    - DB
+    - DB-
+    - Query
+    - Result
+- - |-
+    sequenceDiagram
+        box Purple Alice & John
+        participant A
+        participant J
+        end
+        box Another Group
+        participant B
+        participant C
+        end
+        A->>J: Hello John, how are you?
+        J->>A: Great!
+        A->>B: Hello Bob, how is Charley?
+        B->>C: Hello Charley, how are you?
+  - - A
+    - J
+    - B
+    - C
+    - Hello John, how are you?
+    - Great!
+    - Hello Bob, how is Charley?
+    - Hello Charley, how are you?
+- - |-
+    sequenceDiagram
+        Alice->>John: Hello John, how are you?
+        activate John
+        John-->>Alice: Great!
+        deactivate John
+  - - Alice
+    - John
+    - John-
+    - Hello John, how are you?
+    - Great!
+- - |-
+    sequenceDiagram
+        Alice->>+John: Hello John, how are you?
+        John-->>-Alice: Great!
+  - - John-
+    - "-Alice"
+    - Great!
+- - |-
+    sequenceDiagram
+        Alice->>+John: Hello John, how are you?
+        Alice->>+John: John, can you hear me?
+        John-->>-Alice: Hi Alice, I can hear you!
+        John-->>-Alice: I feel great!
+  - - John-
+    - "-Alice"
+    - Hi Alice, I can hear you!
+    - I feel great!
+- - |-
+    sequenceDiagram
+        participant John
+        Note right of John: Text in note
+  - - John
+    - Text in note
+- - |-
+    sequenceDiagram
+        Alice->John: Hello John, how are you?
+        Note over Alice,John: A typical interaction
+  - - Alice
+    - John
+    - Hello John, how are you?
+    - A typical interaction
+- - |-
+    sequenceDiagram
+        Alice->John: Hello John,<br/>how are you?
+        Note over Alice,John: A typical interaction<br/>But now in two lines
+  - - Alice
+    - John
+    - Hello John,&lt;br/&gt;how are you?
+    - A typical interaction&lt;br/&gt;But now in two lines
+- - |-
+    sequenceDiagram
+        participant Alice as Alice<br/>Johnson
+        Alice->John: Hello John,<br/>how are you?
+        Note over Alice,John: A typical interaction<br/>But now in two lines
+  - - Alice
+    - John
+    - Hello John,&lt;br/&gt;how are you?
+    - A typical interaction&lt;br/&gt;But now in two lines
+- - |-
+    sequenceDiagram
+        Alice->John: Hello John, how are you?
+        loop Every minute
+            John-->Alice: Great!
+        end
+  - - Alice
+    - John
+    - John-
+    - Hello John, how are you?
+    - Great!
+- - |-
+    sequenceDiagram
+        Alice->>Bob: Hello Bob, how are you?
+        alt is sick
+            Bob->>Alice: Not so good :(
+        else is well
+            Bob->>Alice: Feeling fresh like a daisy
+        end
+        opt Extra response
+            Bob->>Alice: Thanks for asking
+        end
+  - - Alice
+    - Bob
+    - Hello Bob, how are you?
+    - Not so good :(
+    - Feeling fresh like a daisy
+    - Thanks for asking
+- - |-
+    sequenceDiagram
+        par Alice to Bob
+            Alice->>Bob: Hello guys!
+        and Alice to John
+            Alice->>John: Hello guys!
+        end
+        Bob-->>Alice: Hi Alice!
+        John-->>Alice: Hi Alice!
+  - - Alice
+    - Bob
+    - John
+    - Bob-
+    - John-
+    - Hello guys!
+    - Hi Alice!
+- - |-
+    sequenceDiagram
+        par Alice to Bob
+            Alice->>Bob: Go help John
+        and Alice to John
+            Alice->>John: I want this done today
+            par John to Charlie
+                John->>Charlie: Can we do this today?
+            and John to Diana
+                John->>Diana: Can you help us today?
+            end
+        end
+  - - Alice
+    - Bob
+    - John
+    - Charlie
+    - Diana
+    - Go help John
+    - I want this done today
+    - Can we do this today?
+- - |-
+    sequenceDiagram
+        critical Establish a connection to the DB
+            Service-->DB: connect
+        option Network timeout
+            Service-->Service: Log error
+        option Credentials rejected
+            Service-->Service: Log different error
+        end
+  - - Service-
+    - DB
+    - Service
+    - connect
+    - Log error
+    - Log different error
+- - |-
+    sequenceDiagram
+        critical Establish a connection to the DB
+            Service-->DB: connect
+        end
+  - - Service-
+    - DB
+    - connect
+- - |-
+    sequenceDiagram
+        Consumer-->API: Book something
+        API-->BookingService: Start booking process
+        break when the booking process fails
+            API-->Consumer: show failure
+        end
+        API-->BillingService: Start billing process
+  - - Consumer-
+    - API
+    - API-
+    - BookingService
+    - Consumer
+    - BillingService
+    - Book something
+    - Start booking process
+- - |-
+    sequenceDiagram
+        participant Alice
+        participant John
+
+        rect rgb(191, 223, 255)
+        note right of Alice: Alice calls John.
+        Alice->>+John: Hello John, how are you?
+        rect rgb(200, 150, 255)
+        Alice->>+John: John, can you hear me?
+        John-->>-Alice: Hi Alice, I can hear you!
+        end
+        John-->>-Alice: I feel great!
+        end
+        Alice ->>+ John: Did you want to go to the game tonight?
+        John -->>- Alice: Yeah! See you there.
+  - - Alice
+    - John-
+    - "-Alice"
+    - John
+    - "-"
+    - Hi Alice, I can hear you!
+    - I feel great!
+    - "Alice: Yeah! See you there."
+- - |-
+    sequenceDiagram
+        Alice->>John: Hello John, how are you?
+        %% this is a comment
+        John-->>Alice: Great!
+  - - Alice
+    - John
+    - John-
+    - Hello John, how are you?
+    - Great!
+- - |-
+    sequenceDiagram
+        A->>B: I #9829; you!
+        B->>A: I #9829; you #infin; times more!
+  - - A
+    - B
+    - "I #9829; you!"
+    - "I #9829; you #infin; times more!"
+- - |-
+    sequenceDiagram
+        autonumber
+        Alice->>John: Hello John, how are you?
+        loop HealthCheck
+            John->>John: Fight against hypochondria
+        end
+        Note right of John: Rational thoughts!
+        John-->>Alice: Great!
+        John->>Bob: How about you?
+        Bob-->>John: Jolly good!
+  - - Alice
+    - John
+    - John-
+    - Bob
+    - Bob-
+    - Hello John, how are you?
+    - Fight against hypochondria
+    - Great!
+- - |-
+    sequenceDiagram
+        participant Alice
+        participant John
+        link Alice: Dashboard @ https://dashboard.contoso.com/alice
+        link Alice: Wiki @ https://wiki.contoso.com/alice
+        link John: Dashboard @ https://dashboard.contoso.com/john
+        link John: Wiki @ https://wiki.contoso.com/john
+        Alice->>John: Hello John, how are you?
+        John-->>Alice: Great!
+        Alice-)John: See you later!
+  - - Alice
+    - John
+    - John-
+    - Hello John, how are you?
+    - Great!
+- - |-
+    sequenceDiagram
+        participant Alice
+        participant John
+        links Alice: {"Dashboard": "https://dashboard.contoso.com/alice", "Wiki": "https://wiki.contoso.com/alice"}
+        links John: {"Dashboard": "https://dashboard.contoso.com/john", "Wiki": "https://wiki.contoso.com/john"}
+        Alice->>John: Hello John, how are you?
+        John-->>Alice: Great!
+        Alice-)John: See you later!
+  - - Alice
+    - John
+    - John-
+    - Hello John, how are you?
+    - Great!
+- - |-
+    sequenceDiagram
+    Alice->>John: Hello John, how are you?
+    loop HealthCheck
+        John->>John: Fight against hypochondria
+    end
+    Note right of John: Rational thoughts!
+    John-->>Alice: Great!
+    John->>Bob: How about you?
+    Bob-->>John: Jolly good!
+  - - Alice
+    - John
+    - John-
+    - Bob
+    - Bob-
+    - Hello John, how are you?
+    - Fight against hypochondria
+    - Great!
+- - >-
+    sequenceDiagram
+
+    actor Package
+
+    participant Module
+
+    participant TokenBuilder
+
+    participant Lexer
+
+    participant Parser
+
+    participant ValueConverter
+
+
+
+    Package ->> Module: Create services
+
+    Module ->> TokenBuilder: Override or/and<br>reorder rules
+
+    TokenBuilder ->> Lexer: Read the string and transform<br>it into a token
+    stream
+
+    Lexer ->> Parser: Parse token<br>stream into AST
+
+    Parser ->> ValueConverter: Clean/modify tokenized<br>rules returned value
+
+    ValueConverter -->> Package: Return AST
+  - - Package
+    - Module
+    - TokenBuilder
+    - Lexer
+    - Parser
+    - ValueConverter
+    - Create services
+    - Override or/and&lt;br&gt;reorder rules
+- - |-
+    sequenceDiagram
+        autonumber
+        actor Customer
+        participant Shop as Web Shop
+        participant Pay as Payment Service
+        participant Bank
+
+        Customer->>Shop: Place order
+        activate Shop
+        Shop->>Pay: Create payment request
+        activate Pay
+        Pay->>Bank: Authorize card
+        Bank-->>Pay: Authorization result
+        alt Payment approved
+            Pay-->>Shop: Payment confirmed
+            Shop-->>Customer: Show receipt
+        else Payment declined
+            Pay-->>Shop: Payment failed
+            Shop-->>Customer: Ask for another card
+        end
+        deactivate Pay
+        deactivate Shop
+  - - Customer
+    - Shop
+    - Pay
+    - Bank
+    - Bank-
+    - Pay-
+    - Shop-
+    - Place order
+- - |-
+    sequenceDiagram
+        participant App as Mobile App
+        participant API as Order Service
+        participant Kitchen
+        actor Courier
+
+        App->>API: Submit order
+        Note right of API: Validate items,<br/>charge payment
+        par Notify kitchen
+            API->>Kitchen: New order ticket
+        and Confirm to customer
+            API-->>App: Order accepted, ETA 30 min
+        end
+        Kitchen-->>API: Order ready
+        API->>Courier: Request pickup
+        loop Until delivered
+            Courier->>App: Share live location
+        end
+        Courier-->>App: Order delivered
+  - - App
+    - API
+    - Kitchen
+    - API-
+    - Kitchen-
+    - Courier
+    - Courier-
+    - Submit order
+- - |-
+    sequenceDiagram
+        Alice->>Bob: Hello
+        Bob-->>Alice: Hi
+        Alice-xBob: Bye
+  - - Alice
+    - Bob
+    - Bob-
+    - Hello
+    - Hi
+- - |-
+    sequenceDiagram
+          participant Alice
+          participant Bob
+          Alice->>Bob: Hello
+          Bob-->>Alice: Hi
+  - - Alice
+    - Bob
+    - Bob-
+    - Hello
+    - Hi
+- - |-
+    sequenceDiagram
+            actor A1
+        Alice->>+John: Hello John, how are you?
+        Alice->>+John: John, can you hear me?
+        John-->>-Alice: Hi Alice, I can hear you!
+        John-->>-Alice: I feel great!
+  - - John-
+    - "-Alice"
+    - Hi Alice, I can hear you!
+    - I feel great!

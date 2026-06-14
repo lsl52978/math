@@ -1,208 +1,162 @@
 #!/usr/bin/env bun
-import { writeFileSync, existsSync, readFileSync } from "fs";
-import { join } from "path";
-import { load, dump } from "js-yaml";
-import { minify } from "html-minifier";
-import WARN from "@3-/log/WARN.js";
-import { extract as extractKatex, render as renderKatex } from "./katex.js";
-import { extract as extractMathjax, render as renderMathjax } from "./mathjax.js";
-import { read, norm, isSupported } from "./lib.js";
-import { normalize } from "../test/compare.test.js";
-import convert from "../src/md.js";
-import compile from "../src/mathml.js";
+import {
+  existsSync,
+  mkdirSync,
+  readdirSync,
+  readFileSync,
+  rmSync,
+  statSync,
+  writeFileSync,
+} from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { dump } from "js-yaml";
+import { $ } from "zx";
+import compile from "../src/svg.js";
 
-const classify = (tex) => {
-    if (tex.includes("\\sqrt")) return "sqrt";
-    if (tex.includes("\\frac")) return "frac";
+const REPO = [
+    ["maid", "https://github.com/probelabs/maid.git"],
+    ["beautiful-mermaid", "https://github.com/lukilabs/beautiful-mermaid.git"],
+    ["mermaid", "https://github.com/mermaid-js/mermaid.git"],
+  ],
+  SEED = [
+    "flowchart TD\n  A[Input Mermaid] --> B[Parse]\n  B --> C[Layout]\n  C --> D[SVG]",
+    "graph LR\n  Start((Start)) --> Check{Fast?}\n  Check -->|yes| Ship[Ship SVG]\n  Check -->|no| Tune[Optimize]",
+    "sequenceDiagram\n  User->>Renderer: type mermaid\n  Renderer-->>User: svg\n  Note over User,Renderer: tiny runtime",
+    "classDiagram\n  Diagram <|-- Flowchart\n  Diagram : +render()\n  Flowchart : +layout()",
+    "stateDiagram-v2\n  [*] --> Draft\n  Draft --> Tested: bun test\n  Tested --> Shipped",
+  ],
+  ROOT = join(import.meta.dirname, ".."),
+  CACHE = join(tmpdir(), "webc-mermaid-extract"),
+  TEST = join(ROOT, "test"),
+  clone = async (name, url) => {
+    const dir = join(CACHE, name),
+      tpl = join(CACHE, "git-template");
+    if (!existsSync(dir)) {
+      mkdirSync(CACHE, { recursive: true });
+      mkdirSync(tpl, { recursive: true });
+      try {
+        await $`git clone --depth=1 --template=${tpl} ${url} ${dir}`;
+      } catch (err) {
+        rmSync(dir, { recursive: true, force: true });
+        throw err;
+      }
+    }
+    return dir;
+  },
+  walk = (dir, out = []) => {
+    let list = [];
+    try {
+      list = readdirSync(dir);
+    } catch {
+      return out;
+    }
+    list.forEach((name) => {
+      const path = join(dir, name);
+      let stat;
+      try {
+        stat = statSync(path);
+      } catch {
+        return;
+      }
+      if (stat.isDirectory()) {
+        if (!name.startsWith(".") && name !== "node_modules") walk(path, out);
+      } else if (/\.(mmd|md|markdown|js|ts|tsx|json)$/.test(name)) {
+        out.push(path);
+      }
+    });
+    return out;
+  },
+  fences = (txt) => {
+    const out = [],
+      re = /```(?:mermaid|mmd)?\s*([\s\S]*?)```/gi;
+    let m;
+    while ((m = re.exec(txt))) out.push(m[1].trim());
+    return out;
+  },
+  literals = (txt) => {
+    const out = [],
+      re =
+        /["'`]((?:flowchart|graph|sequenceDiagram|classDiagram|stateDiagram-v2)(?:\\n|[^"'`]){0,900})["'`]/g;
+    let m;
+    while ((m = re.exec(txt))) out.push(m[1].replace(/\\n/g, "\n").trim());
+    return out;
+  },
+  supported = (code) => {
+    const line = code.trim().split(/\n/)[0].trim().toLowerCase();
+    if (!/^(flowchart|graph|sequencediagram|classdiagram|statediagram|statediagram-v2)/.test(line))
+      return false;
+    if (code.length > 1200 || /%%\{|\bsubgraph\b|\bclick\b|\bstyle\b|\bclassDef\b/.test(code))
+      return false;
     if (
-      /(?:\\alpha|\\beta|\\gamma|\\theta|\\pi|\\delta|\\epsilon|\\zeta|\\eta|\\iota|\\kappa|\\lambda|\\mu|\\nu|\\xi|\\rho|\\sigma|\\tau|\\upsilon|\\phi|\\chi|\\psi|\\omega|\\Gamma|\\Delta|\\Theta|\\Lambda|\\Xi|\\Pi|\\Sigma|\\Upsilon|\\Phi|\\Psi|\\Omega|\\nabla|\\partial)(?![a-zA-Z])/.test(
-        tex,
-      )
+      line.startsWith("statediagram") &&
+      /[{}]|\n\s*---|\bNote\b|\bdirection\b|\bas\s+[A-Za-z]/.test(code)
     )
-      return "greek";
-    if (
-      /(?:\\sin|\\cos|\\tan|\\log|\\lim|\\ln|\\exp|\\max|\\min|\\sup|\\inf|\\det|\\gcd|\\arcsin|\\arccos|\\arctan|\\sinh|\\cosh|\\tanh)(?![a-zA-Z])/.test(
-        tex,
-      )
-    )
-      return "func";
-    if (
-      /(?:\\le|\\ge|\\neq|\\ne|\\leq|\\geq|\\cdot|\\times|\\pm|\\div|\\to|\\dots|\\cdots|\\ldots|\\leftarrow|\\rightarrow|\\leftrightarrow|\\Leftarrow|\\Rightarrow|\\Leftrightarrow|\\approx|\\sim|\\cong|\\propto|\\forall|\\exists|\\in|\\notin|\\subset|\\supset|\\subseteq|\\supseteq|\\cup|\\cap|\\emptyset)(?![a-zA-Z])/.test(
-        tex,
-      )
-    )
-      return "operator_relation";
-    if (/[_^]/.test(tex)) return "sub_sup";
-    return "basic";
+      return false;
+    if (line.startsWith("classdiagram") && /[{}]|\bnote\b|\bnamespace\b|\bcallback\b/.test(code))
+      return false;
+    try {
+      const svg = compile(code);
+      return svg.includes("<svg") && svg.includes("<text");
+    } catch {
+      return false;
+    }
+  },
+  classify = (code) => {
+    const head = code.trim().split(/\n/)[0].toLowerCase();
+    if (head.startsWith("sequencediagram")) return "sequence";
+    if (head.startsWith("classdiagram")) return "class";
+    if (head.startsWith("statediagram")) return "state";
+    return "flowchart";
+  },
+  fragments = (code) => {
+    const set = new Set(),
+      svg = compile(code),
+      re = /<text[^>]*>(.*?)<\/text>/g;
+    let m;
+    while ((m = re.exec(svg))) {
+      const txt = m[1].trim();
+      if (txt) set.add(txt);
+    }
+    return Array.from(set).slice(0, 8);
+  },
+  collect = async () => {
+    const all = new Set(SEED);
+    for (const [name, url] of REPO) {
+      try {
+        const dir = await clone(name, url);
+        walk(dir).forEach((file) => {
+          let txt = "";
+          try {
+            txt = readFileSync(file, "utf8");
+          } catch {
+            return;
+          }
+          [...fences(txt), ...literals(txt)].forEach((code) => {
+            if (supported(code)) all.add(code);
+          });
+        });
+      } catch (err) {
+        console.log("Skip " + name + ": " + err.message);
+      }
+    }
+    return Array.from(all).filter(supported);
   },
   run = async () => {
-    const workspace_dir = join(import.meta.dirname, ".."),
-      [katex_raw, mathjax_raw] = await Promise.all([extractKatex(), extractMathjax()]),
-      seen_tex = read(workspace_dir),
-      categories = {
-        basic: { katex: [], mathjax: [] },
-        greek: { katex: [], mathjax: [] },
-        frac: { katex: [], mathjax: [] },
-        sqrt: { katex: [], mathjax: [] },
-        func: { katex: [], mathjax: [] },
-        operator_relation: { katex: [], mathjax: [] },
-        sub_sup: { katex: [], mathjax: [] },
-      };
-
-    let katex_valid_count = 0,
-      katex_skip = 0,
-      mathjax_skip = 0;
-    const katex_supported = [];
-    for (const tex of katex_raw) {
-      if (!isSupported(tex)) continue;
-      try {
-        const out = renderKatex(tex);
-        if (out && !out.includes("<merror")) {
-          ++katex_valid_count;
-          katex_supported.push(tex);
-        }
-      } catch {
-        // ignore
-      }
-    }
-
-    const mathjax_supported = [];
-    const limit = 50;
-    for (let i = 0; i < mathjax_raw.length; i += limit) {
-      const chunk = mathjax_raw.slice(i, i + limit);
-      await Promise.all(
-        chunk.map(async (tex) => {
-          if (!isSupported(tex)) return;
-          try {
-            const out = await renderMathjax(tex);
-            if (out && !out.includes("<merror")) {
-              mathjax_supported.push(tex);
-            }
-          } catch {
-            // ignore
-          }
-        }),
-      );
-    }
-    const mathjax_valid_count = mathjax_supported.length;
-
-    console.log(
-      "KaTeX: " +
-        katex_raw.length +
-        " unique raw formulas, " +
-        katex_valid_count +
-        " valid formulas.",
-    );
-    console.log(
-      "MathJax: " +
-        mathjax_raw.length +
-        " unique raw formulas, " +
-        mathjax_valid_count +
-        " valid formulas.",
-    );
-
-    katex_supported.forEach((tex) => {
-      const n = norm(tex);
-      if (!seen_tex.has(n)) {
-        seen_tex.add(n);
-        categories[classify(tex)].katex.push(tex);
-      }
+    const bucket = {
+      flowchart: [],
+      sequence: [],
+      class: [],
+      state: [],
+    };
+    (await collect()).forEach((code) => {
+      bucket[classify(code)].push([code, fragments(code)]);
     });
-
-    mathjax_supported.forEach((tex) => {
-      const n = norm(tex);
-      if (!seen_tex.has(n)) {
-        seen_tex.add(n);
-        categories[classify(tex)].mathjax.push(tex);
+    for (const [name, cases] of Object.entries(bucket)) {
+      if (cases.length) {
+        writeFileSync(join(TEST, name + ".yml"), dump(cases), "utf8");
+        console.log("Generated " + cases.length + " " + name + " cases");
       }
-    });
-
-    const case_dir = join(workspace_dir, "test/case");
-
-    for (const [cat_name, data] of Object.entries(categories)) {
-      const file_path = join(case_dir, cat_name + ".yml"),
-        case_map = new Map();
-
-      if (existsSync(file_path)) {
-        try {
-          const content = readFileSync(file_path, "utf8"),
-            existing_cases = load(content) || [];
-          existing_cases.forEach(([k, v]) => case_map.set(k, v));
-        } catch {
-          // ignore
-        }
-      }
-
-      let updated = false;
-
-      // 1. Process KaTeX data
-      for (const tex of data.katex) {
-        const input = "$$" + tex + "$$";
-        if (case_map.has(input)) continue;
-        let output;
-        try {
-          output = renderKatex(tex);
-        } catch {
-          continue; // KaTeX failed to parse, ignore silently
-        }
-        if (output.includes("<merror")) continue;
-        try {
-          const our_output = convert(input, compile);
-          const our_min = normalize(minify(our_output, { collapseWhitespace: true }));
-          const expected_min = normalize(minify(output, { collapseWhitespace: true }));
-          if (our_min === expected_min) {
-            case_map.set(input, output);
-            updated = true;
-          } else {
-            ++katex_skip;
-          }
-        } catch {
-          ++katex_skip;
-        }
-      }
-
-      // 2. Process MathJax data
-      const mathjax_candidates = [],
-        mathjax_promises_subset = [];
-      for (const tex of data.mathjax) {
-        const input = "$$" + tex + "$$";
-        if (case_map.has(input)) continue;
-        mathjax_candidates.push({ tex, input });
-        mathjax_promises_subset.push(renderMathjax(tex).catch(() => null));
-      }
-
-      if (mathjax_promises_subset.length > 0) {
-        const outputs = await Promise.all(mathjax_promises_subset);
-        outputs.forEach((output, idx) => {
-          if (!output || output.includes("<merror")) return; // MathJax failed, ignore silently
-          const { input } = mathjax_candidates[idx];
-          try {
-            const our_output = convert(input, compile);
-            const our_min = normalize(minify(our_output, { collapseWhitespace: true }));
-            const expected_min = normalize(minify(output, { collapseWhitespace: true }));
-            if (our_min === expected_min) {
-              case_map.set(input, output);
-              updated = true;
-            } else {
-              ++mathjax_skip;
-            }
-          } catch {
-            ++mathjax_skip;
-          }
-        });
-      }
-
-      if (updated) {
-        const updated_cases = Array.from(case_map.entries());
-        writeFileSync(file_path, dump(updated_cases), "utf8");
-        console.log("Generated " + updated_cases.length + " cases for " + cat_name);
-      }
-    }
-    if (katex_skip) {
-      WARN("Skip KaTeX unsupported: " + katex_skip);
-    }
-    if (mathjax_skip) {
-      WARN("Skip MathJax unsupported: " + mathjax_skip);
     }
   };
 

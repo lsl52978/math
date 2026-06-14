@@ -1,29 +1,35 @@
-import FORMULAS from "./const/formulas.js";
+import DIAGRAMS from "./const/diagrams.js";
 import LANG_CODES from "./webc/I18n/CODE.js";
 import "./webc/Scroll.js";
 import "./webc/I18n.js";
-import "./webc/Math.js";
 import { onLang } from "./webc/js/i18n.js";
+import compile from "../lib/svg.js";
 
-let current_translation;
+let current_translation,
+  theme_id = 0;
 
-const input = document.getElementById("formula-input"),
-  preview = document.getElementById("math-preview"),
-  grid = document.getElementById("formulas-grid"),
+const input = document.getElementById("diagram-input"),
+  preview = document.getElementById("svg-preview"),
+  grid = document.getElementById("diagrams-grid"),
+  theme_buttons = document.querySelectorAll("[data-theme]"),
   adjustHeight = () => {
     const { style, scrollHeight } = input;
     style.height = "auto";
     style.height = scrollHeight + "px";
   },
-  renderMath = (val) => {
-    preview.setAttribute("tex", val);
+  renderDiagram = (val) => {
+    try {
+      preview.innerHTML = compile(val, theme_id);
+    } catch {
+      preview.textContent = val;
+    }
   },
-  selectFormula = (formula) => {
-    input.value = formula;
-    renderMath(formula);
+  selectDiagram = (diagram) => {
+    input.value = diagram;
+    renderDiagram(diagram);
     adjustHeight();
     input.focus();
-    input.setSelectionRange(formula.length, formula.length);
+    input.setSelectionRange(diagram.length, diagram.length);
   },
   i18n_modules = import.meta.glob("./i18n/*.js"),
   loadLang = async (code) => {
@@ -35,7 +41,7 @@ const input = document.getElementById("formula-input"),
   layoutWaterfall = () => {
     const { clientWidth: container_width } = grid,
       gap = 24,
-      cards = grid.querySelectorAll(".formula-card");
+      cards = grid.querySelectorAll(".diagram-card");
 
     let num_cols = 1;
     if (container_width > 968) {
@@ -60,8 +66,6 @@ const input = document.getElementById("formula-input"),
       style.left = min_col * (card_width + gap) + "px";
       style.top = col_heights[min_col] + "px";
 
-      // c-math auto-handles scaling and scrolling
-
       col_heights[min_col] += card.offsetHeight + gap;
     });
 
@@ -71,7 +75,7 @@ const input = document.getElementById("formula-input"),
     const {
         title,
         subtitle,
-        formulas_title,
+        diagrams_title,
         benchmark_size_title,
         benchmark_size_tip,
         benchmark_speed_title,
@@ -84,26 +88,23 @@ const input = document.getElementById("formula-input"),
         names,
         comment_import,
         comment_compile,
-        usage_formula,
+        usage_diagram,
       } = current_translation,
       usage_code =
         "// " +
         comment_compile +
-        " (@webc.site/math/md.js)\n" +
-        "import mdMath from '@webc.site/math/md.js';\n" +
-        "import mathml from '@webc.site/math';\n" +
-        "const html1 = mdMath('" +
-        usage_formula.replace(/\\/g, "\\\\") +
-        "', mathml);\n\n" +
+        " (mermaid-svg-renderer)\n" +
+        "import mermaidSvg from 'mermaid-svg-renderer';\n\n" +
         "// " +
         comment_import +
-        " (@webc.site/math)\n" +
-        "import math from '@webc.site/math';\n" +
-        "const html2 = math('e^{i\\\\pi} + 1 = 0', true);";
+        "\n" +
+        "const svg = mermaidSvg('" +
+        usage_diagram.replace(/\\/g, "\\\\").replace(/\n/g, "\\n") +
+        "');";
 
     [
       ["ui-title", title],
-      ["ui-formulas-title", formulas_title],
+      ["ui-diagrams-title", diagrams_title],
       ["ui-editor-title", editor_title],
       ["ui-editor-tip", editor_tip],
       ["ui-usage-title", usage_title],
@@ -123,26 +124,25 @@ const input = document.getElementById("formula-input"),
 
     input.placeholder = editor_placeholder;
 
-    const cards = FORMULAS.map((formula, idx) => {
-      const tex = "$$" + formula + "$$",
-        card = document.createElement("div"),
+    const cards = DIAGRAMS.map((diagram, idx) => {
+      const card = document.createElement("div"),
         h3 = document.createElement("h3"),
         code = document.createElement("div"),
-        render_box = document.createElement("c-math");
+        render_box = document.createElement("div");
 
-      card.className = "formula-card Lg";
+      card.className = "diagram-card Lg";
       card.onclick = () => {
-        selectFormula(tex);
+        selectDiagram(diagram);
         input.scrollIntoView({ behavior: "smooth", block: "center" });
       };
 
-      h3.textContent = names[idx] || "Formula " + (idx + 1);
+      h3.textContent = names[idx] || "Diagram " + (idx + 1);
 
-      code.className = "tex-code";
-      code.textContent = tex;
+      code.className = "diagram-code";
+      code.textContent = diagram;
 
-      render_box.className = "rendered-math";
-      render_box.setAttribute("tex", tex);
+      render_box.className = "rendered-diagram rendered-svg";
+      render_box.innerHTML = compile(diagram, theme_id);
 
       card.append(h3, code, render_box);
       return card;
@@ -163,8 +163,8 @@ const input = document.getElementById("formula-input"),
       }
     });
 
-    input.value = "$$" + FORMULAS[0] + "$$";
-    renderMath(input.value);
+    input.value = DIAGRAMS[0];
+    renderDiagram(input.value);
     adjustHeight();
     const obs = new IntersectionObserver(
       (entries) => {
@@ -180,11 +180,21 @@ const input = document.getElementById("formula-input"),
     obs.observe(input);
 
     input.oninput = () => {
-      renderMath(input.value);
+      renderDiagram(input.value);
       adjustHeight();
     };
 
-    // 字体/MathML 渲染完毕后重新布局
+    theme_buttons.forEach((btn) => {
+      btn.onclick = () => {
+        theme_id = Number(btn.dataset.theme);
+        theme_buttons.forEach((item) => item.classList.toggle("active", item === btn));
+        renderDiagram(input.value);
+        updateUI();
+        setTimeout(layoutWaterfall, 50);
+      };
+    });
+
+    // SVG 尺寸会随主题与容器变化，预览渲染后重新布局卡片。
     setTimeout(layoutWaterfall, 50);
     setTimeout(layoutWaterfall, 300);
 

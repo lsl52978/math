@@ -1,6 +1,5 @@
 node_modules/
-extract/KaTeX/
-extract/MathJax-src/
+extract/.cache/
 demo/index.html
 lib/package.json
 demo/style.css

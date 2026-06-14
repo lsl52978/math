@@ -1,3 +1,0 @@
-export const NOTATION_BOX = 1,
-  NOTATION_CANCEL = 2,
-  NOTATION_SOUT = 3;

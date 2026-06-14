@@ -1,0 +1,263 @@
+- - |-
+    classDiagram
+      Diagram <|-- Flowchart
+      Diagram : +render()
+      Flowchart : +layout()
+  - - Diagram +render()
+    - Flowchart +layout()
+- - >-
+    classDiagram
+
+    class Map
+
+    class Pair
+
+    Map <|-- Pair
+
+    class Service
+
+    class Client
+
+    Client ..> Service : uses
+
+    %% Generics in class names / member types (Mermaid CLI may not support
+    these)
+
+    class Repo
+
+    Repo : get(): Result<string,int>
+
+    Repo : put(item: Pair<string,int>): void
+
+    class Node
+
+    Node <|-- Tree
+
+    Tree : root: Node<string>
+  - - Map
+    - Pair
+    - Service
+    - Client
+    - >-
+      Repo get(): Result&lt;string,int&gt; put(item: Pair&lt;string,int&gt;):
+      void
+    - Node
+    - "Tree root: Node&lt;string&gt;"
+- - |-
+    classDiagram
+    class L["Logger &quot;core&quot;"]
+  - - L
+- - |-
+    classDiagram
+    class A
+    class B
+    class C
+    class D
+    class Client
+    class IService
+    class Impl
+
+    A *--o B
+    A o--* C
+    A o--o D
+    A *--* C
+    Client --() IService
+    IService ()-- Impl
+
+    A "1" -- "many" B
+    A "0..1" ..> "1" C
+
+    %% dotted realization both ways (via ..|>)
+    Client ..|> IService
+  - - A
+    - B
+    - C
+    - D
+    - Client
+    - IService
+    - Impl
+- - |-
+    classDiagram
+    direction LR
+    class A
+    class B
+    class C
+    class D
+    A <|-- B : extends
+    A *-- C : has
+    A o-- D : owns
+    A ..> B : uses
+    A ..|> B : realizes
+  - - A
+    - B
+    - C
+    - D
+- - |-
+    classDiagram
+      class A
+      class B
+      A "1..*" -- "0..1" B : uses
+  - - A
+    - B
+- - |-
+    classDiagram
+    class A
+    class B
+    class C
+    class D
+    A <|-- B
+    B --|> C
+    A <.. D
+    D ..> A
+    Client ..|> IService
+    IService <|.. Impl
+  - - A
+    - B
+    - C
+    - D
+- - |-
+    classDiagram
+    class L[
+  - - L
+- - |-
+    classDiagram
+      Animal <|-- Duck
+      Animal <|-- Fish
+      Animal: +int age
+      Animal: +String gender
+      Animal: +isMammal() bool
+      Duck: +String beakColor
+      Duck: +swim()
+      Duck: +quack()
+  - - Animal +int age +String gender +isMammal() bool
+    - Duck +String beakColor +swim() +quack()
+- - |-
+    classDiagram
+          class MyService~T~
+          MyService --> Handler : uses
+  - - MyService
+- - |-
+    classDiagram
+          class EmptyClass
+  - - EmptyClass
+- - |-
+    classDiagram
+          class Animal
+          Animal : +String name
+          Animal : +int age
+  - - Animal +String name +int age
+- - |-
+    classDiagram
+            class MyClass[
+  - - MyClass
+- - |-
+    classDiagram
+      class C1[
+  - - C1
+- - |-
+    classDiagram
+    class C1[
+  - - C1
+- - |-
+    classDiagram
+      Animal <|-- Duck
+      class Duck[
+  - - Duck
+- - |-
+    classDiagram
+            class C1[
+  - - C1
+- - |-
+    classDiagram
+                class C1[
+  - - C1
+- - |-
+    classDiagram
+                Animal <|-- Duck
+                class Duck[
+  - - Duck
+- - |-
+    classDiagram
+    Class01 <|-- AveryLongClass : Cool
+    Class03 *-- Class04
+    Class05 o-- Class06
+    Class07 .. Class08
+    Class09 --> C2 : Where am i?
+    Class09 --* C3
+    Class09 --|> Class07
+    Class07 : equals()
+    Class07 : Object[] elementData
+    Class01 : size()
+    Class01 : int chimp
+    Class01 : int gorilla
+    Class08 <--> C2: Cool label
+  - - Cool label
+    - Class07 equals() Object[] elementData
+    - Class01 size() int chimp int gorilla
+    - Class08
+    - C2
+- - |-
+    classDiagram
+          accTitle: My Class Diagram
+          accDescr: My Class Diagram Description
+
+          Vehicle <|-- Car
+  - - accTitle My Class Diagram
+    - accDescr My Class Diagram Description
+- - |-
+    classDiagram
+        class Animal
+        Vehicle <|-- Car
+  - - Animal
+- - |-
+    classDiagram
+        class Animal["Animal with a label"]
+        class Car["Car with *! symbols"]
+        Animal --> Car
+  - - Animal
+    - Car
+- - |-
+    classDiagram
+    class BankAccount
+    BankAccount : +String owner
+    BankAccount : +BigDecimal balance
+    BankAccount : +deposit(amount)
+    BankAccount : +withdrawal(amount)
+  - - >-
+      BankAccount +String owner +BigDecimal balance +deposit(amount)
+      +withdrawal(amount)
+- - |-
+    classDiagram
+        Animal <|--|> Zebra
+  - - Animal
+    - Zebra
+- - |-
+    classDiagram
+      class Shape <<interface>>
+  - - Shape
+- - |-
+    classDiagram
+    class Shape
+    <<interface>> Shape
+    Shape : noOfVertices
+    Shape : draw()
+  - - Shape noOfVertices draw()
+- - |-
+    classDiagram
+        class Animal:::styleClass
+  - - Animal
+- - |-
+    classDiagram
+                accTitle: My Title
+                accDescr: My Description
+  - - accTitle My Title
+    - accDescr My Description
+- - |-
+    classDiagram
+              direction RL
+              class A
+  - - A
+- - |-
+    classDiagram
+              class B
+  - - B

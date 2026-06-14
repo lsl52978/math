@@ -1,0 +1,673 @@
+- - |-
+    stateDiagram-v2
+      [*] --> Draft
+      Draft --> Tested: bun test
+      Tested --> Shipped
+  - - bun test
+    - "[*]"
+    - Draft
+    - Tested
+    - Shipped
+- - |-
+    stateDiagram-v2
+    Idle -> Running : start
+  - - "Idle -&gt; Running : start"
+- - |-
+    stateDiagram-v2
+    Idle --> Running : start
+  - - start
+    - Idle
+    - Running
+- - |-
+    stateDiagram-v2
+    state Split <<fork>>
+    [*] --> Split
+    Split --> A : path=/a
+    Split --> B : path=/b
+    state Join <<join>>
+    A --> Join
+    B --> Join
+    Join --> [*]
+  - - path=/a
+    - path=/b
+    - Split &lt;&lt;fork&gt;&gt;
+    - "[*]"
+    - Split
+    - A
+    - B
+    - Join &lt;&lt;join&gt;&gt;
+- - |-
+    stateDiagram-v2
+    [*] --> Idle
+    Idle --> Running : start
+    Running --> [*] : stop
+  - - start
+    - stop
+    - "[*]"
+    - Idle
+    - Running
+- - |-
+    stateDiagram-v2
+    A -> B : go
+  - - "A -&gt; B : go"
+- - |-
+    stateDiagram-v2
+    A --> B : go
+  - - go
+    - A
+    - B
+- - |-
+    stateDiagram-v2
+      [*] --> Idle
+      Idle --> Processing: start
+      Processing --> Complete: done
+      Complete --> [*]
+  - - start
+    - done
+    - "[*]"
+    - Idle
+    - Processing
+    - Complete
+- - |-
+    stateDiagram-v2
+      [*] --> Idle
+      Idle --> Active : start
+      Active --> Idle : cancel
+      Active --> Done : complete
+      Done --> [*]
+  - - start
+    - cancel
+    - complete
+    - "[*]"
+    - Idle
+    - Active
+    - Done
+- - |-
+    stateDiagram-v2
+      [*] --> Closed
+      Closed --> Connecting : connect
+      Connecting --> Connected : success
+      Connecting --> Closed : timeout
+      Connected --> Disconnecting : close
+      Connected --> Reconnecting : error
+      Reconnecting --> Connected : success
+      Reconnecting --> Closed : max_retries
+      Disconnecting --> Closed : done
+      Closed --> [*]
+  - - connect
+    - success
+    - timeout
+    - close
+    - error
+    - max_retries
+    - done
+    - "[*]"
+- - |-
+    stateDiagram-v2
+      [*] --> 空闲
+      空闲 --> 处理中 : 提交
+      处理中 --> 完成 : 成功
+      处理中 --> 错误 : 失败
+      错误 --> 空闲 : 重试
+      完成 --> [*]
+  - - 提交
+    - 成功
+    - 失败
+    - 重试
+    - "[*]"
+    - 空闲
+    - 处理中
+    - 完成
+- - |-
+    stateDiagram-v2
+            state
+  - - state
+- - |-
+    stateDiagram-v2
+            s1 : First<br>Second
+            [*] --> s1
+  - - "s1 : First&lt;br&gt;Second"
+    - "[*]"
+    - s1
+- - |-
+    stateDiagram-v2
+            s1 --> s2 : Event<br>Action
+  - - Event&lt;br&gt;Action
+    - s1
+    - s2
+- - |-
+    stateDiagram-v2
+      A --> B
+      linkStyle 0 stroke:#ff0000
+  - - A
+    - B
+    - linkStyle 0 stroke:#ff0000
+- - |-
+    stateDiagram-v2
+      A --> B
+      B --> C
+      linkStyle default stroke:#888
+  - - A
+    - B
+    - C
+    - linkStyle default stroke:#888
+- - |-
+    stateDiagram-v2
+      s1 --> s2
+  - - s1
+    - s2
+- - |-
+    stateDiagram-v2
+          Idle --> Active
+          Active --> Done
+  - - Idle
+    - Active
+    - Done
+- - |-
+    stateDiagram-v2
+          Idle --> Active : start
+  - - start
+    - Idle
+    - Active
+- - |-
+    stateDiagram-v2
+          [*] --> Idle
+  - - "[*]"
+    - Idle
+- - |-
+    stateDiagram-v2
+          Done --> [*]
+  - - Done
+    - "[*]"
+- - |-
+    stateDiagram-v2
+          [*] --> A
+          [*] --> B
+  - - "[*]"
+    - A
+    - B
+- - |-
+    stateDiagram-v2
+          s1 : Idle State
+          s1 --> s2
+  - - "s1 : Idle State"
+    - s1
+    - s2
+- - |-
+    stateDiagram-v2
+          state
+  - - state
+- - |-
+    stateDiagram-v2
+          [*] --> 空闲
+          空闲 --> 完成
+  - - "[*]"
+    - 空闲
+    - 完成
+- - |-
+    stateDiagram-v2
+          空闲 --> 处理中 : 提交
+  - - 提交
+    - 空闲
+    - 处理中
+- - |-
+    stateDiagram-v2
+          空闲 : 等待输入
+          空闲 --> 完成
+  - - "空闲 : 等待输入"
+    - 空闲
+    - 完成
+- - |-
+    stateDiagram-v2
+          [*] --> 待機
+          待機 --> 処理中 : 開始
+          処理中 --> 完了
+  - - 開始
+    - "[*]"
+    - 待機
+    - 処理中
+    - 完了
+- - |-
+    stateDiagram-v2
+          [*] --> Idle
+          Idle --> Active : start
+          Active --> Done
+  - - start
+    - "[*]"
+    - Idle
+    - Active
+    - Done
+- - |-
+    stateDiagram-v2
+          [*] --> Ready
+  - - "[*]"
+    - Ready
+- - |-
+    stateDiagram-v2
+          [*] --> Ready
+          Ready --> Running : start
+          Running --> Paused : pause
+          Paused --> Running : resume
+          Running --> Stopped : stop
+          Stopped --> [*]
+  - - start
+    - pause
+    - resume
+    - stop
+    - "[*]"
+    - Ready
+    - Running
+    - Paused
+- - |-
+    stateDiagram-v2
+        state fork_state <<fork>>
+        [*] --> fork_state
+        fork_state --> State2
+        fork_state --> State3
+
+        state join_state <<join>>
+        State2 --> join_state
+        State3 --> join_state
+        join_state --> State4
+        State4 --> [*]
+  - - fork_state &lt;&lt;fork&gt;&gt;
+    - "[*]"
+    - fork_state
+    - State2
+    - State3
+    - join_state &lt;&lt;join&gt;&gt;
+    - join_state
+    - State4
+- - |-
+    stateDiagram-v2
+        [*] --> State1
+        State1 --> State2
+        State2 --> [*]
+  - - "[*]"
+    - State1
+    - State2
+- - |-
+    stateDiagram
+          accTitle: My State Diagram
+          accDescr: My State Diagram Description
+
+           s1 --> s2
+  - - "accTitle: My State Diagram"
+    - "accDescr: My State Diagram Description"
+    - s1
+    - s2
+- - |-
+    stateDiagram
+        [*] --> Still
+        Still --> [*]
+
+        Still --> Moving
+        Moving --> Still
+        Moving --> Crash
+        Crash --> [*]
+  - - "[*]"
+    - Still
+    - Moving
+    - Crash
+- - |-
+    stateDiagram-v2
+        stateId
+  - - stateId
+- - |-
+    stateDiagram-v2
+        s2 : This is a state description
+  - - "s2 : This is a state description"
+- - |-
+    stateDiagram-v2
+        s1 --> s2
+  - - s1
+    - s2
+- - |-
+    stateDiagram-v2
+        s1 --> s2: A transition
+  - - A transition
+    - s1
+    - s2
+- - |-
+    stateDiagram-v2
+        [*] --> s1
+        s1 --> [*]
+  - - "[*]"
+    - s1
+- - |-
+    stateDiagram-v2
+        state if_state <<choice>>
+        [*] --> IsPositive
+        IsPositive --> if_state
+        if_state --> False: if n < 0
+        if_state --> True : if n >= 0
+  - - if n &lt; 0
+    - if n &gt;= 0
+    - if_state &lt;&lt;choice&gt;&gt;
+    - "[*]"
+    - IsPositive
+    - if_state
+    - "False"
+    - "True"
+- - |-
+    stateDiagram-v2
+        state fork_state <<fork>>
+          [*] --> fork_state
+          fork_state --> State2
+          fork_state --> State3
+
+          state join_state <<join>>
+          State2 --> join_state
+          State3 --> join_state
+          join_state --> State4
+          State4 --> [*]
+  - - fork_state &lt;&lt;fork&gt;&gt;
+    - "[*]"
+    - fork_state
+    - State2
+    - State3
+    - join_state &lt;&lt;join&gt;&gt;
+    - join_state
+    - State4
+- - |-
+    stateDiagram-v2
+            State1: The state with a note
+            note right of State1
+                Important information! You can write
+                notes.
+            end note
+            State1 --> State2
+            note left of State2 : This is the note to the left.
+  - - "State1: The state with a note"
+    - note right of State1
+    - Important information! You can write
+    - notes.
+    - end note
+    - State1
+    - State2
+    - "note left of State2 : This is the note to the left."
+- - |-
+    stateDiagram-v2
+        [*] --> Still
+        Still --> [*]
+    %% this is a comment
+        Still --> Moving
+        Moving --> Still %% another comment
+        Moving --> Crash
+        Crash --> [*]
+  - - "[*]"
+    - Still
+    - Moving
+    - Crash
+- - |-
+    stateDiagram-v2
+    [*] --> Still
+    Still --> [*]
+    Still --> Moving
+    Moving --> Still
+    Moving --> Crash
+    Crash --> [*]
+  - - "[*]"
+    - Still
+    - Moving
+    - Crash
+- - |-
+    stateDiagram-v2
+        [*] --> Still
+        Still --> [*]
+        Still --> Moving
+        Moving --> Still
+        Moving --> Crash
+        Crash --> [*]
+  - - "[*]"
+    - Still
+    - Moving
+    - Crash
+- - |-
+    stateDiagram-v2
+        [*] --> Active
+        Active --> Inactive
+        Inactive --> [*]
+  - - "[*]"
+    - Active
+    - Inactive
+- - |-
+    stateDiagram-v2
+
+          State1 : this is another string
+          [*] --> State1
+          State1 --> [*]
+  - - "State1 : this is another string"
+    - "[*]"
+    - State1
+- - |-
+    stateDiagram-v2
+
+          accDescr: a simple description of the diagram
+          State1 : this is another string
+          [*] --> State1
+          State1 --> [*]
+  - - "accDescr: a simple description of the diagram"
+    - "State1 : this is another string"
+    - "[*]"
+    - State1
+- - |-
+    stateDiagram-v2
+
+          accTitle: a simple title of the diagram
+          State1 : this is another string
+          [*] --> State1
+          State1 --> [*]
+  - - "accTitle: a simple title of the diagram"
+    - "State1 : this is another string"
+    - "[*]"
+    - State1
+- - |-
+    stateDiagram-v2
+
+          [*] --> State1
+          State1 --> [*]
+          State1 : this is a string
+          State1 : this is another string
+
+          State1 --> State2
+          State2 --> [*]
+  - - "[*]"
+    - State1
+    - "State1 : this is a string"
+    - "State1 : this is another string"
+    - State2
+- - |-
+    stateDiagram-v2
+
+          hide empty description
+          [*] --> State1
+          State1 --> [*]
+          State1 : this is a string
+          State1 : this is another string
+
+          State1 --> State2
+          State2 --> [*]
+  - - hide empty description
+    - "[*]"
+    - State1
+    - "State1 : this is a string"
+    - "State1 : this is another string"
+    - State2
+- - |-
+    stateDiagram-v2
+          assemble
+          state assemble
+  - - assemble
+- - |-
+    stateDiagram-v2
+          assemblies
+          state assemblies
+  - - assemblies
+- - |-
+    stateDiagram-v2
+
+          scale 350 width
+          [*] --> State1
+          State1 --> [*]
+          State1 : this is a string with - in it
+          State1 : this is another string
+
+          State1 --> State2
+          State2 --> [*]
+  - - scale 350 width
+    - "[*]"
+    - State1
+    - "State1 : this is a string with - in it"
+    - "State1 : this is another string"
+    - State2
+- - |-
+    stateDiagram-v2
+
+          scale 350 width
+          [*] --> State1 : This is the description with - in it
+          State1 --> [*]
+  - - This is the description with - in it
+    - scale 350 width
+    - "[*]"
+    - State1
+- - |-
+    stateDiagram-v2
+
+          scale 350 width
+          [*] --> State1 : This is the description +-!
+          State1 --> [*]
+  - - This is the description +-!
+    - scale 350 width
+    - "[*]"
+    - State1
+- - |-
+    stateDiagram-v2
+
+          state
+  - - state
+- - |-
+    stateDiagram-v2
+
+          state fork_state <<fork>>
+          [*] --> fork_state
+          fork_state --> State2
+          fork_state --> State3
+
+          state join_state <<join>>
+          State2 --> join_state
+          State3 --> join_state
+          join_state --> State4
+          State4 --> [*]
+  - - fork_state &lt;&lt;fork&gt;&gt;
+    - "[*]"
+    - fork_state
+    - State2
+    - State3
+    - join_state &lt;&lt;join&gt;&gt;
+    - join_state
+    - State4
+- - |-
+    stateDiagram-v2
+
+        //     [*] -up-> First
+        //     First -right-> Second
+        //     Second --> Third
+        //     Third -left-> Last
+        //
+  - - //     [*] -up-&gt; First
+    - //     First -right-&gt; Second
+    - //     Second
+    - Third
+    - //     Third -left-&gt; Last
+    - //
+- - |-
+    stateDiagram-v2
+
+          [*] --> Active
+          Active --> Inactive
+
+          note left of Active : this is a short<br/>note
+
+          note right of Inactive
+          A note can also
+          be defined on
+          several lines
+          end note
+  - - "[*]"
+    - Active
+    - Inactive
+    - "note left of Active : this is a short&lt;br/&gt;note"
+    - note right of Inactive
+    - A note can also
+    - be defined on
+    - several lines
+- - "stateDiagram-v2\n      State1\n      note right of State1\n      Line1<br>Line2<br/>Line3<br />Line4<br\t/>Line5\n      end note"
+  - - State1
+    - note right of State1
+    - "Line1&lt;br&gt;Line2&lt;br/&gt;Line3&lt;br /&gt;Line4&lt;br\t/&gt;Line5"
+    - end note
+- - |-
+    stateDiagram-v2
+          foo: bar
+          note
+  - - "foo: bar"
+    - note
+- - |-
+    stateDiagram-v2
+          state foo
+          note
+  - - foo
+    - note
+- - |-
+    stateDiagram-v2
+          [*] --> NotShooting
+
+          state
+  - - "[*]"
+    - NotShooting
+    - state
+- - |-
+    stateDiagram-v2
+            namedState1 : Small State 1
+  - - "namedState1 : Small State 1"
+- - |-
+    stateDiagram-v2
+            namedState1:Small State 1
+  - - namedState1:Small State 1
+- - |-
+    stateDiagram-v2
+          assemble
+          assemblies
+          state assemble
+          state assemblies
+  - - assemble
+    - assemblies
+- - |-
+    stateDiagram-v2
+            locked --> pending : recoverable error (ex: timeout)
+  - - "recoverable error (ex: timeout)"
+    - locked
+    - pending
+- - |-
+    stateDiagram-v2
+            A --> B : info: key: value
+  - - "info: key: value"
+    - A
+    - B
+- - |-
+    stateDiagram-v2
+            myState : status: active
+  - - "myState : status: active"
+- - |-
+    stateDiagram-v2
+          State1
+          note right of State1
+            this sentence contains send note inside the note text
+          end note
+          State1 --> State2
+  - - State1
+    - note right of State1
+    - this sentence contains send note inside the note text
+    - end note
+    - State2

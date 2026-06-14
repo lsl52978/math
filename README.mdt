@@ -4,9 +4,30 @@
 
 <a id="en"></a>
 
-<+ ./readme/en/README.md >
+# mermaid-svg-renderer
+
+Tiny and fast Mermaid to SVG renderer.
+
+```javascript
+import mermaidSvg from "mermaid-svg-renderer";
+
+const svg = mermaidSvg("flowchart TD\n  A[Mermaid] --> B[SVG]");
+```
+
+See `README.md` in the repository for development, extraction, demo, deployment, and AI loop details.
 
 ---
 
 <a id="zh"></a>
-<+ ./readme/zh/README.md >
+
+# mermaid-svg-renderer
+
+最小最快的 Mermaid 转 SVG 渲染器。
+
+```javascript
+import mermaidSvg from "mermaid-svg-renderer";
+
+const svg = mermaidSvg("flowchart TD\n  A[Mermaid] --> B[SVG]");
+```
+
+开发、测试抽取、演示站部署和 AI 自动开发循环说明见仓库中的 `README.md`。

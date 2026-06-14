@@ -7,6 +7,7 @@ import {
   readdirSync,
   existsSync,
   readFileSync,
+  rmSync,
 } from "node:fs";
 import { join } from "node:path";
 import { gzipSync } from "node:zlib";
@@ -57,6 +58,7 @@ const buildAndMinify = async (src_dir, out_dir, name, external) => {
       } catch {}
     }
 
+    rmSync(out_dir, { recursive: true, force: true });
     mkdirSync(out_dir, { recursive: true });
 
     const files = readdirSync(src_dir),
@@ -72,6 +74,7 @@ const buildAndMinify = async (src_dir, out_dir, name, external) => {
         table.push([name + ".js", (raw / 1024).toFixed(3) + " KB", (gz / 1024).toFixed(3) + " KB"]);
       }
     }
+    copyFileSync(join(dir, "README.md"), join(out_dir, "README.md"));
 
     console.log(table.toString());
   };

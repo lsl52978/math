@@ -190,7 +190,7 @@ main
   font-weight 300
   margin 0
 
-#formula-input
+#diagram-input
   background-color #f8fafc
   border 1px solid var(--border-color)
   border-radius 10px
@@ -201,7 +201,7 @@ main
   font-size 18px
   height auto
   line-height 1.6
-  min-height 80px
+  min-height 220px
   outline none
   padding 20px
   resize none
@@ -213,21 +213,36 @@ main
     border-color var(--accent-color)
     box-shadow 0 0 0 3px var(--accent-glow)
 
-.math-display
+.svg-display
   align-items center
+  background #f8fafc
+  border 1px solid var(--border-color)
   border-radius 16px
   display flex
   justify-content center
-  min-height 100px
+  min-height 260px
   overflow-x auto
-  padding 32px 0
+  padding 24px
 
-math
-  color var(--text-color)
-  font-family m, t, math, sans-serif
-  font-size 30px
+  svg
+    height auto
+    max-width 100%
+    min-width 240px
+    width 100%
 
-.formulas-section
+.theme-row
+  display flex
+  flex-wrap wrap
+  gap 10px
+
+  .theme-btn
+    --btnPadding 7px 18px
+
+    &.active
+      color var(--accent-color)
+      font-weight 700
+
+.diagrams-section
   display flex
   flex-direction column
   gap 24px
@@ -238,12 +253,12 @@ math
     font-weight 700
     margin 0
 
-.formulas-grid
+.diagrams-grid
   position relative
   transition height 0.3s ease
   width 100%
 
-  .formula-card
+  .diagram-card
     border-radius 16px
     box-shadow 0 4px 6px -1px #0000000d, 0 2px 4px -1px #00000008
     box-sizing border-box
@@ -271,18 +286,19 @@ math
       font-weight 600
       margin 0
 
-    .tex-code
+    .diagram-code
       background-color var(--bg-color)
       border 1px solid var(--border-color)
       border-radius 8px
       color var(--text-muted)
       font-family c, monospace
       font-size 14px
+      max-height 150px
       overflow-x auto
       padding 12px 16px
-      white-space nowrap
+      white-space pre
 
-    .rendered-math
+    .rendered-diagram
       align-items center
       background-color #f8fafc
       border 1px solid var(--border-color)
@@ -293,8 +309,9 @@ math
       overflow hidden
       padding 24px
 
-      math
-        display inline-block
+      svg
+        height auto
+        width 100%
 
 .code-block
   background-color #f8fafc
