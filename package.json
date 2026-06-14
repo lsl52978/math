@@ -30,7 +30,7 @@
   "scripts": {
     "dev": "bun dev.js",
     "build": "bun minify.js && bun sh/bench/mermaid.js && bun demo/build.js",
-    "pages:build": "bun minify.js && bun demo/build.js",
+    "pages:build": "bun minify.js && node demo/build.js",
     "pages:deploy": "bun run build && bunx wrangler pages deploy demo/dist --project-name math",
     "test": "bun minify.js && bun test test/compare.test.js",
     "prepare": "husky"
